@@ -16,4 +16,6 @@ export interface House {
   image?: string
   acreage?: string
   description?: string
+  district?: string
+  province?: string
 }

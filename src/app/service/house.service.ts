@@ -3,10 +3,11 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Page} from "../model/page";
 import {House} from "../model/house";
+import {CountAddress} from "../model/count-address";
 
 const API_URL = "http://localhost:8080/api/houses"
 
-const TOKEN = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJraGFuaDMiLCJpYXQiOjE3NDQyMDk2NjgsImV4cCI6MTc0NDIxMTEwOH0.Jm7GxyzwvUdkikBCGLsXsxyEGWWLOcZRSqeOHpzTaRc"
+const TOKEN = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJraGFuaDMiLCJpYXQiOjE3NDQ1MzcyMjQsImV4cCI6MTc0NDUzODY2NH0.f3L-QxXyzSsGDTWoo8LxJQeeEC1jHkMUqOnq2DCSCOA"
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +19,14 @@ export class HouseService {
 
   getAllHousePage(page: any, size: any): Observable<Page> {
     return this.http.get<Page>(API_URL + `/getAllPage?page=${page}&size=${size}`, {
+      headers: {
+        Authorization: `Bearer ${TOKEN}`,
+      }
+    })
+  }
+
+  getAllHouseBySameAddress(address: string): Observable<CountAddress[]> {
+    return this.http.get<CountAddress[]>(API_URL + `/getAllHouseBySameAddress?address=${address}`, {
       headers: {
         Authorization: `Bearer ${TOKEN}`,
       }
