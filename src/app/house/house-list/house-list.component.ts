@@ -12,6 +12,7 @@ export class HouseListComponent implements OnInit {
   page?: Page
 
   constructor(private houseService: HouseService) {
+    console.log("token: " + localStorage.getItem("token"))
   }
 
   ngOnInit(): void {

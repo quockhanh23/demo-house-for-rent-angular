@@ -7,7 +7,7 @@ import {CountAddress} from "../model/count-address";
 
 const API_URL = "http://localhost:8080/api/houses"
 
-const TOKEN = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJraGFuaDMiLCJpYXQiOjE3NDQ1MzcyMjQsImV4cCI6MTc0NDUzODY2NH0.f3L-QxXyzSsGDTWoo8LxJQeeEC1jHkMUqOnq2DCSCOA"
+const TOKEN = localStorage.getItem("token")
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +18,7 @@ export class HouseService {
   }
 
   getAllHousePage(page: any, size: any): Observable<Page> {
+    console.log("token: " + TOKEN)
     return this.http.get<Page>(API_URL + `/getAllPage?page=${page}&size=${size}`, {
       headers: {
         Authorization: `Bearer ${TOKEN}`,

@@ -25,7 +25,6 @@ export class HouseDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.getDetailHouse()
-
   }
 
   getDetailHouse() {

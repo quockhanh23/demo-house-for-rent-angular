@@ -5,9 +5,13 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {HouseListComponent} from './house/house-list/house-list.component';
 import {HttpClientModule} from "@angular/common/http";
-import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component';
-import { HouseDetailComponent } from './house/house-detail/house-detail.component';
+import {HeaderComponent} from './header/header.component';
+import {FooterComponent} from './footer/footer.component';
+import {HouseDetailComponent} from './house/house-detail/house-detail.component';
+import {LoginComponent} from './user/login/login.component';
+import {RegisterComponent} from './user/register/register.component';
+import {UserDetailComponent} from './user/user-detail/user-detail.component';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -15,12 +19,17 @@ import { HouseDetailComponent } from './house/house-detail/house-detail.componen
     HouseListComponent,
     HeaderComponent,
     FooterComponent,
-    HouseDetailComponent
+    HouseDetailComponent,
+    LoginComponent,
+    RegisterComponent,
+    UserDetailComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    ReactiveFormsModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
