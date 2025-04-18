@@ -7,9 +7,19 @@ import {Component, OnInit} from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  idUser?: any
+  username?: any
+
+  constructor() {
+    this.idUser = localStorage.getItem("idUser")
+    console.log("this.idUser: " + this.idUser)
+    this.username = localStorage.getItem("username")
+  }
 
   ngOnInit(): void {
   }
 
+  logout() {
+    localStorage.clear()
+  }
 }

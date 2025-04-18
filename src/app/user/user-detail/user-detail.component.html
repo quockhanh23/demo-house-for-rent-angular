@@ -1,1 +1,103 @@
-<p>user-detail works!</p>
+<app-header></app-header>
+<div class="container" style="margin-top: 10px">
+  <div class="row">
+    <div class="col-3" style="background-color: whitesmoke;">
+      <menu>
+        <li (click)="toInformation()" style="cursor: pointer">Thông tin</li>
+        <li (click)="toChangePassword()" style="cursor: pointer">Đổi mật khẩu</li>
+      </menu>
+    </div>
+    <div *ngIf="openInformation && !openChangePassword && !openUpdateUser" class="col-9"
+         style="background-color: whitesmoke">
+      <div style="padding-top: 15px">
+        <span (click)="toUpdateUser()" class="material-icons">edit</span>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-3">
+          <p><sub><span class="material-icons">account_circle</span></sub> Tên đăng nhập: </p>
+          <p><sub><span class="material-icons">badge</span></sub> Tên đầy đủ: </p>
+          <p><sub><span class="material-icons">date_range</span></sub> Ngày đăng kí: </p>
+          <p><sub><span class="material-icons">phone</span></sub> Số điện thoại: </p>
+          <p><sub><sub><span class="material-icons">email</span></sub></sub> Email: </p>
+        </div>
+        <div class="col-3">
+          <p>{{user?.username}}</p>
+          <p>{{user?.fullName}}</p>
+          <p>{{user?.createdAt}}</p>
+          <p>{{user?.phone}}</p>
+          <p>{{user?.email}}</p>
+        </div>
+        <div class="col-6">
+          <div align="right" style="padding-right: 20px">
+            <img style="width: 200px;height: 200px ; border-radius: 50%" src="../../../assets/images/logo.png">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="!openInformation && openChangePassword && !openUpdateUser" class="col-9"
+         style="background-color: whitesmoke">
+      <form [formGroup]="changePasswordForm" (ngSubmit)="changePassword()">
+        <div class="row align-items-center">
+          <div class="col mt-4">
+            <label for="1">Mật khẩu hiện tại:</label>
+            <input id="1" type="password" formControlName="password" class="form-control"
+                   placeholder="Mật khẩu hiện tại *">
+            <span style="font-size: 13px">Tối đa 32 kí tự</span>
+          </div>
+        </div>
+        <div class="row align-items-center">
+          <div class="col mt-4">
+            <label for="2">Mật khẩu mới:</label>
+            <input id="2" type="password" formControlName="newPassword" class="form-control"
+                   placeholder="Mật khẩu mới *">
+            <span style="font-size: 13px">Tối đa 32 kí tự</span>
+          </div>
+        </div>
+        <div class="row align-items-center">
+          <div class="col mt-4">
+            <label for="3">Xác nhận Mật khẩu mới:</label>
+            <input id="3" type="password" formControlName="confirmNewPassword" class="form-control"
+                   placeholder="Xác nhận lại Mật khẩu *">
+            <span style="font-size: 13px">Tối đa 32 kí tự</span>
+          </div>
+        </div>
+        <div class="col">
+          <button class="btn btn-primary mt-4" type="submit">Đổi mật khẩu</button>
+        </div>
+      </form>
+    </div>
+
+    <div *ngIf="!openInformation && !openChangePassword && openUpdateUser" class="col-9"
+         style="background-color: whitesmoke">
+      <div style="padding-top: 15px">
+        <span (click)="toInformation()" class="material-icons">highlight_off</span>
+      </div>
+      <hr>
+      <form [formGroup]="changePasswordForm" (ngSubmit)="changePassword()">
+        <div class="col mt-4">
+          <label>Tên đầy đủ:</label>
+          <input type="text" formControlName="fullName" class="form-control"
+                 placeholder="Tên đầy đủ">
+          <span style="font-size: 13px">Tối đa 32 kí tự</span>
+        </div>
+        <div class="col mt-4">
+          <label>Email:</label>
+          <input type="text" formControlName="email" class="form-control"
+                 placeholder="Email">
+          <span style="font-size: 13px">Tối đa 32 kí tự</span>
+        </div>
+        <div class="col mt-4">
+          <label>Số điện thoại:</label>
+          <input type="text" formControlName="phone" class="form-control"
+                 placeholder="Số điện thoại">
+          <span style="font-size: 13px">Tối đa 32 kí tự</span>
+        </div>
+        <div class="col">
+          <button class="btn btn-primary mt-4" type="submit">Thay đổi</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

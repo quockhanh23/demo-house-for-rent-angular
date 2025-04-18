@@ -33,6 +33,7 @@ export class LoginComponent implements OnInit {
     this.userService.login(loginRequest).subscribe(rs => {
       this.jwtResponse = rs;
       localStorage.setItem("token", <string>this.jwtResponse.token)
+      localStorage.setItem("username", <string>this.jwtResponse.username)
       localStorage.setItem("idUser", <string>this.jwtResponse.id)
       localStorage.setItem("roles", JSON.stringify(this.jwtResponse.roles))
       setTimeout(() => {
