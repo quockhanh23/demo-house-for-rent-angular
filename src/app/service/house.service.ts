@@ -7,8 +7,6 @@ import {CountAddress} from "../model/count-address";
 
 const API_URL = "http://localhost:8080/api/houses"
 
-const TOKEN = localStorage.getItem("token")
-
 @Injectable({
   providedIn: 'root'
 })
@@ -17,43 +15,34 @@ export class HouseService {
   constructor(private http: HttpClient) {
   }
 
-  getAllHousePage(page: any, size: any): Observable<Page> {
-    console.log("token: " + TOKEN)
-    return this.http.get<Page>(API_URL + `/getAllPage?page=${page}&size=${size}`, {
-      headers: {
-        Authorization: `Bearer ${TOKEN}`,
-      }
-    })
+  getAllHousePage(page: any, size: any, searchText: string): Observable<Page> {
+    return this.http.get<Page>(API_URL + `/getAllPage?page=${page}&size=${size}&searchText=${searchText}`)
   }
 
-  getAllHouseBySameAddress(address: string): Observable<CountAddress[]> {
-    return this.http.get<CountAddress[]>(API_URL + `/getAllHouseBySameAddress?address=${address}`, {
-      headers: {
-        Authorization: `Bearer ${TOKEN}`,
-      }
-    })
+  getAllWardByDistrictAndCount(address: string): Observable<CountAddress[]> {
+    return this.http.get<CountAddress[]>(API_URL + `/getAllWardByDistrictAndCount?address=${address}`,)
+  }
+
+  getAllDistrictAndCount(): Observable<CountAddress[]> {
+    return this.http.get<CountAddress[]>(API_URL + '/getAllDistrictAndCount',)
+  }
+
+  topMostExpensive(): Observable<House[]> {
+    return this.http.get<House[]>(API_URL + '/topMostExpensive',)
   }
 
   getDetailHouse(idHouse: any): Observable<House> {
-    return this.http.get<House>(API_URL + `/getDetailHouse?idHouse=${idHouse}`, {
-      headers: {
-        Authorization: `Bearer ${TOKEN}`,
-      }
-    })
+    return this.http.get<House>(API_URL + `/getDetailHouse?idHouse=${idHouse}`,)
   }
 
   getAllHouseByAddress(address: any): Observable<House[]> {
-    return this.http.get<House[]>(API_URL + `/getAllHouseByAddress?address=${address}`, {
-      headers: {
-        Authorization: `Bearer ${TOKEN}`,
-      }
-    })
+    return this.http.get<House[]>(API_URL + `/getAllHouseByAddress?address=${address}`, {})
   }
 
   createHouse(house: House): Observable<any> {
     return this.http.post<any>(API_URL + `/createHouse`, house, {
       headers: {
-        Authorization: `Bearer ${TOKEN}`,
+        Authorization: `Bearer ${'TOKEN'}`,
       }
     })
   }
@@ -61,7 +50,7 @@ export class HouseService {
   updateHouse(house: House, idHouse: any): Observable<any> {
     return this.http.put<any>(API_URL + `/updateHouse?idHouse=${idHouse}`, house, {
       headers: {
-        Authorization: `Bearer ${TOKEN}`,
+        Authorization: `Bearer ${'TOKEN'}`,
       }
     })
   }
@@ -69,7 +58,7 @@ export class HouseService {
   updateStatus(idHouse: any, status: string): Observable<any> {
     return this.http.put<any>(API_URL + `/updateHouse?idHouse=${idHouse}&status=${status}`, {
       headers: {
-        Authorization: `Bearer ${TOKEN}`,
+        Authorization: `Bearer ${'TOKEN'}`,
       }
     })
   }

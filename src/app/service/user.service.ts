@@ -6,8 +6,6 @@ import {JwtResponse} from "../model/jwt-response";
 
 const API_URL = "http://localhost:8080/api/users"
 
-const TOKEN = localStorage.getItem("token")
-
 @Injectable({
   providedIn: 'root'
 })
@@ -16,10 +14,11 @@ export class UserService {
   constructor(private http: HttpClient) {
   }
 
-  getDetailUser(idUser: any): Observable<User> {
+  getDetailUser(idUser: any, token: any): Observable<User> {
+    console.log("token getDetailUser: " +  token)
     return this.http.get<User>(API_URL + `/getDetailUser?idUser=${idUser}`, {
       headers: {
-        Authorization: `Bearer ${TOKEN}`,
+        Authorization: `Bearer ${token}`,
       }
     })
   }

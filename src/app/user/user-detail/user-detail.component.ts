@@ -12,6 +12,7 @@ export class UserDetailComponent implements OnInit {
 
   user?: User
   idUser?: any
+  token?: any
   openChangePassword = false
   openInformation = true
   openUpdateUser = false
@@ -38,13 +39,12 @@ export class UserDetailComponent implements OnInit {
   }
 
   getDetailUser() {
+    this.token = localStorage.getItem("token")
+    console.log("token: " +  this.token)
     if (this.idUser == null || this.idUser == '') return
-    this.userService.getDetailUser(this.idUser).subscribe(rs => {
+    this.userService.getDetailUser(this.idUser, this.token).subscribe(rs => {
       this.user = rs
     }, error => {
-      if (error.status == 0) {
-        localStorage.clear()
-      }
     })
   }
 

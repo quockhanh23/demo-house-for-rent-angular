@@ -17,10 +17,12 @@ export class HouseDetailComponent implements OnInit {
   houses?: House[]
   housesSameAddress?: CountAddress[]
   user?: User
+  token?: any
 
   constructor(private houseService: HouseService,
               private userService: UserService,
               private activatedRoute: ActivatedRoute,) {
+    this.token = localStorage.getItem("token")
   }
 
   ngOnInit(): void {
@@ -39,7 +41,7 @@ export class HouseDetailComponent implements OnInit {
         if (this.houseDetail?.district != null) {
           this.getAllHouseBySameAddress(this.houseDetail?.district)
         }
-        this.userService.getDetailUser(this.houseDetail?.idUser).subscribe(rs => {
+        this.userService.getDetailUser(this.houseDetail?.idUser, this.token).subscribe(rs => {
           this.user = rs
         })
       })
@@ -53,7 +55,7 @@ export class HouseDetailComponent implements OnInit {
   }
 
   getAllHouseBySameAddress(address: string) {
-    this.houseService.getAllHouseBySameAddress(address).subscribe(rs => {
+    this.houseService.getAllWardByDistrictAndCount(address).subscribe(rs => {
       this.housesSameAddress = rs
     })
   }

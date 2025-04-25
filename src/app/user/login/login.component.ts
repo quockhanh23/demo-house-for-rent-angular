@@ -36,10 +36,7 @@ export class LoginComponent implements OnInit {
       localStorage.setItem("username", <string>this.jwtResponse.username)
       localStorage.setItem("idUser", <string>this.jwtResponse.id)
       localStorage.setItem("roles", JSON.stringify(this.jwtResponse.roles))
-      setTimeout(() => {
-        this.router.navigate(['/']).then()
-      }, 1000);
-    }, error => {
+      this.router.navigate(['/']).then()
     })
   }
 }
