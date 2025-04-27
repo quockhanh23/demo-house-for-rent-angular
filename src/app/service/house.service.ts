@@ -39,26 +39,26 @@ export class HouseService {
     return this.http.get<House[]>(API_URL + `/getAllHouseByAddress?address=${address}`, {})
   }
 
-  createHouse(house: House): Observable<any> {
+  createHouse(house: House, token: string): Observable<any> {
     return this.http.post<any>(API_URL + `/createHouse`, house, {
       headers: {
-        Authorization: `Bearer ${'TOKEN'}`,
+        Authorization: `Bearer ${token}`,
       }
     })
   }
 
-  updateHouse(house: House, idHouse: any): Observable<any> {
+  updateHouse(house: House, idHouse: any, token: string): Observable<any> {
     return this.http.put<any>(API_URL + `/updateHouse?idHouse=${idHouse}`, house, {
       headers: {
-        Authorization: `Bearer ${'TOKEN'}`,
+        Authorization: `Bearer ${token}`,
       }
     })
   }
 
-  updateStatus(idHouse: any, status: string): Observable<any> {
+  updateStatus(idHouse: any, status: string, token: string): Observable<any> {
     return this.http.put<any>(API_URL + `/updateHouse?idHouse=${idHouse}&status=${status}`, {
       headers: {
-        Authorization: `Bearer ${'TOKEN'}`,
+        Authorization: `Bearer ${token}`,
       }
     })
   }

@@ -12,6 +12,8 @@ import {LoginComponent} from './user/login/login.component';
 import {RegisterComponent} from './user/register/register.component';
 import {UserDetailComponent} from './user/user-detail/user-detail.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { HouseCreateComponent } from './house/house-create/house-create.component';
+import { HouseUpdateComponent } from './house/house-update/house-update.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
     HouseDetailComponent,
     LoginComponent,
     RegisterComponent,
-    UserDetailComponent
+    UserDetailComponent,
+    HouseCreateComponent,
+    HouseUpdateComponent
   ],
   imports: [
     BrowserModule,

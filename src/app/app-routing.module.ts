@@ -5,6 +5,8 @@ import {HouseDetailComponent} from "./house/house-detail/house-detail.component"
 import {UserDetailComponent} from "./user/user-detail/user-detail.component";
 import {LoginComponent} from "./user/login/login.component";
 import {RegisterComponent} from "./user/register/register.component";
+import {HouseCreateComponent} from "./house/house-create/house-create.component";
+import {HouseUpdateComponent} from "./house/house-update/house-update.component";
 
 const routes: Routes = [
   {
@@ -21,6 +23,12 @@ const routes: Routes = [
   },
   {
     path: 'register', component: RegisterComponent,
+  },
+  {
+    path: 'createHouse', component: HouseCreateComponent,
+  },
+  {
+    path: 'updateHouse/:id', component: HouseUpdateComponent,
   },
 ];
 

@@ -18,11 +18,13 @@ export class HouseDetailComponent implements OnInit {
   housesSameAddress?: CountAddress[]
   user?: User
   token?: any
+  idUser?: any
 
   constructor(private houseService: HouseService,
               private userService: UserService,
               private activatedRoute: ActivatedRoute,) {
     this.token = localStorage.getItem("token")
+    this.idUser = localStorage.getItem("idUser")
   }
 
   ngOnInit(): void {

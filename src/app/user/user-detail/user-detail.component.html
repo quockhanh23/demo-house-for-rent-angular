@@ -7,6 +7,7 @@
       <menu>
         <li (click)="toInformation()" style="cursor: pointer">Thông tin</li>
         <li (click)="toChangePassword()" style="cursor: pointer">Đổi mật khẩu</li>
+        <li [routerLink]="['/createHouse']" style="cursor: pointer">Đăng tin</li>
       </menu>
     </div>
     <div *ngIf="openInformation && !openChangePassword && !openUpdateUser" class="col-9"
