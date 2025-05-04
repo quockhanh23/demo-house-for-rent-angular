@@ -5,7 +5,15 @@
         class="material-icons hoverYellowColor">arrow_back</span>
   <div class="row">
     <div style="margin-top: 5px" class="col-8">
-      <img style="width: 100%; height: 450px" src="{{houseDetail?.image}}">
+      <img style="width: 100%; height: 450px; border-radius: 5px" src="{{houseDetail?.image}}">
+      <div class="row">
+        <button [routerLink]="['/createTransactional',houseDetail?.id]"
+                style="margin-left: 15px; margin-top: 10px"
+                type="button" class="btn btn-info">
+          Đặt thuê nhà
+        </button>
+      </div>
+      <hr>
       <div class="row">
         <div class="col-6">
           <h4>{{houseDetail?.name}}</h4>
@@ -102,6 +110,25 @@
             <div style="margin-left: 5px">
               <span>{{address?.ward}}</span>
               <span>&nbsp;({{address?.numberCount}})</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row" style="background-color: white; margin-right: 5px; margin-top: 10px">
+        <div class="col-12">
+          <div class="row" *ngFor="let t of transactional as i" style="margin-top: 5px">
+            <div style="margin-left: 5px">
+              <span>{{t?.fullNameUserGuest}}</span>
+              <div class="row">
+                <div class="col-10">
+                  <span>{{t?.startTime | date: 'dd/MM/yyyy'}}</span>
+                  <span> - </span>
+                  <span>{{t?.endTime | date: 'dd/MM/yyyy'}}</span>
+                </div>
+                <div class="col-1" align="right">
+                  <sub><span class="material-icons">info</span></sub>
+                </div>
+              </div>
             </div>
           </div>
         </div>

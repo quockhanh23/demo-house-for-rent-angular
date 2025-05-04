@@ -55,8 +55,8 @@ export class HouseService {
     })
   }
 
-  updateStatus(idHouse: any, status: string, token: string): Observable<any> {
-    return this.http.put<any>(API_URL + `/updateHouse?idHouse=${idHouse}&status=${status}`, {
+  updateStatusHouse(idHouse: any, status: string, token: string): Observable<any> {
+    return this.http.put<any>(API_URL + `/updateStatusHouse?idHouse=${idHouse}&status=${status}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       }

@@ -1,0 +1,11 @@
+<app-header></app-header>
+<div class="container">
+     <span [routerLink]="['/detailHouse', house?.id]" style="font-size: 35px; cursor: pointer;"
+           class="material-icons hoverYellowColor">arrow_back</span>
+  <button (click)="updateTransactional()" type="button" class="btn btn-info">Xác nhận</button>
+  <p>{{house?.name}}</p>
+  <img src="{{house?.image}}">
+  <p>{{transactional?.status}}</p>
+  <p>{{transactional?.startTime}}</p>
+  <p>{{transactional?.endTime}}</p>
+</div>

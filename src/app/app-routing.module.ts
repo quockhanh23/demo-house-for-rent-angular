@@ -7,6 +7,8 @@ import {LoginComponent} from "./user/login/login.component";
 import {RegisterComponent} from "./user/register/register.component";
 import {HouseCreateComponent} from "./house/house-create/house-create.component";
 import {HouseUpdateComponent} from "./house/house-update/house-update.component";
+import {TransactionalCreateComponent} from "./transactional/transactional-create/transactional-create.component";
+import {TransactionalDetailComponent} from "./transactional/transactional-detail/transactional-detail.component";
 
 const routes: Routes = [
   {
@@ -29,6 +31,12 @@ const routes: Routes = [
   },
   {
     path: 'updateHouse/:id', component: HouseUpdateComponent,
+  },
+  {
+    path: 'createTransactional/:id', component: TransactionalCreateComponent,
+  },
+  {
+    path: 'detailTransactional/:id', component: TransactionalDetailComponent,
   },
 ];
 

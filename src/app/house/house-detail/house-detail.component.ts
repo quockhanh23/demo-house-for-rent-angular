@@ -5,6 +5,9 @@ import {House} from "../../model/house";
 import {UserService} from "../../service/user.service";
 import {User} from "../../model/user";
 import {CountAddress} from "../../model/count-address";
+import {TransactionalService} from "../../service/transactional.service";
+import {Transactional} from "../../model/transactional";
+import {PageTransactional} from "../../model/page-transactional";
 
 @Component({
   selector: 'app-house-detail',
@@ -19,9 +22,13 @@ export class HouseDetailComponent implements OnInit {
   user?: User
   token?: any
   idUser?: any
+  idHouse?: any
+  transactional?: Transactional[]
+  pageTransactional?: PageTransactional
 
   constructor(private houseService: HouseService,
               private userService: UserService,
+              private transactionalService: TransactionalService,
               private activatedRoute: ActivatedRoute,) {
     this.token = localStorage.getItem("token")
     this.idUser = localStorage.getItem("idUser")
@@ -33,8 +40,8 @@ export class HouseDetailComponent implements OnInit {
 
   getDetailHouse() {
     this.activatedRoute.paramMap.subscribe(rs => {
-      const idHouse = rs.get('id')
-      this.houseService.getDetailHouse(idHouse).subscribe(rs => {
+      this.idHouse = rs.get('id')
+      this.houseService.getDetailHouse(this.idHouse).subscribe(rs => {
         this.houseDetail = rs
         rs.district
         if (this.houseDetail != null && this.houseDetail?.address != null) {
@@ -46,6 +53,7 @@ export class HouseDetailComponent implements OnInit {
         this.userService.getDetailUser(this.houseDetail?.idUser, this.token).subscribe(rs => {
           this.user = rs
         })
+        this.getAllTransactionalPageByHouseId()
       })
     })
   }
@@ -59,6 +67,14 @@ export class HouseDetailComponent implements OnInit {
   getAllHouseBySameAddress(address: string) {
     this.houseService.getAllWardByDistrictAndCount(address).subscribe(rs => {
       this.housesSameAddress = rs
+    })
+  }
+
+  getAllTransactionalPageByHouseId() {
+    this.transactionalService.getAllTransactionalPageByHouseId(this.idHouse, 0, 10, this.token)
+      .subscribe(rs => {
+      this.pageTransactional = rs
+      this.transactional = this.pageTransactional?.content
     })
   }
 }
