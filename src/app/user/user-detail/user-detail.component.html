@@ -4,7 +4,7 @@
           class="material-icons hoverYellowColor">arrow_back</span>
   <div class="row">
     <div class="col-3" style="background-color: whitesmoke;">
-      <menu>
+      <menu *ngIf="idUserLogin == idUser">
         <li (click)="toInformation()" style="cursor: pointer">Thông tin</li>
         <li (click)="toChangePassword()" style="cursor: pointer">Đổi mật khẩu</li>
         <li [routerLink]="['/createHouse']" style="cursor: pointer">Đăng tin</li>
@@ -12,28 +12,31 @@
     </div>
     <div *ngIf="openInformation && !openChangePassword && !openUpdateUser" class="col-9"
          style="background-color: whitesmoke">
-      <div style="padding-top: 15px">
+      <div style="padding-top: 15px" *ngIf="idUserLogin == idUser">
         <span (click)="toUpdateUser()" class="material-icons">edit</span>
       </div>
       <hr>
       <div class="row">
         <div class="col-3">
-          <p><sub><span class="material-icons">account_circle</span></sub> Tên đăng nhập: </p>
+          <p *ngIf="idUserLogin == idUser"><sub>
+            <span class="material-icons">account_circle</span></sub> Tên đăng nhập:
+          </p>
           <p><sub><span class="material-icons">badge</span></sub> Tên đầy đủ: </p>
           <p><sub><span class="material-icons">date_range</span></sub> Ngày đăng kí: </p>
           <p><sub><span class="material-icons">phone</span></sub> Số điện thoại: </p>
           <p><sub><sub><span class="material-icons">email</span></sub></sub> Email: </p>
         </div>
         <div class="col-3">
-          <p>{{user?.username}}</p>
-          <p>{{user?.fullName}}</p>
-          <p>{{user?.createdAt}}</p>
-          <p>{{user?.phone}}</p>
-          <p>{{user?.email}}</p>
+          <p style="padding-top: 5px" *ngIf="idUserLogin == idUser">{{user?.username}}</p>
+          <p style="padding-top: 5px">{{user?.fullName}}</p>
+          <p style="padding-top: 5px">{{user?.createdAt| date: 'dd/MM/yyyy'}}</p>
+          <p style="padding-top: 5px">{{user?.phone}}</p>
+          <p style="padding-top: 5px">{{user?.email}}</p>
         </div>
         <div class="col-6">
           <div align="right" style="padding-right: 20px">
-            <img style="width: 200px;height: 200px ; border-radius: 50%" src="../../../assets/images/logo.png">
+            <img style="width: 200px; height: 200px; border-radius: 50%; margin-bottom: 15px"
+                 src="../../../assets/images/logo.png">
           </div>
         </div>
       </div>

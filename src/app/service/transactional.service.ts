@@ -48,4 +48,22 @@ export class TransactionalService {
     })
   }
 
+  cancelRental(transactionalId: any, userId: any, token: string): Observable<any> {
+    return this.http.post<any>(API_URL +
+      `/cancelRental?transactionalId=${transactionalId}&userId=${userId}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      }
+    })
+  }
+
+  checkIn(transactionalId: any, userId: any, token: string): Observable<any> {
+    return this.http.post<any>(API_URL +
+      `/checkIn?transactionalId=${transactionalId}&userId=${userId}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      }
+    })
+  }
+
 }

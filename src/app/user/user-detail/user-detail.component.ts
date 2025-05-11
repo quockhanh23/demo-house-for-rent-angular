@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {UserService} from "../../service/user.service";
 import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {User} from "../../model/user";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-user-detail',
@@ -11,6 +12,7 @@ import {User} from "../../model/user";
 export class UserDetailComponent implements OnInit {
 
   user?: User
+  idUserLogin?: any
   idUser?: any
   token?: any
   openChangePassword = false
@@ -30,19 +32,26 @@ export class UserDetailComponent implements OnInit {
   });
 
   constructor(private userService: UserService,
+              private activatedRoute: ActivatedRoute,
               private formBuilder: FormBuilder) {
-    this.idUser = localStorage.getItem("idUser")
+    this.idUserLogin = localStorage.getItem("idUser")
   }
 
   ngOnInit(): void {
-    this.getDetailUser();
+    this.activatedRoute.paramMap.subscribe(rs => {
+      this.idUser = rs.get('id')
+    })
+    if (this.idUser == null) {
+      this.getDetailUser(this.idUserLogin);
+    } else {
+      this.getDetailUser(this.idUser);
+    }
   }
 
-  getDetailUser() {
+  getDetailUser(idUser: any) {
     this.token = localStorage.getItem("token")
-    console.log("token: " +  this.token)
-    if (this.idUser == null || this.idUser == '') return
-    this.userService.getDetailUser(this.idUser, this.token).subscribe(rs => {
+    console.log("token: " + this.token)
+    this.userService.getDetailUser(idUser, this.token).subscribe(rs => {
       this.user = rs
     }, error => {
     })

@@ -4,6 +4,8 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {Transactional} from "../../model/transactional";
 import {HouseService} from "../../service/house.service";
 import {House} from "../../model/house";
+import {UserService} from "../../service/user.service";
+import {User} from "../../model/user";
 
 @Component({
   selector: 'app-transactional-detail',
@@ -17,10 +19,12 @@ export class TransactionalDetailComponent implements OnInit {
   token?: any
   transactional?: Transactional
   house?: House
+  user?: User
 
   constructor(private transactionalService: TransactionalService,
               private houseService: HouseService,
               private activatedRoute: ActivatedRoute,
+              private userService: UserService,
               private router: Router) {
     this.idUserLogin = localStorage.getItem("idUser")
     this.token = localStorage.getItem("token")
@@ -37,6 +41,7 @@ export class TransactionalDetailComponent implements OnInit {
     this.transactionalService.getDetailTransactional(this.idTransactional, this.token).subscribe(rs => {
       this.transactional = rs;
       this.getDetailHouse(this.transactional?.idHouse);
+      this.getDetailUser(this.transactional?.idUserHost);
     })
   }
 
@@ -55,6 +60,22 @@ export class TransactionalDetailComponent implements OnInit {
   getDetailHouse(idHouse: any) {
     this.houseService.getDetailHouse(idHouse).subscribe(rs => {
       this.house = rs;
+    })
+  }
+
+  getDetailUser(idUser: any) {
+    this.userService.getDetailUser(idUser, this.token).subscribe(rs => {
+      this.user = rs
+    })
+  }
+
+  cancelRental() {
+    this.transactionalService.cancelRental(this.idTransactional, this.idUserLogin, this.token).subscribe(() => {
+    })
+  }
+
+  checkIn() {
+    this.transactionalService.checkIn(this.idTransactional, this.idUserLogin, this.token).subscribe(() => {
     })
   }
 
