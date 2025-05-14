@@ -8,6 +8,11 @@ import {CountAddress} from "../../model/count-address";
 import {TransactionalService} from "../../service/transactional.service";
 import {Transactional} from "../../model/transactional";
 import {PageTransactional} from "../../model/page-transactional";
+import {CommentService} from "../../service/comment.service";
+import {PageComment} from "../../model/page-comment";
+import {Comment} from "../../model/comment";
+import {NotificationService} from "../../service/notification.service";
+import {ActionNotification} from "../../app.component";
 
 @Component({
   selector: 'app-house-detail',
@@ -25,10 +30,14 @@ export class HouseDetailComponent implements OnInit {
   idHouse?: any
   transactional?: Transactional[]
   pageTransactional?: PageTransactional
+  pageComment?: PageComment
+  comments?: Comment[]
 
   constructor(private houseService: HouseService,
               private userService: UserService,
               private transactionalService: TransactionalService,
+              private commentService: CommentService,
+              private notificationService: NotificationService,
               private activatedRoute: ActivatedRoute,) {
     this.token = localStorage.getItem("token")
     this.idUser = localStorage.getItem("idUser")
@@ -54,6 +63,7 @@ export class HouseDetailComponent implements OnInit {
           this.user = rs
         })
         this.getAllTransactionalPageByHouseId()
+        this.getAllCommentByHouseId()
       })
     })
   }
@@ -73,8 +83,31 @@ export class HouseDetailComponent implements OnInit {
   getAllTransactionalPageByHouseId() {
     this.transactionalService.getAllTransactionalPageByHouseId(this.idHouse, 0, 10, this.token)
       .subscribe(rs => {
-      this.pageTransactional = rs
-      this.transactional = this.pageTransactional?.content
+        this.pageTransactional = rs
+        this.transactional = this.pageTransactional?.content
+      })
+  }
+
+  getAllCommentByHouseId() {
+    this.commentService.getAllCommentByHouseId(this.idHouse, 0, 10, this.token).subscribe(rs => {
+      this.pageComment = rs
+      this.comments = this.pageComment?.content
+    })
+  }
+
+  createComment() {
+    let content = (document.getElementById("content") as HTMLSelectElement).value
+    let comment = {
+      idUser: this.idUser,
+      idHouse: this.idHouse,
+      content: content
+    }
+    this.commentService.createComment(comment, this.token).subscribe(() => {
+      this.getAllCommentByHouseId();
+      this.notificationService
+        .createNotification(this.idHouse, this.idUser, ActionNotification.createComment, this.token)
+        .subscribe(() => {
+        })
     })
   }
 }

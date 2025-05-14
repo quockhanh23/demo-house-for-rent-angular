@@ -11,10 +11,30 @@
       <button [routerLink]="['/register']" style="margin-top: 30px" class="btn btn-light">Đăng Ký</button>
     </div>
     <div *ngIf="idUser != null && idUser != ''" class="col-2">
-      <div style="color: white; margin-top: 32px; cursor: pointer" [routerLink]="['/detailUser', idUser]">
-        <sub><span class="material-icons">account_box</span></sub>&nbsp;
-        <span style="font-size: 18px">{{username}}</span>
+      <div class="row">
+        <div class="col-1">
+          <div style="color: white; margin-top: 35px; cursor: pointer;" align="left">
+            <div class="dropdown">
+              <span class="material-icons" data-toggle="dropdown">notifications_active</span>
+              <sup><sup><sup><span style="font-size: 10px">{{count}}</span></sup></sup></sup>
+              <div class="dropdown-menu">
+                <div *ngFor="let noti of notifications">
+                  <a class="dropdown-item">{{noti?.content}}</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-10">
+          <div style="color: white; margin-top: 32px; cursor: pointer" [routerLink]="['/detailUser', idUser]">
+            <sub><span class="material-icons">account_box</span></sub>&nbsp;
+            <span style="font-size: 18px">{{username}}</span>
+
+          </div>
+        </div>
       </div>
+
+
     </div>
     <div *ngIf="idUser != null && idUser != ''" class="col-2">
       <button [routerLink]="['/login']" (click)="logout()" style="margin-top: 30px" class="btn btn-light">

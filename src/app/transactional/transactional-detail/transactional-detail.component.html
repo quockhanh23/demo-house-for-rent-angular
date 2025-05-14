@@ -2,12 +2,15 @@
 <div class="container" style="margin-top: 10px; margin-bottom: 10px; background-color: whitesmoke">
   <span [routerLink]="['/detailHouse', house?.id]" style="font-size: 35px; cursor: pointer;"
         class="material-icons hoverYellowColor">arrow_back</span>
-  <button *ngIf="house?.idUser == idUserLogin && transactional?.status == 'PROCESSING'"
-          (click)="updateTransactional()"
-          type="button"
-          class="btn btn-info">
-    Xác nhận
-  </button>
+  <div class="row" *ngIf="house?.idUser == idUserLogin && transactional?.status == 'PROCESSING'">
+    <div style="margin-left: 15px; margin-bottom: 10px">
+      <button (click)="updateTransactional()"
+              type="button"
+              class="btn btn-info">
+        Xác nhận
+      </button>
+    </div>
+  </div>
   <div class="row">
     <div class="col-6">
       <img style="width: 100%" src="{{house?.image}}">
