@@ -9,6 +9,8 @@ import {HouseCreateComponent} from "./house/house-create/house-create.component"
 import {HouseUpdateComponent} from "./house/house-update/house-update.component";
 import {TransactionalCreateComponent} from "./transactional/transactional-create/transactional-create.component";
 import {TransactionalDetailComponent} from "./transactional/transactional-detail/transactional-detail.component";
+import {ReportCreateComponent} from "./report/report-create/report-create.component";
+import {AdminPageComponent} from "./admin/admin-page/admin-page.component";
 
 const routes: Routes = [
   {
@@ -37,6 +39,12 @@ const routes: Routes = [
   },
   {
     path: 'detailTransactional/:id', component: TransactionalDetailComponent,
+  },
+  {
+    path: 'createReport/:id', component: ReportCreateComponent,
+  },
+  {
+    path: 'adminPage', component: AdminPageComponent,
   },
 ];
 

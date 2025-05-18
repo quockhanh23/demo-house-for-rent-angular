@@ -3,7 +3,10 @@
     <div class="col-2" style="height: 100px">
       <img style="width: 200px; height: 100%; padding-right: 10px" src="../../assets/images/logo.png">
     </div>
-    <div class="col-6"></div>
+    <div class="col-6">
+     <span  [routerLink]="['/adminPage']" style="font-size: 30px; margin-top: 30px; color: white"
+           class="material-icons hoverYellowColor cursorTag">settings</span>
+    </div>
     <div *ngIf="idUser == null || idUser == ''" class="col-2">
       <button [routerLink]="['/login']" style="margin-top: 30px" class="btn btn-light">Đăng nhập</button>
     </div>

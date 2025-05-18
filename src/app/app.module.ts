@@ -16,6 +16,8 @@ import { HouseCreateComponent } from './house/house-create/house-create.componen
 import { HouseUpdateComponent } from './house/house-update/house-update.component';
 import { TransactionalCreateComponent } from './transactional/transactional-create/transactional-create.component';
 import { TransactionalDetailComponent } from './transactional/transactional-detail/transactional-detail.component';
+import { ReportCreateComponent } from './report/report-create/report-create.component';
+import { AdminPageComponent } from './admin/admin-page/admin-page.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { TransactionalDetailComponent } from './transactional/transactional-deta
     HouseCreateComponent,
     HouseUpdateComponent,
     TransactionalCreateComponent,
-    TransactionalDetailComponent
+    TransactionalDetailComponent,
+    ReportCreateComponent,
+    AdminPageComponent
   ],
   imports: [
     BrowserModule,

@@ -14,6 +14,7 @@ export class TransactionalCreateComponent implements OnInit {
   idHouse?: any
   token?: any
   transactional?: Transactional
+  messageError?: any
 
   constructor(private transactionalService: TransactionalService,
               private activatedRoute: ActivatedRoute,
@@ -28,7 +29,8 @@ export class TransactionalCreateComponent implements OnInit {
     })
   }
 
-  getDate() {
+  createTransactional() {
+    this.messageError = null;
     let startDate = (document.getElementById("startDate") as HTMLSelectElement).value
     let endDate = (document.getElementById("endDate") as HTMLSelectElement).value
 
@@ -42,7 +44,7 @@ export class TransactionalCreateComponent implements OnInit {
       this.transactional = rs
       this.router.navigate(['/detailTransactional', this.transactional?.id]).then()
     }, error => {
-
+        this.messageError = error.error.message
     })
   }
 }

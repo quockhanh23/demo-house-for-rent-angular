@@ -3,8 +3,8 @@
    <span [routerLink]="['/detailHouse', idHouse]" style="font-size: 35px; cursor: pointer;"
          class="material-icons hoverYellowColor">arrow_back</span>
   <div class="row">
-    <div class="col">
-      <div style="height: 600px">
+    <div class="col-4">
+      <div style="height: 600px; font-size: 19px">
         <div>
           <p>Ngày bắt đầu thuê:</p>
           <input id="startDate" type="date">
@@ -13,9 +13,14 @@
           <p>Ngày kết thúc:</p>
           <input id="endDate" type="date">
         </div>
-        <button style="margin-top: 20px" (click)="getDate()" type="button" class="btn btn-primary">
+        <button style="margin-top: 20px" (click)="createTransactional()" type="button" class="btn btn-primary">
           Đặt thuê ngay
         </button>
+      </div>
+    </div>
+    <div class="col-8">
+      <div *ngIf="messageError != null" class="alert alert-danger" role="alert">
+        {{messageError}}
       </div>
     </div>
   </div>

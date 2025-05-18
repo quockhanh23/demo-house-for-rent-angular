@@ -13,6 +13,7 @@ import {PageComment} from "../../model/page-comment";
 import {Comment} from "../../model/comment";
 import {NotificationService} from "../../service/notification.service";
 import {ActionNotification} from "../../app.component";
+import {ReportService} from "../../service/report.service";
 
 @Component({
   selector: 'app-house-detail',
@@ -32,11 +33,15 @@ export class HouseDetailComponent implements OnInit {
   pageTransactional?: PageTransactional
   pageComment?: PageComment
   comments?: Comment[]
+  countReport?: any
+  urlZalo?: any
+  urlPhone?: any
 
   constructor(private houseService: HouseService,
               private userService: UserService,
               private transactionalService: TransactionalService,
               private commentService: CommentService,
+              private reportService: ReportService,
               private notificationService: NotificationService,
               private activatedRoute: ActivatedRoute,) {
     this.token = localStorage.getItem("token")
@@ -45,6 +50,7 @@ export class HouseDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.getDetailHouse()
+    this.getAllRepostByIdHouse();
   }
 
   getDetailHouse() {
@@ -61,6 +67,8 @@ export class HouseDetailComponent implements OnInit {
         }
         this.userService.getDetailUser(this.houseDetail?.idUser, this.token).subscribe(rs => {
           this.user = rs
+          this.urlZalo = 'https://zalo.me/' + this.user?.phone
+          this.urlPhone = 'tel:' + this.user?.phone
         })
         this.getAllTransactionalPageByHouseId()
         this.getAllCommentByHouseId()
@@ -108,6 +116,12 @@ export class HouseDetailComponent implements OnInit {
         .createNotification(this.idHouse, this.idUser, ActionNotification.createComment, this.token)
         .subscribe(() => {
         })
+    })
+  }
+
+  getAllRepostByIdHouse() {
+    this.reportService.getAllRepostByIdHouse(this.idHouse, this.token).subscribe(rs => {
+      this.countReport = rs
     })
   }
 }

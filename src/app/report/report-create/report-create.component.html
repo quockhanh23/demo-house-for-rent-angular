@@ -1,0 +1,20 @@
+<app-header></app-header>
+<div class="container" style="margin-top: 10px; margin-bottom: 10px; background-color: whitesmoke">
+    <span [routerLink]="['/detailHouse', idHouse]" style="font-size: 35px; cursor: pointer;"
+          class="material-icons hoverYellowColor">arrow_back</span>
+  <h5>Hãy cho chúng tôi biết cảm nhận của bạn</h5>
+  <div class="row" style="height: 500px">
+    <div class="col-6">
+      <textarea id="content" style="width: 100%; border-radius: 5px; height: 180px"></textarea>
+      <button style="margin-top: 10px" (click)="createReport()" type="button" class="btn btn-primary">
+        Gửi phản hồi về ngôi nhà
+      </button>
+    </div>
+    <div class="col-6">
+      <div *ngIf="messageError != null" class="alert alert-danger" role="alert">
+        {{messageError}}
+      </div>
+    </div>
+  </div>
+</div>
+
