@@ -22,9 +22,15 @@
           </div>
         </li>
       </ul>
-      <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Tìm kiếm..." aria-label="Search">
-        <button type="button" class="btn btn-light"><span class="material-icons">search</span></button>
+      <form *ngIf="isUserList" [formGroup]="searchForm" (ngSubmit)="getAllUser()" class="form-inline my-2 my-lg-0">
+        <input formControlName="searchText" class="form-control mr-sm-2" type="search" placeholder="Tìm kiếm..."
+               aria-label="Search">
+        <button type="submit" class="btn btn-light"><span class="material-icons">search</span></button>
+      </form>
+      <form *ngIf="isReportList" [formGroup]="searchForm" (ngSubmit)="getAllRepost()" class="form-inline my-2 my-lg-0">
+        <input formControlName="searchText" class="form-control mr-sm-2" type="search" placeholder="Tìm kiếm..."
+               aria-label="Search">
+        <button type="submit" class="btn btn-light"><span class="material-icons">search</span></button>
       </form>
     </div>
   </nav>
@@ -50,8 +56,10 @@
       <td style="color: red" *ngIf="'INACTIVE' == user?.status">Không hoạt động</td>
       <td align="center">
         <div class="dropdown">
-          <span class="material-icons" data-toggle="dropdown">more_vert</span>
+          <span class="material-icons hoverYellowColor cursorTag" data-toggle="dropdown">more_vert</span>
           <div class="dropdown-menu">
+            <a [routerLink]="['/detailUser', user?.id]" data-toggle="modal" data-target="#staticBackdrop"
+               class="dropdown-item">Xem thông tin</a>
             <a (click)="selectedUserId = user?.id" data-toggle="modal" data-target="#staticBackdrop"
                class="dropdown-item">Kích hoạt người dùng</a>
             <a (click)="selectedUserId = user?.id" data-toggle="modal" data-target="#staticBackdrop1"
@@ -71,9 +79,17 @@
       <th scope="col">Người tố cáo</th>
       <th scope="col">Nội dung</th>
       <th scope="col">Ngày tố cáo</th>
+      <th scope="col">Nhà</th>
     </tr>
     </thead>
     <tbody>
+    <tr *ngFor="let report of reports index as i">
+      <td>{{i + 1}}</td>
+      <td class="cursorTag hoverYellowColor"
+          [routerLink]="['/detailUser', report?.idUserReport]">{{report?.username}}</td>
+      <td>{{report?.content}}</td>
+      <td>{{report?.createdAt}}</td>
+      <td class="cursorTag hoverYellowColor" [routerLink]="['/detailHouse', report?.idHouse]">{{report?.idHouse}}</td>
     </tbody>
   </table>
 </div>

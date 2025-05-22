@@ -13,20 +13,25 @@ export class HouseListComponent implements OnInit {
 
   page?: Page
   countAddress?: CountAddress[]
-  houses?:House[]
+  houses?: House[]
+  currentPage?: number = 0;
+  currentPageAddOne?: number = 1;
+  previousPageNumber?: number = 1;
+  currentNumber?: number = 2;
+  nextPageNumber?: number = 3;
 
   constructor(private houseService: HouseService) {
   }
 
   ngOnInit(): void {
-    this.getAllHousePage();
+    this.getAllHousePage(0, 10);
     this.getAllDistrictAndCount();
     this.getTopMostExpensive();
   }
 
-  getAllHousePage() {
+  getAllHousePage(page: any, size: any) {
     let search = (document.getElementById("search") as HTMLSelectElement).value;
-    this.houseService.getAllHousePage(0, 10, search).subscribe(rs => {
+    this.houseService.getAllHousePage(page, size, search).subscribe(rs => {
       this.page = rs;
     }, error => {
       console.log("Lỗi getAllHousePage: " + JSON.stringify(error))
@@ -47,5 +52,36 @@ export class HouseListComponent implements OnInit {
     }, error => {
       console.log("Lỗi getAllDistrictAndCount: " + JSON.stringify(error))
     })
+  }
+
+  previousPage() {
+    if (this.currentPage != null && this.currentPage > 0) {
+      this.currentPage--;
+      this.currentPageAddOne = this.currentPage + 1
+      this.getAllHousePage(this.currentPage, 10);
+      if (this.currentPage == 0 || this.currentPage == 1) {
+        this.currentNumber = 2
+        this.previousPageNumber = 1
+        this.nextPageNumber = 3
+      } else {
+        this.currentNumber = this.currentPage + 1
+        this.previousPageNumber = this.currentPage
+        this.nextPageNumber = this.currentPage + 2
+      }
+    }
+  }
+
+  nextPage() {
+    if (this.houses == null || this.houses.length == 0) return
+    if (this.currentPage != null && (this.currentPage + 1)
+      // @ts-ignore
+      * this.page?.page?.number < this.page?.page?.totalElements) {
+      this.currentPage++;
+      this.currentPageAddOne = this.currentPage + 1
+      this.getAllHousePage(this.currentPage, 10);
+      this.currentNumber = this.currentPage + 1
+      this.previousPageNumber = this.currentPage
+      this.nextPageNumber = this.currentPage + 2
+    }
   }
 }

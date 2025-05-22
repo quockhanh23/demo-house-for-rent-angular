@@ -36,6 +36,17 @@ export class HouseDetailComponent implements OnInit {
   countReport?: any
   urlZalo?: any
   urlPhone?: any
+  currentPage?: number = 0;
+  currentPageAddOne?: number = 1;
+  previousPageNumber?: number = 1;
+  currentNumber?: number = 2;
+  nextPageNumber?: number = 3;
+
+  currentPageComment?: number = 0;
+  currentPageAddOneComment?: number = 1;
+  previousPageNumberComment?: number = 1;
+  currentNumberComment?: number = 2;
+  nextPageNumberComment?: number = 3;
 
   constructor(private houseService: HouseService,
               private userService: UserService,
@@ -70,8 +81,8 @@ export class HouseDetailComponent implements OnInit {
           this.urlZalo = 'https://zalo.me/' + this.user?.phone
           this.urlPhone = 'tel:' + this.user?.phone
         })
-        this.getAllTransactionalPageByHouseId()
-        this.getAllCommentByHouseId()
+        this.getAllTransactionalPageByHouseId(0, 10)
+        this.getAllCommentByHouseId(0, 10)
       })
     })
   }
@@ -88,16 +99,16 @@ export class HouseDetailComponent implements OnInit {
     })
   }
 
-  getAllTransactionalPageByHouseId() {
-    this.transactionalService.getAllTransactionalPageByHouseId(this.idHouse, 0, 10, this.token)
+  getAllTransactionalPageByHouseId(page: any, size: any) {
+    this.transactionalService.getAllTransactionalPageByHouseId(this.idHouse, page, size, this.token)
       .subscribe(rs => {
         this.pageTransactional = rs
         this.transactional = this.pageTransactional?.content
       })
   }
 
-  getAllCommentByHouseId() {
-    this.commentService.getAllCommentByHouseId(this.idHouse, 0, 10, this.token).subscribe(rs => {
+  getAllCommentByHouseId(page: any, size: any) {
+    this.commentService.getAllCommentByHouseId(this.idHouse, page, size, this.token).subscribe(rs => {
       this.pageComment = rs
       this.comments = this.pageComment?.content
     })
@@ -111,7 +122,7 @@ export class HouseDetailComponent implements OnInit {
       content: content
     }
     this.commentService.createComment(comment, this.token).subscribe(() => {
-      this.getAllCommentByHouseId();
+      this.getAllCommentByHouseId(0, 10);
       this.notificationService
         .createNotification(this.idHouse, this.idUser, ActionNotification.createComment, this.token)
         .subscribe(() => {
@@ -123,5 +134,66 @@ export class HouseDetailComponent implements OnInit {
     this.reportService.getAllRepostByIdHouse(this.idHouse, this.token).subscribe(rs => {
       this.countReport = rs
     })
+  }
+
+  previousPage() {
+    if (this.currentPage != null && this.currentPage > 0) {
+      this.currentPage--;
+      this.currentPageAddOne = this.currentPage + 1
+      this.getAllTransactionalPageByHouseId(this.currentPage, 10);
+      if (this.currentPage == 0 || this.currentPage == 1) {
+        this.currentNumber = 2
+        this.previousPageNumber = 1
+        this.nextPageNumber = 3
+      } else {
+        this.currentNumber = this.currentPage + 1
+        this.previousPageNumber = this.currentPage
+        this.nextPageNumber = this.currentPage + 2
+      }
+    }
+  }
+
+  nextPage() {
+    if (this.currentPage != null && (this.currentPage + 1)
+      // @ts-ignore
+      * this.pageTransactional?.page?.number < this.pageTransactional?.page?.totalElements) {
+      this.currentPage++;
+      this.currentPageAddOne = this.currentPage + 1
+      this.getAllTransactionalPageByHouseId(this.currentPage, 10);
+      this.currentNumber = this.currentPage + 1
+      this.previousPageNumber = this.currentPage
+      this.nextPageNumber = this.currentPage + 2
+    }
+  }
+
+
+  previousPageComment() {
+    if (this.currentPageComment != null && this.currentPageComment > 0) {
+      this.currentPageComment--;
+      this.currentPageAddOneComment = this.currentPageComment + 1
+      this.getAllCommentByHouseId(this.currentPageComment, 10);
+      if (this.currentPageComment == 0 || this.currentPageComment == 1) {
+        this.currentNumberComment = 2
+        this.previousPageNumberComment = 1
+        this.nextPageNumberComment = 3
+      } else {
+        this.currentNumberComment = this.currentPageComment + 1
+        this.previousPageNumberComment = this.currentPageComment
+        this.nextPageNumberComment = this.currentPageComment + 2
+      }
+    }
+  }
+
+  nextPageComment() {
+    if (this.currentPageComment != null && (this.currentPageComment + 1)
+      // @ts-ignore
+      * this.pageComment?.page?.number < this.pageComment?.page?.totalElements) {
+      this.currentPageComment++;
+      this.currentPageAddOneComment = this.currentPageComment + 1
+      this.getAllCommentByHouseId(this.currentPageComment, 10);
+      this.currentNumberComment = this.currentPageComment + 1
+      this.previousPageNumberComment = this.currentPageComment
+      this.nextPageNumberComment = this.currentPageComment + 2
+    }
   }
 }

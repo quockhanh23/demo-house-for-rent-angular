@@ -13,7 +13,7 @@
     <div *ngIf="openInformation && !openChangePassword && !openUpdateUser" class="col-9"
          style="background-color: whitesmoke">
       <div style="padding-top: 15px" *ngIf="idUserLogin == idUser">
-        <span (click)="toUpdateUser()" class="material-icons">edit</span>
+        <span (click)="toUpdateUser()" class="material-icons hoverYellowColor cursorTag">edit</span>
       </div>
       <hr>
       <div class="row">
@@ -78,7 +78,7 @@
     <div *ngIf="!openInformation && !openChangePassword && openUpdateUser" class="col-9"
          style="background-color: whitesmoke">
       <div style="padding-top: 15px">
-        <span (click)="toInformation()" class="material-icons">highlight_off</span>
+        <span (click)="toInformation()" class="material-icons hoverYellowColor cursorTag">highlight_off</span>
       </div>
       <hr>
       <form [formGroup]="changePasswordForm" (ngSubmit)="changePassword()">

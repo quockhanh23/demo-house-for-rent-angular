@@ -84,10 +84,14 @@
       <div class="row">
         <div *ngFor="let house of houses as i">
           <div *ngIf="house?.id == houseDetail?.id" hidden>
-            <img style="width: 50px; height: 50px" src="{{house?.image}}">
+            <div style="margin-left: 15px">
+              <img style="width: 50px; height: 50px" src="{{house?.image}}">
+            </div>
           </div>
           <div *ngIf="house?.id != houseDetail?.id">
-            <img style="width: 50px; height: 50px" src="{{house?.image}}">
+            <div style="margin-left: 15px">
+              <img style="width: 50px; height: 50px" src="{{house?.image}}">
+            </div>
           </div>
         </div>
       </div>
@@ -112,6 +116,30 @@
           </div>
           <div class="col-8">
             <p>{{comment?.content}}</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="row" style="margin-top: 20px">
+            <div class="col-10" align="left">
+              <p style="margin-top: 5px; font-size: 17px">Trang: {{currentPageAddOneComment}}/ Tổng
+                số: {{pageComment?.page?.totalElements}}</p>
+            </div>
+            <div class="col-2" align="left">
+              <div>
+                <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                  <div class="btn-group mr-2" role="group" aria-label="Second group">
+                    <button type="button" class="btn btn-link" (click)="previousPageComment()">
+                    <span style="font-size: 15px"
+                          class="material-icons hoverYellowColor cursorTag">arrow_back_ios</span>
+                    </button>
+                    <button type="button" class="btn btn-link" (click)="nextPageComment()">
+                  <span style="font-size: 15px"
+                        class="material-icons hoverYellowColor cursorTag">arrow_forward_ios</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -176,6 +204,28 @@
               <div class="row">
                 <div class="col-12">
                   <span>{{t?.status}}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row" style="margin-top: 20px">
+          <div class="col-10" align="left">
+            <p style="margin-top: 5px; font-size: 17px">Trang: {{currentPageAddOne}}/ Tổng
+              số: {{pageTransactional?.page?.totalElements}}</p>
+          </div>
+          <div class="col-2" align="left">
+            <div>
+              <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                <div class="btn-group mr-2" role="group" aria-label="Second group">
+                  <button type="button" class="btn btn-link" (click)="previousPage()">
+                     <span style="font-size: 15px"
+                           class="material-icons hoverYellowColor cursorTag">arrow_back_ios</span>
+                  </button>
+                  <button type="button" class="btn btn-link" (click)="nextPage()">
+                    <span style="font-size: 15px"
+                          class="material-icons hoverYellowColor cursorTag">arrow_forward_ios</span>
+                  </button>
                 </div>
               </div>
             </div>

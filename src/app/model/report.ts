@@ -6,4 +6,5 @@ export interface Report {
   status?: string;
   createdAt?: string;
   updatedAt?: string;
+  username?: string;
 }

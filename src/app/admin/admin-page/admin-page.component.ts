@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AdminService} from "../../service/admin.service";
 import {User} from "../../model/user";
 import {Report} from "../../model/report";
+import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 
 @Component({
   selector: 'app-admin-page',
@@ -18,7 +19,12 @@ export class AdminPageComponent implements OnInit {
   isUserList = false
   isReportList = false
 
-  constructor(private adminService: AdminService) {
+  searchForm: FormGroup = this.formBuilder.group({
+    searchText: new FormControl(''),
+  });
+
+  constructor(private adminService: AdminService,
+              private formBuilder: FormBuilder) {
     this.idUserLogin = localStorage.getItem("idUser")
     this.token = localStorage.getItem("token")
   }
@@ -36,13 +42,15 @@ export class AdminPageComponent implements OnInit {
   }
 
   getAllUser() {
-    this.adminService.getAllUser(this.idUserLogin).subscribe(rs => {
+    let value = this.searchForm.value.searchText
+    this.adminService.getAllUser(this.idUserLogin, value).subscribe(rs => {
       this.users = rs;
     })
   }
 
   getAllRepost() {
-    this.adminService.getAllRepost(this.idUserLogin, this.token).subscribe(rs => {
+    let value = this.searchForm.value.searchText
+    this.adminService.getAllRepost(this.idUserLogin, this.token, value).subscribe(rs => {
       this.reports = rs
     })
   }

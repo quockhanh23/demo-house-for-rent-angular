@@ -13,17 +13,17 @@ export class AdminService {
   constructor(private http: HttpClient) {
   }
 
-  getAllUser(idAdmin: any): Observable<User[]> {
-    return this.http.get<User[]>(API_URL + `/getAllUser?idAdmin=${idAdmin}`,)
+  getAllUser(idAdmin: any, searchText: any): Observable<User[]> {
+    return this.http.get<User[]>(API_URL + `/getAllUser?idAdmin=${idAdmin}&searchText=${searchText}`,)
   }
 
   actionUser(idAdmin: any, action: string, idUser: any): Observable<any> {
     return this.http.put<any>(API_URL + `/actionUser?idAdmin=${idAdmin}&action=${action}&idUser=${idUser}`, {},)
   }
 
-  getAllRepost(idAdmin: any, token: any): Observable<any> {
+  getAllRepost(idAdmin: any, token: any, searchText: any): Observable<any> {
     return this.http.get<any>(API_URL +
-      `/getAllRepost?idAdmin=${idAdmin}`, {
+      `/getAllRepost?idAdmin=${idAdmin}&searchText=${searchText}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       }
