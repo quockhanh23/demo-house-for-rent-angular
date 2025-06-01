@@ -31,6 +31,14 @@ export class NotificationService {
     })
   }
 
+  updateNotification(idNotification: any, token: string): Observable<any> {
+    return this.http.post<any>(API_URL + `/updateNotification?idNotification=${idNotification}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      }
+    })
+  }
+
   updateAllNotification(idUser: any, token: string): Observable<any> {
     return this.http.post<any>(API_URL + `/updateAllNotification?idUser=${idUser}`, {
       headers: {

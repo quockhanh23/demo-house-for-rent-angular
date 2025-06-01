@@ -4,7 +4,7 @@
       <img style="width: 200px; height: 100%; padding-right: 10px" src="../../assets/images/logo.png">
     </div>
     <div class="col-6">
-     <span  [routerLink]="['/adminPage']" style="font-size: 30px; margin-top: 30px; color: white"
+     <span *ngIf="isAdmin" [routerLink]="['/adminPage']" style="font-size: 30px; margin-top: 30px; color: white"
            class="material-icons hoverYellowColor cursorTag">settings</span>
     </div>
     <div *ngIf="idUser == null || idUser == ''" class="col-2">
@@ -21,8 +21,22 @@
               <span class="material-icons" data-toggle="dropdown">notifications_active</span>
               <sup><sup><sup><span style="font-size: 10px">{{count}}</span></sup></sup></sup>
               <div class="dropdown-menu">
+                <a style="text-align: center" (click)="updateAllNotification()" class="dropdown-item">
+                  <b>Đánh dấu đã đọc tất cả</b>
+                </a>
                 <div *ngFor="let noti of notifications">
-                  <a class="dropdown-item">{{noti?.content}}</a>
+                  <a (click)="updateNotification(noti?.id)" *ngIf="noti.status == 'N'" style="background-color: #ece0e0"
+                     class="dropdown-item" [routerLink]="['/detailHouse', noti?.idHouse]">
+                    <span style="margin-right: 28px"></span>
+                    {{noti?.content}}
+                  </a>
+                  <a (click)="updateNotification(noti?.id)" *ngIf="noti.status == 'Y'"
+                     class="dropdown-item" [routerLink]="['/detailHouse', noti?.idHouse]">
+                    <sub>
+                      <span style="color: #2dbd2d" class="material-icons">done</span>
+                    </sub>
+                    {{noti?.content}}
+                  </a>
                 </div>
               </div>
             </div>
@@ -32,12 +46,9 @@
           <div style="color: white; margin-top: 32px; cursor: pointer" [routerLink]="['/detailUser', idUser]">
             <sub><span class="material-icons">account_box</span></sub>&nbsp;
             <span style="font-size: 18px">{{username}}</span>
-
           </div>
         </div>
       </div>
-
-
     </div>
     <div *ngIf="idUser != null && idUser != ''" class="col-2">
       <button [routerLink]="['/login']" (click)="logout()" style="margin-top: 30px" class="btn btn-light">

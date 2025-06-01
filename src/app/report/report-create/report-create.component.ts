@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ReportService} from "../../service/report.service";
 import {ActivatedRoute, Router} from "@angular/router";
+import {NotificationService} from "../../service/notification.service";
 
 @Component({
   selector: 'app-report-create',
@@ -16,6 +17,7 @@ export class ReportCreateComponent implements OnInit {
 
   constructor(private reportService: ReportService,
               private activatedRoute: ActivatedRoute,
+              private notificationService: NotificationService,
               private router: Router) {
     this.idUserLogin = localStorage.getItem("idUser")
     this.token = localStorage.getItem("token")

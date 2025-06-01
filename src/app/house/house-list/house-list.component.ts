@@ -38,6 +38,13 @@ export class HouseListComponent implements OnInit {
     })
   }
 
+  searchByDistrict(page: any, size: any, district: any) {
+    this.houseService.getAllHousePageByDistrict(page, size, district).subscribe(rs => {
+      this.page = rs;
+    }, error => {
+    })
+  }
+
   getAllDistrictAndCount() {
     this.houseService.getAllDistrictAndCount().subscribe(rs => {
       this.countAddress = rs;

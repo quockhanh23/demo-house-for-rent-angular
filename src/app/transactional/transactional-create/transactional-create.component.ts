@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {TransactionalService} from "../../service/transactional.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Transactional} from "../../model/transactional";
+import {NotificationService} from "../../service/notification.service";
+import {ActionNotification} from "../../app.component";
 
 @Component({
   selector: 'app-transactional-create',
@@ -17,6 +19,7 @@ export class TransactionalCreateComponent implements OnInit {
   messageError?: any
 
   constructor(private transactionalService: TransactionalService,
+              private notificationService: NotificationService,
               private activatedRoute: ActivatedRoute,
               private router: Router) {
     this.idUserLogin = localStorage.getItem("idUser")
@@ -42,9 +45,12 @@ export class TransactionalCreateComponent implements OnInit {
     }
     this.transactionalService.createTransactional(transactional, this.token).subscribe(rs => {
       this.transactional = rs
+      this.notificationService
+        .createNotification(this.idHouse, this.idUserLogin, ActionNotification.createTransactional, this.token)
+        .subscribe()
       this.router.navigate(['/detailTransactional', this.transactional?.id]).then()
     }, error => {
-        this.messageError = error.error.message
+      this.messageError = error.error.message
     })
   }
 }

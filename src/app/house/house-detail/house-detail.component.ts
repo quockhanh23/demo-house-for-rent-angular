@@ -69,7 +69,6 @@ export class HouseDetailComponent implements OnInit {
       this.idHouse = rs.get('id')
       this.houseService.getDetailHouse(this.idHouse).subscribe(rs => {
         this.houseDetail = rs
-        rs.district
         if (this.houseDetail != null && this.houseDetail?.address != null) {
           this.getAllHouseByAddress(this.houseDetail?.address);
         }

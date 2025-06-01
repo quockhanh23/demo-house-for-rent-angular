@@ -2,83 +2,120 @@
 <div class="container" style="margin-top: 10px; margin-bottom: 10px">
     <span [routerLink]="['/detailUser', idUser]" style="font-size: 35px; cursor: pointer;"
           class="material-icons hoverYellowColor">arrow_back</span>
-  <form [formGroup]="houseForm" (ngSubmit)="createHouse()">
-    <div class="row align-items-center">
-      <div class="col mt-4">
-        <label>Tiêu đề:</label>
-        <input formControlName="title" class="form-control" placeholder="Tiêu đề">
-        <span style="font-size: 13px">Tối đa 32 kí tự</span>
-      </div>
-    </div>
-    <div class="row align-items-center">
-      <div class="col mt-4">
-        <label>Tên:</label>
-        <input formControlName="name" class="form-control" placeholder="Tên">
-        <span style="font-size: 13px">Tối đa 32 kí tự</span>
-      </div>
-    </div>
-    <div class="row align-items-center">
-      <div class="col mt-4">
-        <label>Địa chỉ:</label>
-        <input formControlName="address" class="form-control" placeholder="Địa chỉ">
-        <span style="font-size: 13px">Tối đa 32 kí tự</span>
-      </div>
-    </div>
-    <div class="row align-items-center">
-      <div class="col mt-4">
-        <label>Mô tả:</label>
-        <input formControlName="description" class="form-control" placeholder="Mô tả">
-        <span style="font-size: 13px">Tối đa 32 kí tự</span>
-      </div>
-    </div>
-    <div class="row align-items-center">
-      <div class="col mt-4">
-        <label>Giá tiền:</label>
-        <input formControlName="price" type="number" class="form-control" placeholder="Giá tiền">
-        <span style="font-size: 13px">Tối đa 32 kí tự</span>
-      </div>
-      <div class="col mt-4">
-        <label>Số phòng ngủ:</label>
-        <input formControlName="numberOfBedrooms" type="number" class="form-control" placeholder="Số phòng ngủ"
-               onkeydown="javascript: return ['Backspace','Delete','ArrowLeft','ArrowRight']
+  <div style="background-color: whitesmoke">
+    <div class="row">
+      <div class="col-6">
+        <form [formGroup]="houseForm" (ngSubmit)="createHouse()">
+          <div style="margin-left: 10px">
+            <div class="row align-items-center">
+              <div class="col mt-4">
+                <label>Tiêu đề:</label>
+                <input formControlName="title" class="form-control" placeholder="Tiêu đề">
+                <span style="font-size: 13px">Tối đa 32 kí tự</span>
+              </div>
+            </div>
+            <div class="row align-items-center">
+              <div class="col mt-4">
+                <label>Tên:</label>
+                <input formControlName="name" class="form-control" placeholder="Tên">
+                <span style="font-size: 13px">Tối đa 32 kí tự</span>
+              </div>
+            </div>
+            <div class="row align-items-center">
+              <div class="col mt-4">
+                <label>Địa chỉ:</label>
+                <input formControlName="address" class="form-control" placeholder="Địa chỉ">
+                <span style="font-size: 13px">Tối đa 32 kí tự</span>
+              </div>
+            </div>
+            <div class="row align-items-center">
+              <div class="col mt-4">
+                <label>Mô tả:</label>
+                <input formControlName="description" class="form-control" placeholder="Mô tả">
+                <span style="font-size: 13px">Tối đa 32 kí tự</span>
+              </div>
+            </div>
+            <div class="row align-items-center">
+              <div class="col mt-4">
+                <label>Giá tiền:</label>
+                <input formControlName="price" type="number" class="form-control" placeholder="Giá tiền">
+                <span style="font-size: 13px">Tối đa 32 kí tự</span>
+              </div>
+              <div class="col mt-4">
+                <label>Số phòng ngủ:</label>
+                <input formControlName="numberOfBedrooms" type="number" class="form-control" placeholder="Số phòng ngủ"
+                       onkeydown="javascript: return ['Backspace','Delete','ArrowLeft','ArrowRight']
                .includes(event.code) ? true : !isNaN(Number(event.key)) && event.code!=='Space'"/>
-        <span style="font-size: 13px">Tối đa 32 kí tự</span>
-      </div>
-      <div class="col mt-4">
-        <label>Số phòng tắm:</label>
-        <input formControlName="numberOfBathrooms" type="number" class="form-control" placeholder="Số phòng tắm"
-               onkeydown="javascript: return ['Backspace','Delete','ArrowLeft','ArrowRight']
+                <span style="font-size: 13px">Tối đa 32 kí tự</span>
+              </div>
+              <div class="col mt-4">
+                <label>Số phòng tắm:</label>
+                <input formControlName="numberOfBathrooms" type="number" class="form-control" placeholder="Số phòng tắm"
+                       onkeydown="javascript: return ['Backspace','Delete','ArrowLeft','ArrowRight']
                .includes(event.code) ? true : !isNaN(Number(event.key)) && event.code!=='Space'"/>
-        <span style="font-size: 13px">Tối đa 32 kí tự</span>
+                <span style="font-size: 13px">Tối đa 32 kí tự</span>
+              </div>
+              <div class="col mt-4">
+                <label>Diện tích:</label>
+                <input formControlName="acreage" type="number" class="form-control" placeholder="Diện tích ">
+                <span style="font-size: 13px">Tối đa 32 kí tự</span>
+              </div>
+            </div>
+            <div class="row align-items-center">
+              <div class="col mt-4">
+                <fieldset>
+                  <label>Nhà vườn:</label>
+                  <div>
+                    <input type="radio" id="huey" name="drone" value="true"/>
+                    <label for="huey">&nbsp;Có</label>
+                  </div>
+                  <div>
+                    <input type="radio" id="dewey" name="drone" value="false" checked/>
+                    <label for="dewey">&nbsp;Không</label>
+                  </div>
+                </fieldset>
+              </div>
+              <div class="col mt-4">
+                <select id="category">
+                  <div *ngFor="let category of categories">
+                    <option value="{{category?.id}}">{{category?.name}}</option>
+                  </div>
+                </select>
+              </div>
+            </div>
+            <button style="margin-bottom: 10px" class="btn btn-primary" type="submit">Đăng tin</button>
+          </div>
+        </form>
       </div>
-      <div class="col mt-4">
-        <label>Diện tích:</label>
-        <input formControlName="acreage" type="number" class="form-control" placeholder="Diện tích ">
-        <span style="font-size: 13px">Tối đa 32 kí tự</span>
+      <div class="col-6">
+        <div class="col-6">
+          <div style="margin-top: 35px">
+            <h6 style="margin-top: 10px">Tỉnh/Thành Phố *</h6>
+            <select style="width: 200px" id="1" [(ngModel)]="selectedProvince"
+                    (ngModelChange)="getAllDistrictByIdProvince();">
+              <div *ngFor="let p of responseDataProvince?.data as i">
+                <option [value]="p?.id">{{p?.name}}</option>
+              </div>
+            </select>
+            <br>
+            <h6 style="margin-top: 10px">Quận/Huyện *</h6>
+            <select style="width: 200px" id="2" [(ngModel)]="selectedDistrict"
+                    (ngModelChange)="getAllWardsByIdDistrict()">
+              <div *ngFor="let p of responseDataDistrict?.data as i">
+                <option [value]="p?.id">{{p?.name}}</option>
+              </div>
+            </select>
+            <br>
+            <h6 style="margin-top: 10px">Phường/Xã *</h6>
+            <select style="width: 200px" id="3">
+              <div *ngFor="let p of responseDataWards?.data as i">
+                <option [value]="p?.id">{{p?.name}}</option>
+              </div>
+            </select>
+            <br>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="row align-items-center">
-      <div class="col mt-4">
-        <fieldset>
-          <label>Nhà vườn:</label>
-          <div>
-            <input type="radio" id="huey" name="drone" value="true"/>
-            <label for="huey">&nbsp;Có</label>
-          </div>
-          <div>
-            <input type="radio" id="dewey" name="drone" value="false" checked/>
-            <label for="dewey">&nbsp;Không</label>
-          </div>
-        </fieldset>
-      </div>
-      <div class="col mt-4">
-        <select id="category">
-          <div *ngFor="let category of categories">
-            <option value="{{category?.id}}">{{category?.name}}</option>
-          </div>
-        </select>
-      </div>
-    </div>
-    <button class="btn btn-primary" type="submit">Đăng tin</button>
-  </form>
+  </div>
 </div>

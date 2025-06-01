@@ -19,6 +19,10 @@ export class HouseService {
     return this.http.get<Page>(API_URL + `/getAllPage?page=${page}&size=${size}&searchText=${searchText}`)
   }
 
+  getAllHousePageByDistrict(page: any, size: any, searchText: string): Observable<Page> {
+    return this.http.get<Page>(API_URL + `/getAllHousePageByDistrict?page=${page}&size=${size}&searchText=${searchText}`)
+  }
+
   getAllWardByDistrictAndCount(address: string): Observable<CountAddress[]> {
     return this.http.get<CountAddress[]>(API_URL + `/getAllWardByDistrictAndCount?address=${address}`,)
   }

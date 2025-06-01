@@ -6,6 +6,8 @@ import {HouseService} from "../../service/house.service";
 import {House} from "../../model/house";
 import {UserService} from "../../service/user.service";
 import {User} from "../../model/user";
+import {NotificationService} from "../../service/notification.service";
+import {ActionNotification} from "../../app.component";
 
 @Component({
   selector: 'app-transactional-detail',
@@ -22,6 +24,7 @@ export class TransactionalDetailComponent implements OnInit {
   user?: User
 
   constructor(private transactionalService: TransactionalService,
+              private notificationService: NotificationService,
               private houseService: HouseService,
               private activatedRoute: ActivatedRoute,
               private userService: UserService,
@@ -71,6 +74,9 @@ export class TransactionalDetailComponent implements OnInit {
 
   cancelRental() {
     this.transactionalService.cancelRental(this.idTransactional, this.idUserLogin, this.token).subscribe(() => {
+      this.notificationService
+        .createNotification(this.house?.id, this.idUserLogin, ActionNotification.cancelRental, this.token)
+        .subscribe()
     })
   }
 

@@ -5,7 +5,7 @@
     <div class="col-6">
       <div class="input-group mb-3" style="border: 1px solid; border-radius: 5px">
         <input id="search" style="background-color: whitesmoke" type="text" class="form-control"
-               placeholder="Tìm kiếm..."
+               placeholder="Tìm kiếm theo tên nhà, theo địa chỉ..."
                aria-label="Recipient's username"
                aria-describedby="basic-addon2">
         <div class="input-group-append">
@@ -56,7 +56,8 @@
         </div>
         <div class="row" *ngFor="let address of countAddress">
           <div style="margin-left: 10px">
-            <p>{{address?.district}} ({{address?.numberCount}})</p>
+            <p class="cursorTag hoverYellowColor"
+               (click)="searchByDistrict(0, 10, address?.district)">{{address?.district}} ({{address?.numberCount}})</p>
           </div>
         </div>
       </div>
@@ -67,9 +68,10 @@
         </div>
         <div class="row" *ngFor="let house of houses">
           <div style="margin-left: 10px; margin-right: 10px">
-            <p>{{house?.name}}</p>
+            <p class="hoverYellowColor cursorTag" [routerLink]="['/detailHouse',house?.id ]">{{house?.name}}</p>
             <p>{{house?.price}} VNĐ/Tháng</p>
-            <img src="{{house?.image}}" style="width: 100%; border-radius: 5px">
+            <img class="cursorTag" [routerLink]="['/detailHouse',house?.id ]" src="{{house?.image}}"
+                 style="width: 100%; border-radius: 5px">
           </div>
         </div>
       </div>
