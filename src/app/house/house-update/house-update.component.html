@@ -12,13 +12,6 @@
     </div>
     <div class="row align-items-center">
       <div class="col mt-4">
-        <label>Tên:</label>
-        <input formControlName="name" class="form-control" placeholder="Tên" value="{{house?.name}}">
-        <span style="font-size: 13px">Tối đa 32 kí tự</span>
-      </div>
-    </div>
-    <div class="row align-items-center">
-      <div class="col mt-4">
         <label>Địa chỉ:</label>
         <input formControlName="address" class="form-control" placeholder="Địa chỉ">
         <span style="font-size: 13px">Tối đa 32 kí tự</span>
@@ -27,13 +20,13 @@
     <div class="row align-items-center">
       <div class="col mt-4">
         <label>Mô tả:</label>
-        <input formControlName="description" class="form-control" placeholder="Mô tả">
+        <textarea formControlName="description" class="form-control" placeholder="Mô tả"></textarea>
         <span style="font-size: 13px">Tối đa 32 kí tự</span>
       </div>
     </div>
     <div class="row align-items-center">
       <div class="col mt-4">
-        <label>Giá tiền:</label>
+        <label>Giá tiền: (VNĐ)</label>
         <input formControlName="price" type="number" class="form-control" placeholder="Giá tiền">
         <span style="font-size: 13px">Tối đa 32 kí tự</span>
       </div>
@@ -52,7 +45,7 @@
         <span style="font-size: 13px">Tối đa 32 kí tự</span>
       </div>
       <div class="col mt-4">
-        <label>Diện tích:</label>
+        <label>Diện tích: (M<sup>2</sup>)</label>
         <input formControlName="acreage" type="number" class="form-control" placeholder="Diện tích ">
         <span style="font-size: 13px">Tối đa 32 kí tự</span>
       </div>
@@ -79,6 +72,6 @@
         </select>
       </div>
     </div>
-    <button class="btn btn-primary" type="submit">Đăng tin</button>
+    <button class="btn btn-primary" type="submit">Sửa thông tin</button>
   </form>
 </div>
