@@ -40,7 +40,7 @@ export class RegisterComponent implements OnInit {
       email: this.userForm.value.email,
     }
     this.userService.register(user).subscribe(rs => {
-      this.router.navigate(['/']).then()
+      this.router.navigate(['/login']).then()
       this.user = rs;
     }, error => {
       this.messageError = error.error.message

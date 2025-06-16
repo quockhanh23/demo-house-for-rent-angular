@@ -24,6 +24,7 @@ export class HouseCreateComponent implements OnInit {
   selectedProvince?: string
   selectedDistrict?: string
   house?: House
+  messageError?: string
 
   houseForm: FormGroup = this.formBuilder.group({
     title: new FormControl(''),
@@ -117,6 +118,7 @@ export class HouseCreateComponent implements OnInit {
         this.router.navigate(["/detailHouse", this.house?.id]).then()
       }, 500);
     }, error => {
+      this.messageError = error.error.message
     })
   }
 

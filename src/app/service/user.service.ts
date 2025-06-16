@@ -3,7 +3,6 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {User} from "../model/user";
 import {JwtResponse} from "../model/jwt-response";
-import {UserDTORequest} from "../model/user-dtorequest";
 
 const API_URL = "http://localhost:8080/api/users"
 

@@ -12,12 +12,12 @@ import {LoginComponent} from './user/login/login.component';
 import {RegisterComponent} from './user/register/register.component';
 import {UserDetailComponent} from './user/user-detail/user-detail.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import { HouseCreateComponent } from './house/house-create/house-create.component';
-import { HouseUpdateComponent } from './house/house-update/house-update.component';
-import { TransactionalCreateComponent } from './transactional/transactional-create/transactional-create.component';
-import { TransactionalDetailComponent } from './transactional/transactional-detail/transactional-detail.component';
-import { ReportCreateComponent } from './report/report-create/report-create.component';
-import { AdminPageComponent } from './admin/admin-page/admin-page.component';
+import {HouseCreateComponent} from './house/house-create/house-create.component';
+import {HouseUpdateComponent} from './house/house-update/house-update.component';
+import {TransactionalCreateComponent} from './transactional/transactional-create/transactional-create.component';
+import {TransactionalDetailComponent} from './transactional/transactional-detail/transactional-detail.component';
+import {ReportCreateComponent} from './report/report-create/report-create.component';
+import {AdminPageComponent} from './admin/admin-page/admin-page.component';
 
 @NgModule({
   declarations: [

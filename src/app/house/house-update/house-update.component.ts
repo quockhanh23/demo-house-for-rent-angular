@@ -18,6 +18,7 @@ export class HouseUpdateComponent implements OnInit {
   token?: any
   idUser?: any
   house?: House
+  messageError?: string
 
   houseForm: FormGroup = this.formBuilder.group({
     title: new FormControl(""),
@@ -86,9 +87,8 @@ export class HouseUpdateComponent implements OnInit {
     let token = localStorage.getItem("token")
     if (null == token) token = ""
     this.houseService.updateHouse(house, this.house?.id, token).subscribe(() => {
-
     }, error => {
-
+      this.messageError = error.error.message
     })
   }
 }
