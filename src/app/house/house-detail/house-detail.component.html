@@ -1,5 +1,4 @@
 <app-header></app-header>
-
 <div class="container" style="margin-top: 10px; margin-bottom: 10px; background-color: whitesmoke">
   <span [routerLink]="['/']" style="font-size: 35px; cursor: pointer;"
         class="material-icons hoverYellowColor">arrow_back</span>
@@ -38,46 +37,57 @@
                 class="material-icons hoverYellowColor cursorTag">edit</span>
         </div>
       </div>
+      <p><span>{{houseDetail?.district}}</span>
+        <span> - </span>
+        <span>{{houseDetail?.province}}</span></p>
       <p>{{houseDetail?.address}}</p>
       <hr>
-      <div class="row">
-        <div class="col-4">
-          <p>{{houseDetail?.price}}</p>
-        </div>
-        <div class="col-4">
-          <p>{{houseDetail?.acreage}}</p>
-        </div>
-        <div class="col-4">
-          <p>{{houseDetail?.numberOfBedrooms}}</p>
-        </div>
-      </div>
+
       <h5>Thông tin mô tả</h5>
       <p>{{houseDetail?.description}}</p>
       <h5>Đặc điểm bất động sản</h5>
       <div class="row">
         <div class="col-1">
-          <span style="font-size: 20px" class="material-icons">paid</span>
-          <br>
-          <span style="font-size: 20px" class="material-icons">fit_screen</span>
-          <br>
-          <span class="material-icons">bedroom_parent</span>
-          <br>
-          <span class="material-icons">bathtub</span>
+          <p><span class="material-icons">paid</span></p>
         </div>
+        <div class="col-2">
+          <p>{{houseDetail?.price}}</p>
+        </div>
+        <div class="col-3">
+          <p>VNĐ/1 tháng</p>
+        </div>
+      </div>
+      <div class="row">
         <div class="col-1">
-          <span>{{houseDetail?.price}}</span>
-          <br>
-          <span>{{houseDetail?.acreage}}</span>
-          <br>
-          <span>{{houseDetail?.numberOfBedrooms}}</span>
-          <br>
-          <span>{{houseDetail?.numberOfBathrooms}}</span>
+          <p><span class="material-icons">fit_screen</span></p>
+        </div>
+        <div class="col-2">
+          <p>{{houseDetail?.acreage}}</p>
         </div>
         <div class="col-3">
-
+          <p>M<sup>2</sup></p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-1">
+          <p><span class="material-icons">bedroom_parent</span></p>
+        </div>
+        <div class="col-2">
+          <p>{{houseDetail?.numberOfBedrooms}}</p>
         </div>
         <div class="col-3">
-
+          <p>Phòng</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-1">
+          <p><span class="material-icons">bathtub</span></p>
+        </div>
+        <div class="col-2">
+          <p>{{houseDetail?.numberOfBathrooms}}</p>
+        </div>
+        <div class="col-3">
+          <p>Phòng</p>
         </div>
       </div>
       <h5>Bất động sản dành cho bạn</h5>
@@ -121,11 +131,10 @@
         <div class="row">
           <div class="row" style="margin-top: 20px">
             <div class="col-10" align="left">
-             <div style="margin-left: 15px">
-               <span>Item : {{pageComment?.page?.number}}, </span>
-               <span style="margin-top: 5px; font-size: 17px">
+              <div style="margin-left: 15px">
+                <span style="margin-top: 5px; font-size: 17px">
                  Trang: {{currentPageAddOneComment}}/ Tổngsố: {{pageComment?.page?.totalElements}}</span>
-             </div>
+              </div>
 
             </div>
             <div class="col-2" align="left">
@@ -150,11 +159,11 @@
     </div>
     <div style="margin-top: 5px; background-color: whitesmoke" class="col-4">
       <div class="row" style="background-color: white; margin-right: 5px;">
-        <div class="col-6" style="margin-top: 10px">
+        <div class="col-3" style="margin-top: 10px">
           <img style="width: 50px; height: 50px; border-radius: 50%; border: #3f6ba4 1px solid"
                src="../../../assets/images/logo.png">
         </div>
-        <div class="col-5" style="margin-top: 10px">
+        <div class="col-9" style="margin-top: 10px">
           <p class="hoverYellowColor, cursorTag" [routerLink]="['/detailUser', user?.id]">{{user?.fullName}}</p>
         </div>
       </div>
@@ -215,7 +224,7 @@
         </div>
         <div class="row" style="margin-top: 20px">
           <div class="col-10" align="left">
-            <p style="margin-top: 5px; font-size: 17px">Trang: {{currentPageAddOne}}/ Tổng
+            <p style="margin-top: 5px; font-size: 17px; margin-left: 5px">Trang: {{currentPageAddOne}}/ Tổng
               số: {{pageTransactional?.page?.totalElements}}</p>
           </div>
           <div class="col-2" align="left">

@@ -32,13 +32,15 @@
               VNĐ/Tháng</p>
             <p><sub><span style="font-size: 18px"
                           class="material-icons">location_on</span></sub>&nbsp;{{house?.address}}</p>
+            <p>&nbsp;{{house?.district}}</p>
+            <p>&nbsp;{{house?.province}}</p>
           </div>
         </div>
         <div class="row">
           <div class="col-6">
-            <div style="margin-bottom: 15px; margin-left: 5px">
+            <div style="margin-bottom: 5px; margin-left: 5px; margin-top: 5px">
               <p>{{house?.username}}</p>
-              <p>{{house?.createdAt}}</p>
+              <p>Ngày đăng: {{house?.createdAt | date: 'dd/MM/yyyy'}}</p>
             </div>
           </div>
           <div class="col-6">
