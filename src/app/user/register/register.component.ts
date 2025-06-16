@@ -12,7 +12,7 @@ import {User} from "../../model/user";
 export class RegisterComponent implements OnInit {
 
   user?: User
-  messageErrorRegister?: string
+  messageError?: string
   userForm: FormGroup = this.formBuilder.group({
     username: new FormControl(''),
     fullName: new FormControl(''),
@@ -43,7 +43,7 @@ export class RegisterComponent implements OnInit {
       this.router.navigate(['/']).then()
       this.user = rs;
     }, error => {
-      this.messageErrorRegister = error.error.message
+      this.messageError = error.error.message
     })
   }
 }

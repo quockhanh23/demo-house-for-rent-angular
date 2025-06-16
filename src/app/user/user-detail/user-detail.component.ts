@@ -18,6 +18,9 @@ export class UserDetailComponent implements OnInit {
   openChangePassword = false
   openInformation = true
   openUpdateUser = false
+  messageErrorChangePassword?: string
+  messageErrorUpdateUser?: string
+  messageError?: string
 
   changePasswordForm: FormGroup = this.formBuilder.group({
     password: new FormControl(''),
@@ -54,6 +57,7 @@ export class UserDetailComponent implements OnInit {
     this.userService.getDetailUser(idUser, this.token).subscribe(rs => {
       this.user = rs
     }, error => {
+      this.messageError = error.error.message
     })
   }
 
@@ -63,6 +67,10 @@ export class UserDetailComponent implements OnInit {
       newPassword: this.changePasswordForm.value.password,
       confirmNewPassword: this.changePasswordForm.value.password
     }
+    this.userService.changePassword(request, this.token).subscribe(() => {
+    }, error => {
+      this.messageErrorChangePassword = error.error.message
+    })
   }
 
   updateUser() {
@@ -71,6 +79,11 @@ export class UserDetailComponent implements OnInit {
       phone: this.userUpdateForm.value.password,
       fullName: this.userUpdateForm.value.password,
     }
+    this.userService.updateUser(request, this.token).subscribe(rs => {
+      this.user = rs
+    }, error => {
+      this.messageErrorUpdateUser = error.error.message
+    })
   }
 
   toChangePassword() {

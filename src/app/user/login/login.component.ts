@@ -12,7 +12,7 @@ import {Router} from "@angular/router";
 export class LoginComponent implements OnInit {
 
   jwtResponse?: JwtResponse
-
+  messageError?: string;
   userForm: FormGroup = this.formBuilder.group({
     username: new FormControl(''),
     password: new FormControl(''),
@@ -37,6 +37,8 @@ export class LoginComponent implements OnInit {
       localStorage.setItem("idUser", <string>this.jwtResponse.id)
       localStorage.setItem("roles", JSON.stringify(this.jwtResponse.roles))
       this.router.navigate(['/']).then()
+    }, error => {
+      this.messageError = error.error.message;
     })
   }
 }

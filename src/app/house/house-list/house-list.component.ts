@@ -19,6 +19,7 @@ export class HouseListComponent implements OnInit {
   previousPageNumber?: number = 1;
   currentNumber?: number = 2;
   nextPageNumber?: number = 3;
+  size?: number = 0;
 
   constructor(private houseService: HouseService) {
   }
@@ -33,6 +34,7 @@ export class HouseListComponent implements OnInit {
     let search = (document.getElementById("search") as HTMLSelectElement).value;
     this.houseService.getAllHousePage(page, size, search).subscribe(rs => {
       this.page = rs;
+      this.size = this.page.content?.length
     }, error => {
       console.log("Lỗi getAllHousePage: " + JSON.stringify(error))
     })

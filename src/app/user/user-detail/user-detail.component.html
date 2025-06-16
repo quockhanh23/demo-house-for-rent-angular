@@ -76,10 +76,11 @@
     <div *ngIf="!openInformation && !openChangePassword && openUpdateUser" class="col-9"
          style="background-color: whitesmoke;">
       <div style="padding-top: 5px;">
-        <span (click)="toInformation()" class="material-icons hoverYellowColor cursorTag">highlight_off</span>
+        <span (click)="toInformation()" style="margin-top: 5px"
+              class="material-icons hoverYellowColor cursorTag">highlight_off</span>
       </div>
       <hr>
-      <form [formGroup]="changePasswordForm" (ngSubmit)="changePassword()">
+      <form [formGroup]="changePasswordForm" (ngSubmit)="updateUser()">
         <div class="col mt-4">
           <label>Tên đầy đủ:</label>
           <input type="text" formControlName="fullName" class="form-control"
