@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {NotificationService} from "../service/notification.service";
 import {Notification} from "../model/notification";
+import {checkTokenValid} from "../app.component";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-header',
@@ -17,7 +19,8 @@ export class HeaderComponent implements OnInit {
   role?: any
   isAdmin = false;
 
-  constructor(private notificationService: NotificationService) {
+  constructor(private notificationService: NotificationService,
+              private router: Router,) {
     this.idUser = localStorage.getItem("idUser")
     console.log("this.idUser: " + this.idUser)
     this.username = localStorage.getItem("username")
@@ -36,6 +39,8 @@ export class HeaderComponent implements OnInit {
     this.notificationService.getAllNotificationByIdUser(this.idUser, this.token).subscribe(rs => {
       this.notifications = rs
       this.count = this.notifications.length
+    }, error => {
+      checkTokenValid(error, this.router);
     })
   }
 

@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ReportService} from "../../service/report.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {NotificationService} from "../../service/notification.service";
+import {ActionNotification} from "../../app.component";
 
 @Component({
   selector: 'app-report-create',
@@ -38,6 +39,9 @@ export class ReportCreateComponent implements OnInit {
     }
     this.reportService.createReport(report, this.token).subscribe(() => {
       this.router.navigate(['/detailHouse', this.idHouse]).then()
+      this.notificationService
+        .createNotification(this.idHouse, this.idUserLogin, ActionNotification.reportHouse, this.token)
+        .subscribe()
     }, errorObject => {
       this.messageError = errorObject.error.message
     })

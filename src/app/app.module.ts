@@ -18,6 +18,7 @@ import {TransactionalCreateComponent} from './transactional/transactional-create
 import {TransactionalDetailComponent} from './transactional/transactional-detail/transactional-detail.component';
 import {ReportCreateComponent} from './report/report-create/report-create.component';
 import {AdminPageComponent} from './admin/admin-page/admin-page.component';
+import { SnackbarComponent } from './snackbar/snackbar.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import {AdminPageComponent} from './admin/admin-page/admin-page.component';
     TransactionalCreateComponent,
     TransactionalDetailComponent,
     ReportCreateComponent,
-    AdminPageComponent
+    AdminPageComponent,
+    SnackbarComponent
   ],
   imports: [
     BrowserModule,

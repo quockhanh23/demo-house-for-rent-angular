@@ -1,4 +1,6 @@
 import {Component} from '@angular/core';
+import {HttpErrorResponse} from "@angular/common/http";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-root',
@@ -15,4 +17,24 @@ export enum ActionNotification {
   cancelRental = '3',
   reportHouse = '4',
   reviewHouse = '5'
+}
+
+export function triggerSnackbarBtn() {
+  window.onload = function () {
+    (document.getElementById('snackbarBtn') as HTMLSelectElement).click();
+  };
+}
+
+export function checkTokenValid(error: any, router: Router) {
+  if (error instanceof HttpErrorResponse) {
+    if (error.status === 0) {
+      localStorage.removeItem("token")
+      localStorage.removeItem("username")
+      localStorage.removeItem("idUser")
+      localStorage.removeItem("roles")
+      router.navigate(['/login']).then(rs => {
+        console.log("checkTokenValid navigate to login: " + rs)
+      })
+    }
+  }
 }
