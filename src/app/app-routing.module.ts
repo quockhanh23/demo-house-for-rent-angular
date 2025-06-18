@@ -11,6 +11,7 @@ import {TransactionalCreateComponent} from "./transactional/transactional-create
 import {TransactionalDetailComponent} from "./transactional/transactional-detail/transactional-detail.component";
 import {ReportCreateComponent} from "./report/report-create/report-create.component";
 import {AdminPageComponent} from "./admin/admin-page/admin-page.component";
+import {HouseOfUserComponent} from "./house/house-of-user/house-of-user.component";
 
 const routes: Routes = [
   {
@@ -45,6 +46,9 @@ const routes: Routes = [
   },
   {
     path: 'adminPage', component: AdminPageComponent,
+  },
+  {
+    path: 'houseOfUser/:id', component: HouseOfUserComponent,
   },
 ];
 

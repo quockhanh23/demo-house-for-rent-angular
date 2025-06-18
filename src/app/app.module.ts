@@ -18,8 +18,9 @@ import {TransactionalCreateComponent} from './transactional/transactional-create
 import {TransactionalDetailComponent} from './transactional/transactional-detail/transactional-detail.component';
 import {ReportCreateComponent} from './report/report-create/report-create.component';
 import {AdminPageComponent} from './admin/admin-page/admin-page.component';
-import { SnackbarComponent } from './snackbar/snackbar.component';
+import {SnackbarComponent} from './snackbar/snackbar.component';
 import {TooltipModule} from "ngx-bootstrap/tooltip";
+import { HouseOfUserComponent } from './house/house-of-user/house-of-user.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import {TooltipModule} from "ngx-bootstrap/tooltip";
     TransactionalDetailComponent,
     ReportCreateComponent,
     AdminPageComponent,
-    SnackbarComponent
+    SnackbarComponent,
+    HouseOfUserComponent
   ],
   imports: [
     BrowserModule,

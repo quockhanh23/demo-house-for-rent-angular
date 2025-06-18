@@ -4,6 +4,8 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {Transactional} from "../../model/transactional";
 import {NotificationService} from "../../service/notification.service";
 import {ActionNotification} from "../../app.component";
+import {HouseService} from "../../service/house.service";
+import {House} from "../../model/house";
 
 @Component({
   selector: 'app-transactional-create',
@@ -16,11 +18,14 @@ export class TransactionalCreateComponent implements OnInit {
   idHouse?: any
   token?: any
   transactional?: Transactional
+  houseDetail?: House
+  houses?: House[]
   messageError?: any
 
   constructor(private transactionalService: TransactionalService,
               private notificationService: NotificationService,
               private activatedRoute: ActivatedRoute,
+              private houseService: HouseService,
               private router: Router) {
     this.idUserLogin = localStorage.getItem("idUser")
     this.token = localStorage.getItem("token")
@@ -29,6 +34,12 @@ export class TransactionalCreateComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe(rs => {
       this.idHouse = rs.get('id')
+      this.houseService.getDetailHouse(this.idHouse).subscribe(rs => {
+        this.houseDetail = rs;
+        if (this.houseDetail != null && this.houseDetail?.district != null) {
+          this.getAllHouseByDistrict(this.houseDetail?.district)
+        }
+      })
     })
   }
 
@@ -51,6 +62,12 @@ export class TransactionalCreateComponent implements OnInit {
       this.router.navigate(['/detailTransactional', this.transactional?.id]).then()
     }, error => {
       this.messageError = error.error.message
+    })
+  }
+
+  getAllHouseByDistrict(address: string) {
+    this.houseService.getAllHouseByDistrict(address).subscribe(rs => {
+      this.houses = rs
     })
   }
 }

@@ -39,8 +39,8 @@ export class HouseService {
     return this.http.get<House>(API_URL + `/getDetailHouse?idHouse=${idHouse}`,)
   }
 
-  getAllHouseByAddress(address: any): Observable<House[]> {
-    return this.http.get<House[]>(API_URL + `/getAllHouseByAddress?address=${address}`, {})
+  getAllHouseByDistrict(address: any): Observable<House[]> {
+    return this.http.get<House[]>(API_URL + `/getAllHouseByDistrict?address=${address}`, {})
   }
 
   createHouse(house: House, token: string): Observable<any> {

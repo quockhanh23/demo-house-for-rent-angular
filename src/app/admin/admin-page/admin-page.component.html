@@ -11,7 +11,7 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item dropdown">
+        <li class="nav-item dropdown" tooltip="Xem quản lý">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
             <span class="material-icons">manage_accounts</span>
           </a>
@@ -56,7 +56,8 @@
       <td style="color: red" *ngIf="'INACTIVE' == user?.status">Không hoạt động</td>
       <td align="center">
         <div class="dropdown">
-          <span class="material-icons hoverYellowColor cursorTag" data-toggle="dropdown">more_vert</span>
+          <span tooltip="Xem các hoạt động"
+                class="material-icons hoverYellowColor cursorTag" data-toggle="dropdown">more_vert</span>
           <div class="dropdown-menu">
             <a [routerLink]="['/detailUser', user?.id]" data-toggle="modal" data-target="#staticBackdrop"
                class="dropdown-item">Xem thông tin</a>

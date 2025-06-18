@@ -7,12 +7,13 @@
       <img style="width: 100%; height: 450px; border-radius: 5px" src="{{houseDetail?.image}}">
       <div class="row">
         <div class="col-10">
-          <button *ngIf="houseDetail?.idUser != idUser" [routerLink]="['/createTransactional',houseDetail?.id]"
+          <button *ngIf="houseDetail?.idUser != idUser && idUser != null"
+                  [routerLink]="['/createTransactional',houseDetail?.id]"
                   style="margin-top: 10px"
                   type="button" class="btn btn-info">
             Đặt thuê nhà
           </button>
-          <button *ngIf="houseDetail?.idUser == idUser" [routerLink]="['/createTransactional',houseDetail?.id]"
+          <button *ngIf="houseDetail?.idUser == idUser" [routerLink]="['/createTransactional', houseDetail?.id]"
                   style="margin-top: 10px"
                   type="button" class="btn btn-info" disabled>
             Đặt thuê nhà
@@ -33,7 +34,8 @@
           <h4>{{houseDetail?.name}}</h4>
         </div>
         <div class="col-6" align="right">
-          <span tooltip="Quay lại" [routerLink]="['/updateHouse', houseDetail?.id]" *ngIf="houseDetail?.idUser == idUser"
+          <span tooltip="Quay lại" [routerLink]="['/updateHouse', houseDetail?.id]"
+                *ngIf="houseDetail?.idUser == idUser"
                 class="material-icons hoverYellowColor cursorTag">edit</span>
         </div>
       </div>
@@ -48,7 +50,7 @@
       <h5>Đặc điểm bất động sản</h5>
       <div class="row">
         <div class="col-1">
-          <p><span class="material-icons">paid</span></p>
+          <p><span tooltip="Giá tiền" class="material-icons">paid</span></p>
         </div>
         <div class="col-2">
           <p>{{houseDetail?.price}}</p>
@@ -59,7 +61,7 @@
       </div>
       <div class="row">
         <div class="col-1">
-          <p><span class="material-icons">fit_screen</span></p>
+          <p><span tooltip="Diện tích" class="material-icons">fit_screen</span></p>
         </div>
         <div class="col-2">
           <p>{{houseDetail?.acreage}}</p>
@@ -70,7 +72,7 @@
       </div>
       <div class="row">
         <div class="col-1">
-          <p><span class="material-icons">bedroom_parent</span></p>
+          <p><span tooltip="Số phòng ngủ" class="material-icons">bedroom_parent</span></p>
         </div>
         <div class="col-2">
           <p>{{houseDetail?.numberOfBedrooms}}</p>
@@ -81,7 +83,7 @@
       </div>
       <div class="row">
         <div class="col-1">
-          <p><span class="material-icons">bathtub</span></p>
+          <p><span tooltip="Số phòng tắm" class="material-icons">bathtub</span></p>
         </div>
         <div class="col-2">
           <p>{{houseDetail?.numberOfBathrooms}}</p>
@@ -120,14 +122,15 @@
       <h5>Tất cả bình luân: </h5>
       <div>
         <div class="row" *ngFor="let comment of comments"
-             style="margin-bottom: 5px; background-color: white; border-radius: 5px;
+             style="margin-bottom: 5px; background-color: #ead2d2; border-radius: 5px;
              border: #3f6ba4 1px solid; margin-left: 1px; margin-right: 1px">
-          <div class="col-4">
-            <p>{{comment?.username}}</p>
-            <p>{{comment?.createdAt | date: 'dd/MM/yyyy'}}</p>
+          <div class="col-3">
+            <span tooltip="Xem trang cá nhân" [routerLink]="['/detailUser', comment?.idUser]"
+               class="cursorTag" style="font-size: 18px">{{comment?.username}}: </span>
+            <p style="font-size: 13px">{{comment?.createdAt | date: 'dd/MM/yyyy'}}</p>
           </div>
-          <div class="col-8">
-            <p>{{comment?.content}}</p>
+          <div class="col-9">
+            <p align="left">{{comment?.content}}</p>
           </div>
         </div>
         <div class="row">

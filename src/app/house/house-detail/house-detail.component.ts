@@ -69,8 +69,8 @@ export class HouseDetailComponent implements OnInit {
       this.idHouse = rs.get('id')
       this.houseService.getDetailHouse(this.idHouse).subscribe(rs => {
         this.houseDetail = rs
-        if (this.houseDetail != null && this.houseDetail?.address != null) {
-          this.getAllHouseByAddress(this.houseDetail?.address);
+        if (this.houseDetail != null && this.houseDetail?.district != null) {
+          this.getAllHouseByDistrict(this.houseDetail?.district);
         }
         if (this.houseDetail?.district != null) {
           this.getAllHouseBySameAddress(this.houseDetail?.district)
@@ -86,8 +86,8 @@ export class HouseDetailComponent implements OnInit {
     })
   }
 
-  getAllHouseByAddress(address: string) {
-    this.houseService.getAllHouseByAddress(address).subscribe(rs => {
+  getAllHouseByDistrict(address: string) {
+    this.houseService.getAllHouseByDistrict(address).subscribe(rs => {
       this.houses = rs
     })
   }
@@ -115,6 +115,7 @@ export class HouseDetailComponent implements OnInit {
 
   createComment() {
     let content = (document.getElementById("content") as HTMLSelectElement).value
+    if (content == null || content == '') return
     let comment = {
       idUser: this.idUser,
       idHouse: this.idHouse,
