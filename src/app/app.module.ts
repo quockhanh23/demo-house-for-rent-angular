@@ -19,6 +19,7 @@ import {TransactionalDetailComponent} from './transactional/transactional-detail
 import {ReportCreateComponent} from './report/report-create/report-create.component';
 import {AdminPageComponent} from './admin/admin-page/admin-page.component';
 import { SnackbarComponent } from './snackbar/snackbar.component';
+import {TooltipModule} from "ngx-bootstrap/tooltip";
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { SnackbarComponent } from './snackbar/snackbar.component';
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
+    TooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent]

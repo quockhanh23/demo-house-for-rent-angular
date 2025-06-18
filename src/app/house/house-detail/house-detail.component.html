@@ -1,6 +1,6 @@
 <app-header></app-header>
 <div class="container" style="margin-top: 10px; margin-bottom: 10px; background-color: whitesmoke">
-  <span [routerLink]="['/']" style="font-size: 35px; cursor: pointer;"
+  <span tooltip="Quay lại" [routerLink]="['/']" style="font-size: 35px; cursor: pointer;"
         class="material-icons hoverYellowColor">arrow_back</span>
   <div class="row">
     <div style="margin-top: 5px" class="col-8">
@@ -21,7 +21,7 @@
         <div class="col-2" align="right">
           <sup><span style="font-size: 15px; margin-top: 5px; color: red">{{countReport}}</span></sup>
           <sub>
-            <span [routerLink]="['/createReport', houseDetail?.id]"
+            <span tooltip="Quay lại" [routerLink]="['/createReport', houseDetail?.id]"
                   style="font-size: 25px; margin-top: 5px; color: red"
                   class="material-icons cursorTag">flag</span>
           </sub>
@@ -33,7 +33,7 @@
           <h4>{{houseDetail?.name}}</h4>
         </div>
         <div class="col-6" align="right">
-          <span [routerLink]="['/updateHouse', houseDetail?.id]" *ngIf="houseDetail?.idUser == idUser"
+          <span tooltip="Quay lại" [routerLink]="['/updateHouse', houseDetail?.id]" *ngIf="houseDetail?.idUser == idUser"
                 class="material-icons hoverYellowColor cursorTag">edit</span>
         </div>
       </div>
@@ -212,7 +212,7 @@
                   <span>{{t?.endTime | date: 'dd/MM/yyyy'}}</span>
                 </div>
                 <div class="col-1" align="right">
-                  <sub><span [routerLink]="['/detailTransactional',t?.id]"
+                  <sub><span tooltip="Quay lại" [routerLink]="['/detailTransactional',t?.id]"
                              class="material-icons cursorTag hoverYellowColor">info</span></sub>
                 </div>
               </div>
