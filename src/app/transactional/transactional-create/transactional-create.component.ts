@@ -65,8 +65,8 @@ export class TransactionalCreateComponent implements OnInit {
     })
   }
 
-  getAllHouseByDistrict(address: string) {
-    this.houseService.getAllHouseByDistrict(address).subscribe(rs => {
+  getAllHouseByDistrict(district: string) {
+    this.houseService.getAllHouseByDistrict(district).subscribe(rs => {
       this.houses = rs
     })
   }

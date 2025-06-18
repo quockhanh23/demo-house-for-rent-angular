@@ -19,6 +19,10 @@ export class HouseService {
     return this.http.get<Page>(API_URL + `/getAllPage?page=${page}&size=${size}&searchText=${searchText}`)
   }
 
+  getAllHouseOfUser(page: any, size: any, idUser: string): Observable<Page> {
+    return this.http.get<Page>(API_URL + `/getAllHouseOfUser?page=${page}&size=${size}&idUser=${idUser}`)
+  }
+
   getAllHousePageByDistrict(page: any, size: any, searchText: string): Observable<Page> {
     return this.http.get<Page>(API_URL + `/getAllHousePageByDistrict?page=${page}&size=${size}&searchText=${searchText}`)
   }
@@ -39,8 +43,8 @@ export class HouseService {
     return this.http.get<House>(API_URL + `/getDetailHouse?idHouse=${idHouse}`,)
   }
 
-  getAllHouseByDistrict(address: any): Observable<House[]> {
-    return this.http.get<House[]>(API_URL + `/getAllHouseByDistrict?address=${address}`, {})
+  getAllHouseByDistrict(district: any): Observable<House[]> {
+    return this.http.get<House[]>(API_URL + `/getAllHouseByDistrict?district=${district}`, {})
   }
 
   createHouse(house: House, token: string): Observable<any> {
