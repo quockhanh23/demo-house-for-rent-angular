@@ -210,25 +210,30 @@
       <div class="row" style="background-color: white; margin-right: 5px; margin-top: 10px">
         <div class="col-12">
           <div class="row" *ngFor="let t of transactional as i" style="margin-top: 5px">
-            <div style="margin-left: 5px">
-              <span>{{t?.fullNameUserGuest}}</span>
-              <div class="row">
-                <div class="col-10">
-                  <span>{{t?.startTime | date: 'dd/MM/yyyy'}}</span>
-                  <span> - </span>
-                  <span>{{t?.endTime | date: 'dd/MM/yyyy'}}</span>
-                </div>
-                <div class="col-1" align="right">
-                  <sub><span tooltip="Quay lại" [routerLink]="['/detailTransactional',t?.id]"
-                             class="material-icons cursorTag hoverYellowColor">info</span></sub>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-12">
-                  <span>{{t?.status}}</span>
-                </div>
-              </div>
-            </div>
+           <div class="col-12">
+             <div style="margin-left: 5px">
+               <span>{{t?.fullNameUserGuest}}</span>
+               <div class="row">
+                 <div class="col-10">
+                   <span>{{t?.startTime | date: 'dd/MM/yyyy'}}</span>
+                   <span> - </span>
+                   <span>{{t?.endTime | date: 'dd/MM/yyyy'}}</span>
+                 </div>
+                 <div class="col-2" align="right">
+                   <sub><span tooltip="Chi tiết" [routerLink]="['/detailTransactional',t?.id]"
+                              class="material-icons cursorTag hoverYellowColor">info</span></sub>
+                 </div>
+               </div>
+               <div class="row">
+                 <div class="col-12">
+                   <span><b *ngIf="'CANCELED' == t?.status" style="color: red">{{t?.status}}</b></span>
+                   <span><b *ngIf="'PROCESSING' == t?.status" style="color: #ffc107">{{t?.status}}</b></span>
+                   <span><b *ngIf="'COMPLETED' == t?.status" style="color: green">{{t?.status}}</b></span>
+                   <span><b *ngIf="'CONFIRM' == t?.status">{{t?.status}}</b></span>
+                 </div>
+               </div>
+             </div>
+           </div>
           </div>
         </div>
         <div class="row" style="margin-top: 20px">

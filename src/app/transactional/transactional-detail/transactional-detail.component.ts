@@ -7,7 +7,7 @@ import {House} from "../../model/house";
 import {UserService} from "../../service/user.service";
 import {User} from "../../model/user";
 import {NotificationService} from "../../service/notification.service";
-import {ActionNotification} from "../../app.component";
+import {ActionNotification, getSnackbar, messageSuccess} from "../../app.component";
 
 @Component({
   selector: 'app-transactional-detail',
@@ -22,6 +22,7 @@ export class TransactionalDetailComponent implements OnInit {
   transactional?: Transactional
   house?: House
   user?: User
+  message = "Bạn đã hủy thuê nhà thành công!"
 
   constructor(private transactionalService: TransactionalService,
               private notificationService: NotificationService,
@@ -77,6 +78,8 @@ export class TransactionalDetailComponent implements OnInit {
       this.notificationService
         .createNotification(this.house?.id, this.idUserLogin, ActionNotification.cancelRental, this.token)
         .subscribe()
+      getSnackbar()
+      this.ngOnInit()
     })
   }
 

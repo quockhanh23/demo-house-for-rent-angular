@@ -3,6 +3,7 @@ import {AdminService} from "../../service/admin.service";
 import {User} from "../../model/user";
 import {Report} from "../../model/report";
 import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
+import {getSnackbar, messageSuccess} from "../../app.component";
 
 @Component({
   selector: 'app-admin-page',
@@ -18,7 +19,7 @@ export class AdminPageComponent implements OnInit {
   reports?: Report[]
   isUserList = false
   isReportList = false
-
+  message = messageSuccess
   searchForm: FormGroup = this.formBuilder.group({
     searchText: new FormControl(''),
   });
@@ -38,6 +39,7 @@ export class AdminPageComponent implements OnInit {
   actionUser(action: any, idUser: any) {
     this.adminService.actionUser(this.idUserLogin, action, idUser).subscribe(() => {
       this.ngOnInit()
+      getSnackbar()
     })
   }
 

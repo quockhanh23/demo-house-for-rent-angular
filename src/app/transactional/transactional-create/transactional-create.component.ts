@@ -3,7 +3,7 @@ import {TransactionalService} from "../../service/transactional.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Transactional} from "../../model/transactional";
 import {NotificationService} from "../../service/notification.service";
-import {ActionNotification} from "../../app.component";
+import {ActionNotification, getSnackbar, messageSuccess} from "../../app.component";
 import {HouseService} from "../../service/house.service";
 import {House} from "../../model/house";
 
@@ -21,6 +21,7 @@ export class TransactionalCreateComponent implements OnInit {
   houseDetail?: House
   houses?: House[]
   messageError?: any
+  message = messageSuccess
 
   constructor(private transactionalService: TransactionalService,
               private notificationService: NotificationService,
@@ -59,7 +60,10 @@ export class TransactionalCreateComponent implements OnInit {
       this.notificationService
         .createNotification(this.idHouse, this.idUserLogin, ActionNotification.createTransactional, this.token)
         .subscribe()
-      this.router.navigate(['/detailTransactional', this.transactional?.id]).then()
+      setTimeout(() => {
+        this.router.navigate(['/detailTransactional', this.transactional?.id]).then()
+      }, 800);
+      getSnackbar()
     }, error => {
       this.messageError = error.error.message
     })

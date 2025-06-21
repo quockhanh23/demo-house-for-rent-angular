@@ -8,6 +8,7 @@ import {LocationDTO} from "../../model/location-dto";
 import {AddressService} from "../../service/address.service";
 import {House} from "../../model/house";
 import {Router} from "@angular/router";
+import {getSnackbar} from "../../app.component";
 
 @Component({
   selector: 'app-house-create',
@@ -25,6 +26,7 @@ export class HouseCreateComponent implements OnInit {
   selectedDistrict?: string
   house?: House
   messageError?: string
+  message = "Thao tác thành công!"
 
   houseForm: FormGroup = this.formBuilder.group({
     title: new FormControl(''),
@@ -117,6 +119,7 @@ export class HouseCreateComponent implements OnInit {
       setTimeout(() => {
         this.router.navigate(["/detailHouse", this.house?.id]).then()
       }, 500);
+      getSnackbar()
     }, error => {
       this.messageError = error.error.message
     })

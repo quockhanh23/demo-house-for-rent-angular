@@ -3,7 +3,7 @@ import {HouseService} from "../../service/house.service";
 import {Page} from "../../model/page";
 import {CountAddress} from "../../model/count-address";
 import {House} from "../../model/house";
-import {triggerSnackbarBtn} from "../../app.component";
+import {messageSuccess} from "../../app.component";
 
 @Component({
   selector: 'app-house-list',
@@ -12,7 +12,7 @@ import {triggerSnackbarBtn} from "../../app.component";
 })
 export class HouseListComponent implements OnInit {
 
-  message: string = 'Hello from parent!';
+  message = messageSuccess
   page?: Page
   countAddress?: CountAddress[]
   houses?: House[]

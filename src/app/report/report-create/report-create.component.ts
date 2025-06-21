@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ReportService} from "../../service/report.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {NotificationService} from "../../service/notification.service";
-import {ActionNotification} from "../../app.component";
+import {ActionNotification, messageSuccess} from "../../app.component";
 
 @Component({
   selector: 'app-report-create',
@@ -15,6 +15,7 @@ export class ReportCreateComponent implements OnInit {
   idHouse?: any
   token?: any
   messageError?: any
+  message = messageSuccess
 
   constructor(private reportService: ReportService,
               private activatedRoute: ActivatedRoute,

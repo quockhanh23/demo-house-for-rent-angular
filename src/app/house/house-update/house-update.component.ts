@@ -6,6 +6,7 @@ import {CategoriesService} from "../../service/categories.service";
 import {Category} from "../../model/category";
 import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {House} from "../../model/house";
+import {getSnackbar, messageSuccess} from "../../app.component";
 
 @Component({
   selector: 'app-house-update',
@@ -19,6 +20,7 @@ export class HouseUpdateComponent implements OnInit {
   idUser?: any
   house?: House
   messageError?: string
+  message = messageSuccess
 
   houseForm: FormGroup = this.formBuilder.group({
     title: new FormControl(""),
@@ -87,6 +89,7 @@ export class HouseUpdateComponent implements OnInit {
     let token = localStorage.getItem("token")
     if (null == token) token = ""
     this.houseService.updateHouse(house, this.house?.id, token).subscribe(() => {
+      getSnackbar()
     }, error => {
       this.messageError = error.error.message
     })

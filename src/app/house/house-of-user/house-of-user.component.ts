@@ -15,6 +15,7 @@ export class HouseOfUserComponent implements OnInit {
   token?: any
   houses?: House[]
   page?: Page
+  size?: number = 0
   currentPage?: number = 0;
   currentPageAddOne?: number = 1;
   previousPageNumber?: number = 1;
@@ -35,6 +36,7 @@ export class HouseOfUserComponent implements OnInit {
     this.houseService.getAllHouseOfUser(page, size, this.idUser).subscribe(rs => {
       this.page = rs;
       this.houses = this.page?.content
+      this.size = this.houses?.length
     }, error => {
     })
   }

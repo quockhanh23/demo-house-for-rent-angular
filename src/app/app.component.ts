@@ -11,6 +11,8 @@ export class AppComponent {
   title = 'house-for-rent-angular';
 }
 
+export var messageSuccess = "Thao tác thành công!"
+
 export enum ActionNotification {
   createComment = '1',
   createTransactional = '2',
@@ -23,6 +25,16 @@ export function triggerSnackbarBtn() {
   window.onload = function () {
     (document.getElementById('snackbarBtn') as HTMLSelectElement).click();
   };
+}
+
+export function getSnackbar() {
+  let x = document.getElementById("snackbar");
+  // @ts-ignore
+  x.className = "show";
+  setTimeout(function () {
+    // @ts-ignore
+    x.className = x.className.replace("show", "");
+  }, 3000);
 }
 
 export function checkTokenValid(error: any, router: Router) {
