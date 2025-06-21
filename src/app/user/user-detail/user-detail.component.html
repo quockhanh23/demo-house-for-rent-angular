@@ -5,13 +5,33 @@
   <div class="row" style="height: 500px">
     <div class="col-3" style="background-color: whitesmoke;">
       <menu *ngIf="idUserLogin == idUser">
-        <li (click)="toInformation()" style="cursor: pointer">Thông tin</li>
-        <li (click)="toChangePassword()" style="cursor: pointer">Đổi mật khẩu</li>
-        <li [routerLink]="['/createHouse']" style="cursor: pointer">Đăng tin</li>
-        <li [routerLink]="['/houseOfUser', idUserLogin]" style="cursor: pointer">Danh sách nhà đã đăng</li>
+        <li class="hoverYellowColor" (click)="toInformation()"
+            style="cursor: pointer; margin-top: 10px">Thông tin
+        </li>
+        <li class="hoverYellowColor" (click)="toChangePassword()"
+            style="cursor: pointer; margin-top: 10px">Đổi mật khẩu
+        </li>
+        <li class="hoverYellowColor" [routerLink]="['/createHouse']"
+            style="cursor: pointer; margin-top: 10px">Đăng tin cho thuê nhà
+        </li>
+        <li class="hoverYellowColor" [routerLink]="['/houseOfUser', idUserLogin]"
+            style="cursor: pointer; margin-top: 10px">
+          Danh sách nhà đã đăng
+        </li>
+        <li class="hoverYellowColor" [routerLink]="['/transactionalOfUser', idUserLogin]"
+            style="cursor: pointer; margin-top: 10px">
+          Lịch sử thuê nhà của bạn
+        </li>
       </menu>
     </div>
-    <div *ngIf="openInformation && !openChangePassword && !openUpdateUser" class="col-9"
+    <div class="col-1">
+      <div class="row">
+        <div style="background-color: whitesmoke; height: 500px" class="col-4"></div>
+        <div class="col-4"></div>
+        <div style="background-color: whitesmoke; height: 500px" class="col-4"></div>
+      </div>
+    </div>
+    <div *ngIf="openInformation && !openChangePassword && !openUpdateUser" class="col-8"
          style="background-color: whitesmoke">
       <div style="padding-top: 15px" *ngIf="idUserLogin == idUser">
         <span (click)="toUpdateUser()" class="material-icons hoverYellowColor cursorTag">edit</span>
@@ -43,7 +63,7 @@
       </div>
     </div>
 
-    <div *ngIf="!openInformation && openChangePassword && !openUpdateUser" class="col-9"
+    <div *ngIf="!openInformation && openChangePassword && !openUpdateUser" class="col-8"
          style="background-color: whitesmoke">
       <sub><span style="margin-top: 10px" class="material-icons">vpn_key</span></sub>
       <hr>
@@ -76,7 +96,7 @@
       </form>
     </div>
 
-    <div *ngIf="!openInformation && !openChangePassword && openUpdateUser" class="col-9"
+    <div *ngIf="!openInformation && !openChangePassword && openUpdateUser" class="col-8"
          style="background-color: whitesmoke;">
       <div style="padding-top: 5px;">
         <span (click)="toInformation()" style="margin-top: 5px"

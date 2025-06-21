@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Transactional} from "../model/transactional";
 import {PageTransactional} from "../model/page-transactional";
+import {PageTransactionalHistoryUser} from "../model/page-transactional-history-user";
 
 const API_URL = "http://localhost:8080/api/transactions"
 
@@ -42,6 +43,15 @@ export class TransactionalService {
   getAllTransactionalPageByHouseId(houseId: any, page: any, size: any, token: string): Observable<PageTransactional> {
     return this.http.get<PageTransactional>(API_URL +
       `/getAllTransactionalPageByHouseId?houseId=${houseId}&page=${page}&size=${size}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      }
+    })
+  }
+
+  getAllTransactionalByUser(idUser: any, page: any, size: any, token: string): Observable<PageTransactionalHistoryUser> {
+    return this.http.get<PageTransactionalHistoryUser>(API_URL +
+      `/getAllTransactionalByUser?idUser=${idUser}&page=${page}&size=${size}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       }

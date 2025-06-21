@@ -12,6 +12,7 @@ import {TransactionalDetailComponent} from "./transactional/transactional-detail
 import {ReportCreateComponent} from "./report/report-create/report-create.component";
 import {AdminPageComponent} from "./admin/admin-page/admin-page.component";
 import {HouseOfUserComponent} from "./house/house-of-user/house-of-user.component";
+import {TransactionalOfUserComponent} from "./transactional/transactional-of-user/transactional-of-user.component";
 
 const routes: Routes = [
   {
@@ -49,6 +50,9 @@ const routes: Routes = [
   },
   {
     path: 'houseOfUser/:id', component: HouseOfUserComponent,
+  },
+  {
+    path: 'transactionalOfUser/:id', component: TransactionalOfUserComponent,
   },
 ];
 

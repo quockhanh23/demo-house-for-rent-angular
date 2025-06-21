@@ -20,7 +20,8 @@ import {ReportCreateComponent} from './report/report-create/report-create.compon
 import {AdminPageComponent} from './admin/admin-page/admin-page.component';
 import {SnackbarComponent} from './snackbar/snackbar.component';
 import {TooltipModule} from "ngx-bootstrap/tooltip";
-import { HouseOfUserComponent } from './house/house-of-user/house-of-user.component';
+import {HouseOfUserComponent} from './house/house-of-user/house-of-user.component';
+import {TransactionalOfUserComponent} from './transactional/transactional-of-user/transactional-of-user.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { HouseOfUserComponent } from './house/house-of-user/house-of-user.compon
     ReportCreateComponent,
     AdminPageComponent,
     SnackbarComponent,
-    HouseOfUserComponent
+    HouseOfUserComponent,
+    TransactionalOfUserComponent
   ],
   imports: [
     BrowserModule,
