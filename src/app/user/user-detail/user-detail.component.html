@@ -83,7 +83,7 @@
               class="material-icons hoverYellowColor cursorTag">highlight_off</span>
       </div>
       <hr>
-      <form [formGroup]="changePasswordForm" (ngSubmit)="updateUser()">
+      <form [formGroup]="userUpdateForm" (ngSubmit)="updateUser()">
         <div class="col mt-4">
           <label>Tên đầy đủ:</label>
           <input type="text" formControlName="fullName" class="form-control"
@@ -110,3 +110,6 @@
   </div>
 </div>
 <div style="height: 50px" class="row"></div>
+
+<app-snackbar [message]="message"></app-snackbar>
+<button id="snackbarBtn" hidden onclick="myFunction()">Show Snackbar</button>

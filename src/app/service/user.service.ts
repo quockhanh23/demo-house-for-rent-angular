@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {User} from "../model/user";
 import {JwtResponse} from "../model/jwt-response";
+import {UserDTORequest} from "../model/user-dtorequest";
 
 const API_URL = "http://localhost:8080/api/users"
 
@@ -31,16 +32,16 @@ export class UserService {
     return this.http.post<User>(API_URL + `/register`, user)
   }
 
-  updateUser(user: Object, token: any): Observable<any> {
-    return this.http.put<any>(API_URL + `/updateUser`, user, {
+  updateUser(user: Object, token: any): Observable<UserDTORequest> {
+    return this.http.put<UserDTORequest>(API_URL + `/updateUser`, user, {
       headers: {
         Authorization: `Bearer ${token}`,
       }
     })
   }
 
-  changePassword(user: Object, token: any): Observable<any> {
-    return this.http.put<any>(API_URL + `/changePassword`, user, {
+  changePassword(user: Object, token: any): Observable<UserDTORequest> {
+    return this.http.put<UserDTORequest>(API_URL + `/changePassword`, user, {
       headers: {
         Authorization: `Bearer ${token}`,
       }
