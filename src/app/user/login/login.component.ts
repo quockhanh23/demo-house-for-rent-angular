@@ -11,6 +11,7 @@ import {Router} from "@angular/router";
 })
 export class LoginComponent implements OnInit {
 
+  title = "Đăng nhập"
   jwtResponse?: JwtResponse
   messageError?: string;
   userForm: FormGroup = this.formBuilder.group({

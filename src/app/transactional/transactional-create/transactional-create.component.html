@@ -1,11 +1,12 @@
 <app-header></app-header>
+<app-title [message]="title"></app-title>
 <div class="container" style="margin-top: 10px; margin-bottom: 10px; background-color: whitesmoke">
    <span tooltip="Quay lại" [routerLink]="['/detailHouse', idHouse]" style="font-size: 35px; cursor: pointer;"
          class="material-icons hoverYellowColor">arrow_back</span>
   <hr style="margin-top: 0px">
   <div class="row">
-    <div class="col-7">
-      <div style="height: 600px; font-size: 19px">
+    <div class="col-7" style="height: 600px;">
+      <div style="font-size: 19px">
         <div>
           <p>Ngày bắt đầu thuê:</p>
           <input id="startDate" type="date">
@@ -18,7 +19,7 @@
           Đặt thuê ngay
         </button>
       </div>
-      <div *ngIf="messageError != null" class="alert alert-danger" role="alert">
+      <div style="margin-top: 20px" *ngIf="messageError != null" class="alert alert-danger" role="alert">
         {{messageError}}
       </div>
     </div>

@@ -9,6 +9,7 @@ import {AddressService} from "../../service/address.service";
 import {House} from "../../model/house";
 import {Router} from "@angular/router";
 import {getSnackbar} from "../../app.component";
+import {UploadImageService} from "../../service/upload-image.service";
 
 @Component({
   selector: 'app-house-create',
@@ -27,6 +28,13 @@ export class HouseCreateComponent implements OnInit {
   house?: House
   messageError?: string
   message = "Thao tác thành công!"
+  title = "Đăng tin cho thuê nhà"
+  file?: File;
+  fileUrl?: any
+  checkUploadImage = false
+  checkFile = false
+  uploadSuccess = false
+  value?: string
 
   houseForm: FormGroup = this.formBuilder.group({
     title: new FormControl(''),
@@ -41,6 +49,7 @@ export class HouseCreateComponent implements OnInit {
 
   constructor(private userService: UserService,
               private formBuilder: FormBuilder,
+              private uploadImageService: UploadImageService,
               private router: Router,
               private addressService: AddressService,
               private houseService: HouseService,
@@ -79,6 +88,39 @@ export class HouseCreateComponent implements OnInit {
     this.categoriesService.getAll().subscribe(rs => {
       this.categories = rs;
     })
+  }
+
+  selectFile(event: any) {
+    this.file = event.target.files.item(0);
+    if (this.file != null) {
+      const reader = new FileReader();
+      reader.onload = (e: ProgressEvent<FileReader>) => {
+        this.fileUrl = e.target?.result;
+      };
+      reader.readAsDataURL(this.file);
+      this.checkFile = false;
+      this.checkUploadImage = true
+      this.uploadFile(this.file);
+      this.uploadSuccess = true
+    }
+  }
+
+  uploadFile(file: File): boolean {
+    if (this.file == undefined) {
+      this.checkFile = true;
+      return false;
+    }
+    this.uploadImageService.upload(file).subscribe(rs => {
+      this.value = rs
+      console.log(" this.value:" +  this.value)
+      return true;
+    }, error => {
+      this.file = undefined;
+      this.value = undefined;
+      console.log("lỗi uploadFile:" + JSON.stringify(error))
+      return false;
+    })
+    return false;
   }
 
   createHouse() {

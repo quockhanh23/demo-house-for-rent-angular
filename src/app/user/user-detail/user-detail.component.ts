@@ -11,6 +11,7 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class UserDetailComponent implements OnInit {
 
+  title = "Thông tin cá nhân"
   user?: User
   idUserLogin?: any
   idUser?: any

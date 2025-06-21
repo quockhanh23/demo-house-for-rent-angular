@@ -11,6 +11,7 @@ import {User} from "../../model/user";
 })
 export class RegisterComponent implements OnInit {
 
+  title = "Đăng Ký"
   user?: User
   messageError?: string
   userForm: FormGroup = this.formBuilder.group({

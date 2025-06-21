@@ -21,6 +21,7 @@ export class HouseUpdateComponent implements OnInit {
   house?: House
   messageError?: string
   message = messageSuccess
+  title= "Cập nhật lại tin cho thuê nhà"
 
   houseForm: FormGroup = this.formBuilder.group({
     title: new FormControl(""),

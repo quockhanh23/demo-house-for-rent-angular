@@ -22,6 +22,7 @@ export class HouseListComponent implements OnInit {
   currentNumber?: number = 2;
   nextPageNumber?: number = 3;
   size?: number = 0;
+  title = "Danh sách nhà cho thuê"
 
   constructor(private houseService: HouseService) {
   }

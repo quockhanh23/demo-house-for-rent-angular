@@ -1,4 +1,5 @@
 <app-header></app-header>
+<app-title [message]="title"></app-title>
 <div class="container" style="margin-top: 10px; margin-bottom: 10px">
     <span tooltip="Quay lại" [routerLink]="['/detailUser', idUser]" style="font-size: 35px; cursor: pointer;"
           class="material-icons hoverYellowColor">arrow_back</span>
@@ -61,7 +62,7 @@
                 <span style="font-size: 13px">Tối đa 32 kí tự</span>
               </div>
             </div>
-            <div class="row align-items-center">
+            <div class="row" style="margin-top: 10px">
               <div class="col mt-4">
                 <fieldset>
                   <label>Nhà vườn:</label>
@@ -76,43 +77,62 @@
                 </fieldset>
               </div>
               <div class="col mt-4">
-                <select id="category">
-                  <div *ngFor="let category of categories">
-                    <option value="{{category?.id}}">{{category?.name}}</option>
-                  </div>
-                </select>
+                <label>Thể loại:</label>
+                <div align="right">
+                  <select name="sources" id="category" class="custom-select sources">
+                    <div *ngFor="let category of categories">
+                      <option value="{{category?.id}}">{{category?.name}}</option>
+                    </div>
+                  </select>
+                </div>
               </div>
             </div>
-            <button style="margin-bottom: 10px" class="btn btn-primary" type="submit">Đăng tin</button>
+            <button style="margin-bottom: 10px; margin-top: 20px" class="btn btn-primary" type="submit">Đăng tin</button>
           </div>
         </form>
       </div>
       <div class="col-5">
-        <div class="col-6">
-          <div style="margin-top: 35px">
-            <h6 style="margin-top: 10px">Tỉnh/Thành Phố *</h6>
-            <select style="width: 200px" id="1" [(ngModel)]="selectedProvince"
-                    (ngModelChange)="getAllDistrictByIdProvince();">
-              <div *ngFor="let p of responseDataProvince?.data as i">
-                <option [value]="p?.id">{{p?.name}}</option>
-              </div>
-            </select>
-            <br>
-            <h6 style="margin-top: 10px">Quận/Huyện *</h6>
-            <select style="width: 200px" id="2" [(ngModel)]="selectedDistrict"
-                    (ngModelChange)="getAllWardsByIdDistrict()">
-              <div *ngFor="let p of responseDataDistrict?.data as i">
-                <option [value]="p?.id">{{p?.name}}</option>
-              </div>
-            </select>
-            <br>
-            <h6 style="margin-top: 10px">Phường/Xã *</h6>
-            <select style="width: 200px" id="3">
-              <div *ngFor="let p of responseDataWards?.data as i">
-                <option [value]="p?.id">{{p?.name}}</option>
-              </div>
-            </select>
-            <br>
+        <div class="row">
+          <div class="col-12">
+            <div style="margin-top: 35px">
+              <h6 style="margin-top: 10px">Tỉnh/Thành Phố *</h6>
+              <select style="width: 200px" id="1" [(ngModel)]="selectedProvince"
+                      (ngModelChange)="getAllDistrictByIdProvince();">
+                <div *ngFor="let p of responseDataProvince?.data as i">
+                  <option [value]="p?.id">{{p?.name}}</option>
+                </div>
+              </select>
+              <br>
+              <h6 style="margin-top: 10px">Quận/Huyện *</h6>
+              <select style="width: 200px" id="2" [(ngModel)]="selectedDistrict"
+                      (ngModelChange)="getAllWardsByIdDistrict()">
+                <div *ngFor="let p of responseDataDistrict?.data as i">
+                  <option [value]="p?.id">{{p?.name}}</option>
+                </div>
+              </select>
+              <br>
+              <h6 style="margin-top: 10px">Phường/Xã *</h6>
+              <select style="width: 200px" id="3">
+                <div *ngFor="let p of responseDataWards?.data as i">
+                  <option [value]="p?.id">{{p?.name}}</option>
+                </div>
+              </select>
+              <br>
+            </div>
+          </div>
+        </div>
+        <div class="row" style="margin-top: 20px; margin-right: 5px">
+          <div class="col-12">
+            <input type="file" (change)="selectFile($event)" id="actual-btn" hidden/>
+            <label class="hoverYellowColor cursorTag" for="actual-btn">
+              <sub>
+                <span style="font-size: 30px" class="material-icons">file_upload</span>
+              </sub>
+            </label>
+            <sup><span style="font-size: 17px" *ngIf="value == null">&nbsp;Không có ảnh nào được chọn</span></sup>
+            <img style="width: 100%; height: 300px; border-radius: 5px" *ngIf="value != null" src="{{value}}">
+<!--            <img style="width: 100%; height: 300px; border-radius: 5px;"-->
+<!--                 src="https://i.ibb.co/6RwzBtsZ/upload-304197413995088742453456545.jpg">-->
           </div>
         </div>
       </div>

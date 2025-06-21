@@ -11,6 +11,7 @@ import {Page} from "../../model/page";
 })
 export class HouseOfUserComponent implements OnInit {
 
+  title = "Danh sách nhà đã đăng cho thuê của bạn"
   idUser?: any
   token?: any
   houses?: House[]

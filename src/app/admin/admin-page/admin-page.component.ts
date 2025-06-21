@@ -12,6 +12,7 @@ import {getSnackbar, messageSuccess} from "../../app.component";
 })
 export class AdminPageComponent implements OnInit {
 
+  title = "Quản lý"
   token?: any
   idUserLogin?: any
   users?: User[]

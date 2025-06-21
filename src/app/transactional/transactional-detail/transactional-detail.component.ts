@@ -23,6 +23,7 @@ export class TransactionalDetailComponent implements OnInit {
   house?: House
   user?: User
   message = "Bạn đã hủy thuê nhà thành công!"
+  title = "Chi tiết đơn đăng ký thuê nhà"
 
   constructor(private transactionalService: TransactionalService,
               private notificationService: NotificationService,

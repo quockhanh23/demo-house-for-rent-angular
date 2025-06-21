@@ -16,6 +16,7 @@ export class ReportCreateComponent implements OnInit {
   token?: any
   messageError?: any
   message = messageSuccess
+  title = "Tạo mới báo cáo vi phạm"
 
   constructor(private reportService: ReportService,
               private activatedRoute: ActivatedRoute,

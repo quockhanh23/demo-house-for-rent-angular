@@ -22,6 +22,7 @@ import {ReportService} from "../../service/report.service";
 })
 export class HouseDetailComponent implements OnInit {
 
+  title = "Chi tiết ngôi nhà"
   houseDetail?: House
   houses?: House[]
   housesSameAddress?: CountAddress[]

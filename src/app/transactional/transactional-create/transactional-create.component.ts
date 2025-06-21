@@ -22,6 +22,7 @@ export class TransactionalCreateComponent implements OnInit {
   houses?: House[]
   messageError?: any
   message = messageSuccess
+  title = "Đăng ký thuê nhà"
 
   constructor(private transactionalService: TransactionalService,
               private notificationService: NotificationService,

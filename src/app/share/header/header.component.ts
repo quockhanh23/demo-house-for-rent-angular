@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {NotificationService} from "../service/notification.service";
-import {Notification} from "../model/notification";
-import {checkTokenValid} from "../app.component";
+import {NotificationService} from "../../service/notification.service";
+import {Notification} from "../../model/notification";
+import {checkTokenValid} from "../../app.component";
 import {Router} from "@angular/router";
 
 @Component({

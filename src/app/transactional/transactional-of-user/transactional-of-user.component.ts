@@ -12,6 +12,7 @@ import {TransactionalHistoryUser} from "../../model/transactional-history-user";
 })
 export class TransactionalOfUserComponent implements OnInit {
 
+  title = "Lịch sử thuê nhà của bạn"
   idUser?: any
   token?: any
   transactionalHistoryUsers?: TransactionalHistoryUser[]
