@@ -22,7 +22,7 @@ import {SnackbarComponent} from './share/snackbar/snackbar.component';
 import {TooltipModule} from "ngx-bootstrap/tooltip";
 import {HouseOfUserComponent} from './house/house-of-user/house-of-user.component';
 import {TransactionalOfUserComponent} from './transactional/transactional-of-user/transactional-of-user.component';
-import { TitleComponent } from './share/title/title.component';
+import {TitleComponent} from './share/title/title.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +43,7 @@ import { TitleComponent } from './share/title/title.component';
     SnackbarComponent,
     HouseOfUserComponent,
     TransactionalOfUserComponent,
-    TitleComponent
+    TitleComponent,
   ],
   imports: [
     BrowserModule,

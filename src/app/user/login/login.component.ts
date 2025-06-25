@@ -3,6 +3,7 @@ import {UserService} from "../../service/user.service";
 import {JwtResponse} from "../../model/jwt-response";
 import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {Router} from "@angular/router";
+import {getSnackbar} from "../../app.component";
 
 @Component({
   selector: 'app-login',
@@ -14,13 +15,15 @@ export class LoginComponent implements OnInit {
   title = "Đăng nhập"
   jwtResponse?: JwtResponse
   messageError?: string;
+  message = "Đăng nhập thành công"
   userForm: FormGroup = this.formBuilder.group({
     username: new FormControl(''),
     password: new FormControl(''),
   });
 
   constructor(private userService: UserService,
-              private formBuilder: FormBuilder, private router: Router) {
+              private formBuilder: FormBuilder,
+              private router: Router) {
   }
 
   ngOnInit(): void {
@@ -37,7 +40,10 @@ export class LoginComponent implements OnInit {
       localStorage.setItem("username", <string>this.jwtResponse.username)
       localStorage.setItem("idUser", <string>this.jwtResponse.id)
       localStorage.setItem("roles", JSON.stringify(this.jwtResponse.roles))
-      this.router.navigate(['/']).then()
+      setTimeout(() => {
+        this.router.navigate(['/']).then()
+      }, 800);
+      getSnackbar()
     }, error => {
       this.messageError = error.error.message;
     })
