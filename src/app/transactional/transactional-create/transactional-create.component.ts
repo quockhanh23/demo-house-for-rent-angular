@@ -23,6 +23,7 @@ export class TransactionalCreateComponent implements OnInit {
   messageError?: any
   message = messageSuccess
   title = "Đăng ký thuê nhà"
+  loading = false;
 
   constructor(private transactionalService: TransactionalService,
               private notificationService: NotificationService,
@@ -46,6 +47,7 @@ export class TransactionalCreateComponent implements OnInit {
   }
 
   createTransactional() {
+    this.loading = true;
     this.messageError = null;
     let startDate = (document.getElementById("startDate") as HTMLSelectElement).value
     let endDate = (document.getElementById("endDate") as HTMLSelectElement).value
@@ -65,8 +67,10 @@ export class TransactionalCreateComponent implements OnInit {
         this.router.navigate(['/detailTransactional', this.transactional?.id]).then()
       }, 800);
       getSnackbar()
+      this.loading = false;
     }, error => {
       this.messageError = error.error.message
+      this.loading = false;
     })
   }
 

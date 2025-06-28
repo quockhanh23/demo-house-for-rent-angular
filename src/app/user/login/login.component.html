@@ -23,8 +23,13 @@
           </div>
         </div>
         <div class="row align-items-center">
-          <div class="col">
+          <div class="col-3">
             <button class="btn btn-primary mt-4" type="submit">Đăng nhập</button>
+          </div>
+          <div class="col-6" *ngIf="loading">
+            <div class="spinner-border text-primary" role="status" style="margin-top: 25px">
+              <span class="sr-only">Loading...</span>
+            </div>
           </div>
         </div>
       </form>

@@ -15,16 +15,26 @@
           <p>Ngày kết thúc <span style="color: red">*</span></p>
           <input id="endDate" type="date">
         </div>
-        <button style="margin-top: 20px" (click)="createTransactional()" type="button" class="btn btn-primary">
-          Đặt thuê ngay
-        </button>
+        <div class="row">
+          <div class="col-4">
+            <button style="margin-top: 20px" (click)="createTransactional()" type="button" class="btn btn-primary">
+              Đặt thuê ngay
+            </button>
+          </div>
+          <div class="col-6" *ngIf="loading">
+            <div class="spinner-border text-primary" role="status" style="margin-top: 22px">
+              <span class="sr-only">Loading...</span>
+            </div>
+          </div>
+        </div>
       </div>
       <div style="margin-top: 20px" *ngIf="messageError != null" class="alert alert-danger" role="alert">
         {{messageError}}
       </div>
     </div>
     <div class="col-6">
-      <img class="boxShadow" style="width: 100%; height: 400px; border-radius: 5px" src="../../../assets/images/hop-dong.jpg">
+      <img class="boxShadow" style="width: 100%; height: 400px; border-radius: 5px"
+           src="../../../assets/images/hop-dong.jpg">
     </div>
   </div>
   <hr>

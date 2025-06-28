@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit {
   jwtResponse?: JwtResponse
   messageError?: string;
   message = "Đăng nhập thành công"
+  loading = false;
   userForm: FormGroup = this.formBuilder.group({
     username: new FormControl(''),
     password: new FormControl(''),
@@ -30,6 +31,7 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
+    this.loading = true;
     let loginRequest = {
       username: this.userForm.value.username,
       password: this.userForm.value.password
@@ -44,8 +46,10 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/']).then()
       }, 800);
       getSnackbar()
+      this.loading = false;
     }, error => {
       this.messageError = error.error.message;
+      this.loading = false;
     })
   }
 }
