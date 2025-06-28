@@ -12,7 +12,7 @@ import {CommentService} from "../../service/comment.service";
 import {PageComment} from "../../model/page-comment";
 import {Comment} from "../../model/comment";
 import {NotificationService} from "../../service/notification.service";
-import {ActionNotification} from "../../app.component";
+import {ActionNotification, getPreviousUrl} from "../../app.component";
 import {ReportService} from "../../service/report.service";
 
 @Component({
@@ -37,6 +37,7 @@ export class HouseDetailComponent implements OnInit {
   countReport?: any
   urlZalo?: any
   urlPhone?: any
+  urlNextPage = ""
   currentPage?: number = 0;
   currentPageAddOne?: number = 1;
   previousPageNumber?: number = 1;
@@ -58,6 +59,7 @@ export class HouseDetailComponent implements OnInit {
               private activatedRoute: ActivatedRoute,) {
     this.token = localStorage.getItem("token")
     this.idUser = localStorage.getItem("idUser")
+    this.urlNextPage = getPreviousUrl()
   }
 
   ngOnInit(): void {

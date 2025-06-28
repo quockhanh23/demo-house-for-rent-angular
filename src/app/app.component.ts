@@ -2,6 +2,8 @@ import {Component} from '@angular/core';
 import {HttpErrorResponse} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {AbstractControl, ValidationErrors, ValidatorFn} from "@angular/forms";
+import {environment} from "../environments/environment";
+
 
 @Component({
   selector: 'app-root',
@@ -57,4 +59,12 @@ export function whitespaceValidator(): ValidatorFn {
     const isWhitespace = control.value.trim().length === 0;
     return isWhitespace ? {'whitespace': true} : null;
   };
+}
+
+export function getPreviousUrl() {
+  if (environment.previousUrl == '') {
+    return "/"
+  } else {
+    return environment.previousUrl
+  }
 }

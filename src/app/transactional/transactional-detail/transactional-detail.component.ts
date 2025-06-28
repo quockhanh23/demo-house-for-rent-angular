@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {TransactionalService} from "../../service/transactional.service";
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute} from "@angular/router";
 import {Transactional} from "../../model/transactional";
 import {HouseService} from "../../service/house.service";
 import {House} from "../../model/house";
@@ -25,13 +25,13 @@ export class TransactionalDetailComponent implements OnInit {
   messageError?: string
   message = "Bạn đã hủy thuê nhà thành công!"
   title = "Chi tiết đơn đăng ký thuê nhà"
+  isCancel = true;
 
   constructor(private transactionalService: TransactionalService,
               private notificationService: NotificationService,
               private houseService: HouseService,
               private activatedRoute: ActivatedRoute,
-              private userService: UserService,
-              private router: Router) {
+              private userService: UserService) {
     this.idUserLogin = localStorage.getItem("idUser")
     this.token = localStorage.getItem("token")
   }
@@ -48,6 +48,7 @@ export class TransactionalDetailComponent implements OnInit {
       this.transactional = rs;
       this.getDetailHouse(this.transactional?.idHouse);
       this.getDetailUser(this.transactional?.idUserHost);
+      this.checkCancelRental();
     })
   }
 
@@ -90,6 +91,24 @@ export class TransactionalDetailComponent implements OnInit {
   checkIn() {
     this.transactionalService.checkIn(this.idTransactional, this.idUserLogin, this.token).subscribe(() => {
     })
+  }
+
+  checkOut() {
+    this.transactionalService.updateTransactional(this.idTransactional, "COMPLETED", this.token)
+      .subscribe(rs => {
+        this.transactional = rs
+      })
+  }
+
+  checkCancelRental() {
+    if (this.transactional == null) return
+    let status = ["COMPLETED", "CANCELED", "RENTED", "CONFIRM"]
+    for (let i = 0; i < status.length; i++) {
+      if (this.transactional.status == status[i]) {
+        this.isCancel = false;
+        return;
+      }
+    }
   }
 
 }

@@ -13,28 +13,35 @@
     <div class="col-6">
       <img style="width: 100%; border-radius: 5px; height: 400px" src="{{house?.image}}">
       <div class="row" style="margin-top: 10px">
-       <div class="col-12">
-         <div *ngIf="messageError != null" class="alert alert-danger" role="alert">
-           {{messageError}}
-         </div>
-       </div>
+        <div class="col-12">
+          <div *ngIf="messageError != null" class="alert alert-danger" role="alert">
+            {{messageError}}
+          </div>
+        </div>
       </div>
-      <div class="row" *ngIf="house?.idUser != idUserLogin">
-        <div class="col-6">
+      <div class="row" *ngIf="transactional?.idUserGuest == idUserLogin">
+        <div class="col-12" *ngIf="isCancel">
           <button style="margin-top: 10px" type="button" class="btn btn-info" (click)="cancelRental()">
             Hủy thuê
           </button>
         </div>
-        <div class="col-6" align="right">
-          <button *ngIf="transactional?.status == 'CONFIRM'"
-                  style="margin-top: 10px" type="button" class="btn btn-info" (click)="checkIn()">
+        <div class="col-12" align="right" *ngIf="transactional?.status == 'CONFIRM'">
+          <button
+            style="margin-top: 10px" type="button" class="btn btn-info" (click)="checkIn()">
             Check in
           </button>
         </div>
+        <div class="col-12" align="right" *ngIf="transactional?.status == 'RENTED'">
+          <button
+            style="margin-top: 10px" type="button" class="btn btn-info" (click)="checkOut()">
+            Check out
+          </button>
+        </div>
       </div>
-      <hr>
-      <p>{{house?.name}}</p>
+      <p style="color: #3f6ba4">{{house?.district}}, {{house?.province}}</p>
       <p>Giá thuê 1 ngày: {{house?.price}} VNĐ</p>
+      <hr>
+      <p>Khách hàng: <b>{{transactional?.fullNameUserGuest}}</b></p>
       <p *ngIf="transactional?.status == 'COMPLETED'">Tổng số tiền thuê: {{transactional?.totalAmountActual}} VNĐ</p>
       <p *ngIf="transactional?.status != 'COMPLETED'">Tổng số tiền thuê: {{transactional?.totalAmountExpected}} VNĐ</p>
       <span>Thời gian thuê: </span>
@@ -46,6 +53,8 @@
         style="color: red">Đã hủy</b></p>
       <p *ngIf="'PROCESSING' == transactional?.status" style="margin-top: 10px;">Trạng thái: <b
         style="color: #ffc107">Chờ xác nhận</b></p>
+      <p *ngIf="'RENTED' == transactional?.status" style="margin-top: 10px;">Trạng thái: <b
+        style="color: #88af3c">Đang thuê</b></p>
       <p *ngIf="'COMPLETED' == transactional?.status" style="margin-top: 10px;">Trạng thái: <b
         style="color: green">Hoàn thành</b></p>
       <p *ngIf="'CONFIRM' == transactional?.status" style="margin-top: 10px;">Trạng thái:
@@ -54,6 +63,7 @@
     <div class="col-6">
       <p>Chủ nhà: {{user?.fullName}}</p>
       <p>Số điện thoại: {{user?.phone}}</p>
+      <p>Địa chỉ email: {{user?.email}}</p>
     </div>
   </div>
 </div>

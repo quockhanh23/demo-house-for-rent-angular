@@ -3,6 +3,7 @@ import {HouseService} from "../../service/house.service";
 import {TransactionalService} from "../../service/transactional.service";
 import {PageTransactionalHistoryUser} from "../../model/page-transactional-history-user";
 import {TransactionalHistoryUser} from "../../model/transactional-history-user";
+import {environment} from "../../../environments/environment";
 
 @Component({
   selector: 'app-transactional-of-user',
@@ -28,6 +29,7 @@ export class TransactionalOfUserComponent implements OnInit {
               private transactionalService: TransactionalService) {
     this.token = localStorage.getItem("token")
     this.idUser = localStorage.getItem("idUser")
+    environment.previousUrl = window.location.pathname;
   }
 
   ngOnInit(): void {

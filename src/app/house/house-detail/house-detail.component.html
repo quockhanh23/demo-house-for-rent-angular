@@ -1,7 +1,7 @@
 <app-header></app-header>
 <app-title [message]="title"></app-title>
 <div class="container" style="margin-top: 10px; margin-bottom: 10px; background-color: whitesmoke">
-  <span tooltip="Quay lại" [routerLink]="['/']" style="font-size: 35px; cursor: pointer;"
+  <span tooltip="Quay lại" routerLink="{{urlNextPage}}" style="font-size: 35px; cursor: pointer;"
         class="material-icons hoverYellowColor">arrow_back</span>
   <hr style="margin-top: 0px">
   <div class="row">
@@ -224,7 +224,7 @@
       </div>
       <div class="row" style="background-color: white; margin-right: 5px; margin-top: 10px">
         <div class="col-12">
-          <div class="row" *ngFor="let t of transactional as i" style="margin-top: 5px">
+          <div class="row" *ngFor="let t of transactional index as i" style="margin-top: 5px">
             <div class="col-12">
               <div style="margin-left: 5px">
                 <span>{{t?.fullNameUserGuest}}</span>
@@ -243,18 +243,22 @@
                   <div class="col-12">
                     <span><b *ngIf="'CANCELED' == t?.status" style="color: red">Đã hủy</b></span>
                     <span><b *ngIf="'PROCESSING' == t?.status" style="color: #ffc107">Chờ xác nhận</b></span>
+                    <span><b *ngIf="'RENTED' == t?.status" style="color: #88af3c">Đang thuê</b></span>
                     <span><b *ngIf="'COMPLETED' == t?.status" style="color: green">Hoàn thành</b></span>
                     <span><b *ngIf="'CONFIRM' == t?.status">Đã xác nhận</b></span>
                   </div>
                 </div>
               </div>
+              <hr>
             </div>
+
           </div>
         </div>
-        <div class="row" style="margin-top: 20px">
+        <div class="row" style="margin-top: 10px; margin-left: 10px">
           <div class="col-10" align="left">
-            <p style="margin-top: 5px; font-size: 17px; margin-left: 5px">Trang: {{currentPageAddOne}}/ Tổng
-              số: {{pageTransactional?.page?.totalElements}}</p>
+            <p style="margin-top: 5px; font-size: 17px;">Trang: {{currentPageAddOne}}/{{pageTransactional?.page?.totalPages}}
+              Số lượng: {{transactional?.length}}</p>
+            <p>Tổng số phần tử: {{pageTransactional?.page?.totalElements}}</p>
           </div>
           <div class="col-2" align="left">
             <div>

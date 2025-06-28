@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {HouseService} from "../../service/house.service";
-import {UserService} from "../../service/user.service";
 import {House} from "../../model/house";
 import {Page} from "../../model/page";
+import {environment} from "../../../environments/environment";
 
 @Component({
   selector: 'app-house-of-user',
@@ -23,10 +23,10 @@ export class HouseOfUserComponent implements OnInit {
   currentNumber?: number = 2;
   nextPageNumber?: number = 3;
 
-  constructor(private houseService: HouseService,
-              private userService: UserService,) {
+  constructor(private houseService: HouseService) {
     this.token = localStorage.getItem("token")
     this.idUser = localStorage.getItem("idUser")
+    environment.previousUrl = window.location.pathname;
   }
 
   ngOnInit(): void {
@@ -39,6 +39,7 @@ export class HouseOfUserComponent implements OnInit {
       this.houses = this.page?.content
       this.size = this.houses?.length
     }, error => {
+      console.log("error: " + error.error.message)
     })
   }
 
