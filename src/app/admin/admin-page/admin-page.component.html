@@ -71,6 +71,12 @@
       </td>
       <p id="idUser" hidden>{{user?.id}}</p>
     </tr>
+    <tr *ngIf="users?.length == 0" align="center">
+      <div style="height: 100px"></div>
+      <div style="height: 300px">
+        <h3>Không có người dùng nào</h3>
+      </div>
+    </tr>
     </tbody>
   </table>
 
@@ -92,8 +98,18 @@
       <td>{{report?.content}}</td>
       <td>{{report?.createdAt}}</td>
       <td class="cursorTag hoverYellowColor" [routerLink]="['/detailHouse', report?.idHouse]">{{report?.idHouse}}</td>
+    </tr>
+    <tr *ngIf="reports?.length == 0" align="center">
+      <div style="height: 200px"></div>
+      <div style="height: 300px">
+        <h3>Không có khiếu nại nào</h3>
+      </div>
+    </tr>
     </tbody>
   </table>
+  <tr *ngIf="checkLength">
+    <div style="height: 200px"></div>
+  </tr>
 </div>
 
 

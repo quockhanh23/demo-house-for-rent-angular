@@ -20,6 +20,7 @@ export class AdminPageComponent implements OnInit {
   reports?: Report[]
   isUserList = false
   isReportList = false
+  checkLength = false;
   message = messageSuccess
   searchForm: FormGroup = this.formBuilder.group({
     searchText: new FormControl(''),
@@ -37,6 +38,10 @@ export class AdminPageComponent implements OnInit {
     this.getAllUser();
   }
 
+  handlerSpace(arr: Object []) {
+    this.checkLength = arr.length > 0 && arr.length < 3;
+  }
+
   actionUser(action: any, idUser: any) {
     this.adminService.actionUser(this.idUserLogin, action, idUser).subscribe(() => {
       this.ngOnInit()
@@ -45,16 +50,22 @@ export class AdminPageComponent implements OnInit {
   }
 
   getAllUser() {
+    this.checkLength = false;
     let value = this.searchForm.value.searchText
     this.adminService.getAllUser(this.idUserLogin, value).subscribe(rs => {
       this.users = rs;
+      this.handlerSpace(this.users)
     })
   }
 
   getAllRepost() {
+    this.checkLength = false;
     let value = this.searchForm.value.searchText
     this.adminService.getAllRepost(this.idUserLogin, this.token, value).subscribe(rs => {
       this.reports = rs
+      if (this.reports != null) {
+        this.handlerSpace(this.reports)
+      }
     })
   }
 

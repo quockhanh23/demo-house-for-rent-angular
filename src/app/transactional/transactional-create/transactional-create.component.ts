@@ -73,6 +73,8 @@ export class TransactionalCreateComponent implements OnInit {
   getAllHouseByDistrict(district: string) {
     this.houseService.getAllHouseByDistrict(district).subscribe(rs => {
       this.houses = rs
+      const shuffled = [...this.houses].sort(() => 0.5 - Math.random());
+      this.houses = shuffled.slice(0, 2);
     })
   }
 }

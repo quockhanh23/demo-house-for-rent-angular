@@ -3,15 +3,22 @@
 <div class="container" style="margin-top: 10px; margin-bottom: 10px; background-color: whitesmoke">
   <span tooltip="Quay lại" [routerLink]="['/detailHouse', house?.id]" style="font-size: 35px; cursor: pointer;"
         class="material-icons hoverYellowColor">arrow_back</span>
-  <hr>
+  <hr style="margin-top: 0px">
   <div class="row" *ngIf="house?.idUser == idUserLogin && transactional?.status == 'PROCESSING'">
     <div style="margin-left: 15px; margin-bottom: 10px">
       <button (click)="updateTransactional()" type="button" class="btn btn-info">Xác nhận</button>
     </div>
   </div>
-  <div class="row" style="height: 500px">
+  <div class="row">
     <div class="col-6">
-      <img style="width: 100%" src="{{house?.image}}">
+      <img style="width: 100%; border-radius: 5px; height: 400px" src="{{house?.image}}">
+      <div class="row" style="margin-top: 10px">
+       <div class="col-12">
+         <div *ngIf="messageError != null" class="alert alert-danger" role="alert">
+           {{messageError}}
+         </div>
+       </div>
+      </div>
       <div class="row" *ngIf="house?.idUser != idUserLogin">
         <div class="col-6">
           <button style="margin-top: 10px" type="button" class="btn btn-info" (click)="cancelRental()">
@@ -25,8 +32,9 @@
           </button>
         </div>
       </div>
+      <hr>
       <p>{{house?.name}}</p>
-      <p>Giá thuê 1 ngày: {{house?.price}}</p>
+      <p>Giá thuê 1 ngày: {{house?.price}} VNĐ</p>
       <p *ngIf="transactional?.status == 'COMPLETED'">Tổng số tiền thuê: {{transactional?.totalAmountActual}} VNĐ</p>
       <p *ngIf="transactional?.status != 'COMPLETED'">Tổng số tiền thuê: {{transactional?.totalAmountExpected}} VNĐ</p>
       <span>Thời gian thuê: </span>

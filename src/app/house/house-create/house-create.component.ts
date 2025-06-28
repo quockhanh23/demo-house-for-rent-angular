@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {UserService} from "../../service/user.service";
 import {HouseService} from "../../service/house.service";
 import {CategoriesService} from "../../service/categories.service";
@@ -8,7 +8,7 @@ import {LocationDTO} from "../../model/location-dto";
 import {AddressService} from "../../service/address.service";
 import {House} from "../../model/house";
 import {Router} from "@angular/router";
-import {getSnackbar} from "../../app.component";
+import {getSnackbar, whitespaceValidator} from "../../app.component";
 import {UploadImageService} from "../../service/upload-image.service";
 
 @Component({
@@ -27,6 +27,7 @@ export class HouseCreateComponent implements OnInit {
   selectedDistrict?: string
   house?: House
   messageError?: string
+  messageErrorImage?: string
   message = "Thao tác thành công!"
   title = "Đăng tin cho thuê nhà"
   file?: File;
@@ -37,14 +38,14 @@ export class HouseCreateComponent implements OnInit {
   value?: string
 
   houseForm: FormGroup = this.formBuilder.group({
-    title: new FormControl(''),
-    name: new FormControl(''),
-    address: new FormControl(''),
+    title: new FormControl('', [Validators.required, whitespaceValidator()]),
+    name: new FormControl('', [Validators.required, whitespaceValidator()]),
+    address: new FormControl('', [Validators.required, whitespaceValidator()]),
     price: new FormControl(''),
     numberOfBedrooms: new FormControl(''),
     numberOfBathrooms: new FormControl(''),
     acreage: new FormControl(''),
-    description: new FormControl(''),
+    description: new FormControl('', [Validators.required, whitespaceValidator()]),
   });
 
   constructor(private userService: UserService,
@@ -112,7 +113,8 @@ export class HouseCreateComponent implements OnInit {
     }
     this.uploadImageService.upload(file).subscribe(rs => {
       this.value = rs
-      console.log(" this.value:" +  this.value)
+      this.messageErrorImage = undefined
+      console.log(" this.value:" + this.value)
       return true;
     }, error => {
       this.file = undefined;
@@ -124,6 +126,10 @@ export class HouseCreateComponent implements OnInit {
   }
 
   createHouse() {
+    if (this.value == null) {
+      this.messageErrorImage = "bạn chưa upload ảnh"
+      return
+    }
     let category = (document.getElementById("category") as HTMLSelectElement).value;
     let value;
     // @ts-ignore
@@ -152,7 +158,8 @@ export class HouseCreateComponent implements OnInit {
       withGarden: value,
       province: this.getProvinceNameById(province),
       district: this.getDistrictNameById(district),
-      ward: this.getWardNameById(ward)
+      ward: this.getWardNameById(ward),
+      image: this.value
     }
     let token = localStorage.getItem("token")
     if (null == token) token = ""

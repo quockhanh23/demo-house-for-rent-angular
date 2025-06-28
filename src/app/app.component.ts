@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {HttpErrorResponse} from "@angular/common/http";
 import {Router} from "@angular/router";
+import {AbstractControl, ValidationErrors, ValidatorFn} from "@angular/forms";
 
 @Component({
   selector: 'app-root',
@@ -49,4 +50,11 @@ export function checkTokenValid(error: any, router: Router) {
       })
     }
   }
+}
+
+export function whitespaceValidator(): ValidatorFn {
+  return (control: AbstractControl): ValidationErrors | null => {
+    const isWhitespace = control.value.trim().length === 0;
+    return isWhitespace ? {'whitespace': true} : null;
+  };
 }

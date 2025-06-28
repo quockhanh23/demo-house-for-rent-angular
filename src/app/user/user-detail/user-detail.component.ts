@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from "../../service/user.service";
-import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {User} from "../../model/user";
 import {ActivatedRoute} from "@angular/router";
+import {whitespaceValidator} from "../../app.component";
 
 @Component({
   selector: 'app-user-detail',
@@ -25,9 +26,9 @@ export class UserDetailComponent implements OnInit {
   message = ""
 
   changePasswordForm: FormGroup = this.formBuilder.group({
-    password: new FormControl(''),
-    newPassword: new FormControl(''),
-    confirmNewPassword: new FormControl(''),
+    password: new FormControl('', [Validators.required, whitespaceValidator()]),
+    newPassword: new FormControl('', [Validators.required, whitespaceValidator()]),
+    confirmNewPassword: new FormControl('', [Validators.required, whitespaceValidator()]),
   });
 
   userUpdateForm: FormGroup = this.formBuilder.group({

@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {UserService} from "../../service/user.service";
 import {Router} from "@angular/router";
 import {User} from "../../model/user";
+import {whitespaceValidator} from "../../app.component";
 
 @Component({
   selector: 'app-register',
@@ -15,12 +16,12 @@ export class RegisterComponent implements OnInit {
   user?: User
   messageError?: string
   userForm: FormGroup = this.formBuilder.group({
-    username: new FormControl(''),
-    fullName: new FormControl(''),
-    password: new FormControl(''),
-    confirmPassword: new FormControl(''),
-    phone: new FormControl(''),
-    email: new FormControl(''),
+    username: new FormControl('', [Validators.required, whitespaceValidator()]),
+    fullName: new FormControl('', [Validators.required, whitespaceValidator()]),
+    password: new FormControl('', [Validators.required, whitespaceValidator()]),
+    confirmPassword: new FormControl('', [Validators.required, whitespaceValidator()]),
+    phone: new FormControl('',),
+    email: new FormControl('',),
   });
 
   constructor(private userService: UserService,

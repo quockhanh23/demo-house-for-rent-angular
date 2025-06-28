@@ -87,7 +87,19 @@
                 </div>
               </div>
             </div>
-            <button style="margin-bottom: 10px; margin-top: 20px" class="btn btn-primary" type="submit">Đăng tin</button>
+            <div class="row">
+              <div class="col-3">
+                <button style="margin-bottom: 10px; margin-top: 20px" class="btn btn-primary" type="submit">Đăng tin</button>
+              </div>
+              <div class="col-9">
+                <div *ngIf="messageError != null" class="alert alert-danger" role="alert">
+                  {{messageError}}
+                </div>
+                <div *ngIf="messageErrorImage != null" class="alert alert-danger" role="alert">
+                  {{messageErrorImage}}
+                </div>
+              </div>
+            </div>
           </div>
         </form>
       </div>
@@ -131,8 +143,6 @@
             </label>
             <sup><span style="font-size: 17px" *ngIf="value == null">&nbsp;Không có ảnh nào được chọn</span></sup>
             <img style="width: 100%; height: 300px; border-radius: 5px" *ngIf="value != null" src="{{value}}">
-<!--            <img style="width: 100%; height: 300px; border-radius: 5px;"-->
-<!--                 src="https://i.ibb.co/6RwzBtsZ/upload-304197413995088742453456545.jpg">-->
           </div>
         </div>
       </div>

@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {HouseService} from "../../service/house.service";
-import {UserService} from "../../service/user.service";
 import {TransactionalService} from "../../service/transactional.service";
 import {PageTransactionalHistoryUser} from "../../model/page-transactional-history-user";
 import {TransactionalHistoryUser} from "../../model/transactional-history-user";
@@ -23,6 +22,7 @@ export class TransactionalOfUserComponent implements OnInit {
   previousPageNumber?: number = 1;
   currentNumber?: number = 2;
   nextPageNumber?: number = 3;
+  checkLength = false;
 
   constructor(private houseService: HouseService,
               private transactionalService: TransactionalService) {
@@ -34,10 +34,17 @@ export class TransactionalOfUserComponent implements OnInit {
     this.getAllTransactionalByUser(0, 10);
   }
 
+  handlerSpace(arr: Object []) {
+    this.checkLength = arr.length > 0 && arr.length < 2;
+  }
+
   getAllTransactionalByUser(page: any, size: any) {
     this.transactionalService.getAllTransactionalByUser(this.idUser, page, size, this.token).subscribe(rs => {
       this.page = rs
       this.transactionalHistoryUsers = this.page?.content
+      if (this.transactionalHistoryUsers != null) {
+        this.handlerSpace(this.transactionalHistoryUsers);
+      }
     })
   }
 }
