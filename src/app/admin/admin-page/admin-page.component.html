@@ -52,7 +52,7 @@
       <td>{{i + 1}}</td>
       <td>{{user?.username}}</td>
       <td>{{user?.fullName}}</td>
-      <td>{{user?.createdAt}}</td>
+      <td>{{user?.createdAt | date: 'dd/MM/yyyy'}}</td>
       <td style="color: green" *ngIf="'ACTIVE' == user?.status">Đang hoạt động</td>
       <td style="color: red" *ngIf="'INACTIVE' == user?.status">Không hoạt động</td>
       <td align="center">
@@ -96,7 +96,7 @@
       <td class="cursorTag hoverYellowColor"
           [routerLink]="['/detailUser', report?.idUserReport]">{{report?.username}}</td>
       <td>{{report?.content}}</td>
-      <td>{{report?.createdAt}}</td>
+      <td>{{report?.createdAt | date: 'dd/MM/yyyy'}}</td>
       <td class="cursorTag hoverYellowColor" [routerLink]="['/detailHouse', report?.idHouse]">{{report?.idHouse}}</td>
     </tr>
     <tr *ngIf="reports?.length == 0" align="center">

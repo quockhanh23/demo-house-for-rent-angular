@@ -8,49 +8,45 @@
      <form [formGroup]="houseForm" (ngSubmit)="updateHouse()">
        <div class="row align-items-center">
          <div class="col mt-4">
-           <label>Tiêu đề:</label>
+           <label>Tiêu đề <span style="color: red">*</span>:</label>
            <input formControlName="title" class="form-control" placeholder="Tiêu đề" value="{{house?.title}}">
-           <span style="font-size: 13px">Tối đa 32 kí tự</span>
+           <span style="font-size: 13px">Tối đa 100 kí tự</span>
          </div>
        </div>
        <div class="row align-items-center">
          <div class="col mt-4">
-           <label>Địa chỉ:</label>
+           <label>Địa chỉ <span style="color: red">*</span>:</label>
            <input formControlName="address" class="form-control" placeholder="Địa chỉ">
-           <span style="font-size: 13px">Tối đa 32 kí tự</span>
+           <span style="font-size: 13px">Tối đa 500 kí tự</span>
          </div>
        </div>
        <div class="row align-items-center">
          <div class="col mt-4">
            <label>Mô tả:</label>
            <textarea formControlName="description" class="form-control" placeholder="Mô tả"></textarea>
-           <span style="font-size: 13px">Tối đa 32 kí tự</span>
+           <span style="font-size: 13px">Tối đa 500 kí tự</span>
          </div>
        </div>
        <div class="row align-items-center">
          <div class="col mt-4">
            <label>Giá tiền: (VNĐ)</label>
            <input formControlName="price" type="number" class="form-control" placeholder="Giá tiền">
-           <span style="font-size: 13px">Tối đa 32 kí tự</span>
          </div>
          <div class="col mt-4">
            <label>Số phòng ngủ:</label>
            <input formControlName="numberOfBedrooms" type="number" class="form-control" placeholder="Số phòng ngủ"
                   onkeydown="javascript: return ['Backspace','Delete','ArrowLeft','ArrowRight']
                .includes(event.code) ? true : !isNaN(Number(event.key)) && event.code!=='Space'"/>
-           <span style="font-size: 13px">Tối đa 32 kí tự</span>
          </div>
          <div class="col mt-4">
            <label>Số phòng tắm:</label>
            <input formControlName="numberOfBathrooms" type="number" class="form-control" placeholder="Số phòng tắm"
                   onkeydown="javascript: return ['Backspace','Delete','ArrowLeft','ArrowRight']
                .includes(event.code) ? true : !isNaN(Number(event.key)) && event.code!=='Space'"/>
-           <span style="font-size: 13px">Tối đa 32 kí tự</span>
          </div>
          <div class="col mt-4">
            <label>Diện tích: (M<sup>2</sup>)</label>
            <input formControlName="acreage" type="number" class="form-control" placeholder="Diện tích ">
-           <span style="font-size: 13px">Tối đa 32 kí tự</span>
          </div>
        </div>
        <div class="row align-items-center">

@@ -11,11 +11,11 @@
           <div class="col-5">
             <img class="cursorTag" [routerLink]="['/detailHouse', h?.house?.id]" style="width: 100% ; height: 200px"
                  src="{{h?.house?.image}}" alt="Lỗi ảnh">
-            <p>{{h?.house?.price}}</p>
+            <p>{{h?.house?.district}}</p>
           </div>
           <div class="col-6">
             <div *ngFor="let t of h?.transactionalList index as i">
-              <p>Lần: {{i + 1}}</p>
+              <p><b>Lần: {{i + 1}}</b></p>
               <p *ngIf="t?.status == 'COMPLETED'">Tổng số tiền thuê: {{t?.totalAmountActual}} VNĐ</p>
               <p *ngIf="t?.status != 'COMPLETED'">Tổng số tiền thuê: {{t?.totalAmountExpected}} VNĐ</p>
               <p>
@@ -42,9 +42,33 @@
       </div>
       <div *ngIf="transactionalHistoryUsers?.length == 0" align="center">
         <div style="height: 150px"></div>
-        <h3>Bạn chưa thuê nhà lần nào</h3>
+        <h3>Không có thông tin nhà đã thuê</h3>
         <div style="height: 250px"></div>
       </div>
     </div>
+  </div>
+  <div class="row" style="margin-top: 20px">
+    <div class="col-2" align="left">
+      <p style="margin-top: 5px; font-size: 17px">Trang: {{currentPageAddOne}}/ Tổng
+        số: {{page?.page?.totalElements}}</p>
+    </div>
+    <div class="col-1" align="left">
+      <div>
+        <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+          <div class="btn-group mr-2" role="group" aria-label="Second group">
+            <button tooltip="Trang trước" type="button" class="btn btn-link" (click)="previousPage()">
+              <span style="font-size: 15px"
+                    class="material-icons hoverYellowColor cursorTag">arrow_back_ios</span>
+            </button>
+            <button tooltip="Trang tiếp theo" type="button" class="btn btn-link" (click)="nextPage()">
+            <span style="font-size: 15px"
+                  class="material-icons hoverYellowColor cursorTag">arrow_forward_ios</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-5"></div>
+    <div class="col-4"></div>
   </div>
 </div>

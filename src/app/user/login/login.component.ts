@@ -31,6 +31,7 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
+    this.messageError = undefined;
     this.loading = true;
     let loginRequest = {
       username: this.userForm.value.username,

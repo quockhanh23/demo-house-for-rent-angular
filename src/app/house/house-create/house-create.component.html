@@ -10,56 +10,45 @@
           <div style="margin-left: 10px">
             <div class="row align-items-center">
               <div class="col mt-4">
-                <label>Tiêu đề:</label>
+                <label>Tiêu đề <span style="color: red">*</span>:</label>
                 <input formControlName="title" class="form-control" placeholder="Tiêu đề">
-                <span style="font-size: 13px">Tối đa 32 kí tự</span>
+                <span style="font-size: 13px">Tối đa 100 kí tự</span>
               </div>
             </div>
             <div class="row align-items-center">
               <div class="col mt-4">
-                <label>Tên:</label>
-                <input formControlName="name" class="form-control" placeholder="Tên">
-                <span style="font-size: 13px">Tối đa 32 kí tự</span>
-              </div>
-            </div>
-            <div class="row align-items-center">
-              <div class="col mt-4">
-                <label>Địa chỉ:</label>
+                <label>Địa chỉ <span style="color: red">*</span>:</label>
                 <input formControlName="address" class="form-control" placeholder="Địa chỉ">
-                <span style="font-size: 13px">Tối đa 32 kí tự</span>
+                <span style="font-size: 13px">Tối đa 500 kí tự</span>
               </div>
             </div>
             <div class="row align-items-center">
               <div class="col mt-4">
                 <label>Mô tả:</label>
                 <textarea formControlName="description" class="form-control" placeholder="Mô tả"></textarea>
-                <span style="font-size: 13px">Tối đa 32 kí tự</span>
+                <span style="font-size: 13px">Tối đa 500 kí tự</span>
               </div>
             </div>
             <div class="row align-items-center">
               <div class="col mt-4">
                 <label>Giá tiền: (VNĐ)</label>
                 <input formControlName="price" type="number" class="form-control" placeholder="Giá tiền">
-                <span style="font-size: 13px">Tối đa 32 kí tự</span>
               </div>
               <div class="col mt-4">
                 <label>Số phòng ngủ:</label>
                 <input formControlName="numberOfBedrooms" type="number" class="form-control" placeholder="Số phòng ngủ"
                        onkeydown="javascript: return ['Backspace','Delete','ArrowLeft','ArrowRight']
                .includes(event.code) ? true : !isNaN(Number(event.key)) && event.code!=='Space'"/>
-                <span style="font-size: 13px">Tối đa 32 kí tự</span>
               </div>
               <div class="col mt-4">
                 <label>Số phòng tắm:</label>
                 <input formControlName="numberOfBathrooms" type="number" class="form-control" placeholder="Số phòng tắm"
                        onkeydown="javascript: return ['Backspace','Delete','ArrowLeft','ArrowRight']
                .includes(event.code) ? true : !isNaN(Number(event.key)) && event.code!=='Space'"/>
-                <span style="font-size: 13px">Tối đa 32 kí tự</span>
               </div>
               <div class="col mt-4">
                 <label>Diện tích: (M<sup>2</sup>)</label>
                 <input formControlName="acreage" type="number" class="form-control" placeholder="Diện tích ">
-                <span style="font-size: 13px">Tối đa 32 kí tự</span>
               </div>
             </div>
             <div class="row" style="margin-top: 10px">
@@ -89,7 +78,8 @@
             </div>
             <div class="row">
               <div class="col-3">
-                <button style="margin-bottom: 10px; margin-top: 20px" class="btn btn-primary" type="submit">Đăng tin</button>
+                <button style="margin-bottom: 10px; margin-top: 20px" class="btn btn-primary" type="submit">Đăng tin
+                </button>
               </div>
               <div class="col-9">
                 <div *ngIf="messageError != null" class="alert alert-danger" role="alert">

@@ -47,4 +47,35 @@ export class TransactionalOfUserComponent implements OnInit {
       }
     })
   }
+
+  previousPage() {
+    if (this.currentPage != null && this.currentPage > 0) {
+      this.currentPage--;
+      this.currentPageAddOne = this.currentPage + 1
+      this.getAllTransactionalByUser(this.currentPage, 10);
+      if (this.currentPage == 0 || this.currentPage == 1) {
+        this.currentNumber = 2
+        this.previousPageNumber = 1
+        this.nextPageNumber = 3
+      } else {
+        this.currentNumber = this.currentPage + 1
+        this.previousPageNumber = this.currentPage
+        this.nextPageNumber = this.currentPage + 2
+      }
+    }
+  }
+
+  nextPage() {
+    if (this.transactionalHistoryUsers == null || this.transactionalHistoryUsers?.length == 0) return
+    if (this.currentPage != null && (this.currentPage + 1)
+      // @ts-ignore
+      * this.page?.page?.number < this.page?.page?.totalElements) {
+      this.currentPage++;
+      this.currentPageAddOne = this.currentPage + 1
+      this.getAllTransactionalByUser(this.currentPage, 10);
+      this.currentNumber = this.currentPage + 1
+      this.previousPageNumber = this.currentPage
+      this.nextPageNumber = this.currentPage + 2
+    }
+  }
 }
