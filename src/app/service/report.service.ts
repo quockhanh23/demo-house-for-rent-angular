@@ -22,7 +22,6 @@ export class ReportService {
     })
   }
 
-
   createReport(report: Report, token: string): Observable<any> {
     return this.http.post<any>(API_URL + `/createReport`, report, {
       headers: {

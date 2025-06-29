@@ -58,6 +58,15 @@ export class TransactionalService {
     })
   }
 
+  totalMonthly(userId: any, month: any, token: string): Observable<any> {
+    return this.http.get<any>(API_URL +
+      `/totalMonthly?userId=${userId}&month=${month}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      }
+    })
+  }
+
   cancelRental(transactionalId: any, userId: any, token: string): Observable<any> {
     return this.http.post<any>(API_URL +
       `/cancelRental?transactionalId=${transactionalId}&userId=${userId}`, {

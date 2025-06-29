@@ -19,9 +19,9 @@
           </div>
         </div>
       </div>
-      <div class="row" *ngIf="transactional?.idUserGuest == idUserLogin">
+      <div class="row" *ngIf="transactional?.idUserGuest == idUserLogin" style="margin-top: 10px; margin-bottom: 10px">
         <div class="col-12" *ngIf="isCancel">
-          <button style="margin-top: 10px" type="button" class="btn btn-info" (click)="cancelRental()">
+          <button type="button" class="btn btn-info" (click)="cancelRental()">
             Hủy thuê
           </button>
         </div>

@@ -21,18 +21,16 @@ export class HouseUpdateComponent implements OnInit {
   house?: House
   messageError?: string
   message = messageSuccess
-  title= "Cập nhật lại tin cho thuê nhà"
-
+  title = "Cập nhật lại tin cho thuê nhà"
   houseForm: FormGroup = this.formBuilder.group({
     title: new FormControl(""),
-    name: new FormControl(''),
-    address: new FormControl(''),
-    price: new FormControl(''),
-    numberOfBedrooms: new FormControl(''),
-    numberOfBathrooms: new FormControl(''),
-    acreage: new FormControl(''),
-    description: new FormControl(''),
-  });
+    address: new FormControl(""),
+    price: new FormControl(""),
+    numberOfBedrooms: new FormControl(""),
+    numberOfBathrooms: new FormControl(""),
+    acreage: new FormControl(""),
+    description: new FormControl(""),
+  })
 
   constructor(private houseService: HouseService,
               private userService: UserService,
@@ -59,10 +57,18 @@ export class HouseUpdateComponent implements OnInit {
       const idHouse = rs.get('id')
       this.houseService.getDetailHouse(idHouse).subscribe(rs => {
         this.house = rs;
+        this.houseForm = this.formBuilder.group({
+          title: new FormControl(this.house?.title),
+          address: new FormControl(this.house?.address),
+          price: new FormControl(this.house?.price),
+          numberOfBedrooms: new FormControl(this.house?.numberOfBedrooms),
+          numberOfBathrooms: new FormControl(this.house?.numberOfBathrooms),
+          acreage: new FormControl(this.house?.acreage),
+          description: new FormControl(this.house?.description),
+        });
       })
     })
   }
-
 
   updateHouse() {
     let category = (document.getElementById("category") as HTMLSelectElement).value;
@@ -73,23 +79,23 @@ export class HouseUpdateComponent implements OnInit {
     }
     // @ts-ignore
     if (document.getElementById('dewey').checked) {
-      value = (document.getElementById('dewey')as HTMLSelectElement).value;
+      value = (document.getElementById('dewey') as HTMLSelectElement).value;
     }
-    let house = {
-      title: this.houseForm.value.title,
-      name: this.houseForm.value.name,
-      address: this.houseForm.value.address,
-      price: this.houseForm.value.price,
-      numberOfBedrooms: this.houseForm.value.numberOfBedrooms,
-      numberOfBathrooms: this.houseForm.value.numberOfBathrooms,
-      acreage: this.houseForm.value.acreage,
-      description: this.houseForm.value.description,
-      categoryId: category,
-      withGarden: value
+    if (this.house && this.houseForm?.value) {
+      this.house.title = this.houseForm.value.title;
+      this.house.address = this.houseForm.value.address;
+      this.house.price = this.houseForm.value.price;
+      this.house.numberOfBedrooms = this.houseForm.value.numberOfBedrooms;
+      this.house.numberOfBathrooms = this.houseForm.value.numberOfBathrooms;
+      this.house.acreage = this.houseForm.value.acreage
+      this.house.description = this.houseForm.value.description
+      this.house.categoryId = category
+      this.house.withGarden = value
     }
     let token = localStorage.getItem("token")
     if (null == token) token = ""
-    this.houseService.updateHouse(house, this.house?.id, token).subscribe(() => {
+    // @ts-ignore
+    this.houseService.updateHouse(this.house, this.house?.id, token).subscribe(() => {
       getSnackbar()
     }, error => {
       this.messageError = error.error.message

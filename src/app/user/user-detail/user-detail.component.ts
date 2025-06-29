@@ -4,6 +4,7 @@ import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {User} from "../../model/user";
 import {ActivatedRoute} from "@angular/router";
 import {whitespaceValidator} from "../../app.component";
+import {TransactionalService} from "../../service/transactional.service";
 
 @Component({
   selector: 'app-user-detail',
@@ -24,6 +25,7 @@ export class UserDetailComponent implements OnInit {
   messageErrorUpdateUser?: string
   messageError?: string
   message = ""
+  total = ""
 
   changePasswordForm: FormGroup = this.formBuilder.group({
     password: new FormControl('', [Validators.required, whitespaceValidator()]),
@@ -39,6 +41,7 @@ export class UserDetailComponent implements OnInit {
 
   constructor(private userService: UserService,
               private activatedRoute: ActivatedRoute,
+              private transactionalService: TransactionalService,
               private formBuilder: FormBuilder) {
     this.idUserLogin = localStorage.getItem("idUser")
   }
@@ -52,6 +55,14 @@ export class UserDetailComponent implements OnInit {
     } else {
       this.getDetailUser(this.idUser);
     }
+  }
+
+  totalMonthly() {
+    let month = (document.getElementById("month") as HTMLSelectElement).value;
+    this.transactionalService.totalMonthly(this.idUser, month, this.token).subscribe(rs => {
+      this.total = rs
+    }, error => {
+    })
   }
 
   getDetailUser(idUser: any) {
