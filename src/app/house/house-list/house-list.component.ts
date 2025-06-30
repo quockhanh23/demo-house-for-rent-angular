@@ -38,6 +38,11 @@ export class HouseListComponent implements OnInit {
     this.houseService.getAllHousePage(page, size, search).subscribe(rs => {
       this.page = rs;
       this.size = this.page.content?.length
+      if (this.page.content != null) {
+        for (let i = 0; i < this.page.content?.length; i++) {
+          this.page.content[i].price = Number(this.page.content[i].price).toLocaleString('en-US');
+        }
+      }
     }, error => {
       console.log("Lỗi getAllHousePage: " + JSON.stringify(error))
     })

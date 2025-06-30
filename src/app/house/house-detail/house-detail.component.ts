@@ -72,6 +72,7 @@ export class HouseDetailComponent implements OnInit {
       this.idHouse = rs.get('id')
       this.houseService.getDetailHouse(this.idHouse).subscribe(rs => {
         this.houseDetail = rs
+        this.houseDetail.price = Number(this.houseDetail.price).toLocaleString('en-US');
         if (this.houseDetail != null && this.houseDetail?.district != null) {
           this.getAllHouseByDistrict(this.houseDetail?.district);
         }
