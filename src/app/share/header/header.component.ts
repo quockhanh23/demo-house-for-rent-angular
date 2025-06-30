@@ -50,8 +50,8 @@ export class HeaderComponent implements OnInit {
     })
   }
 
-  updateAllNotification() {
-    this.notificationService.updateAllNotification(this.idUser, this.token).subscribe(() => {
+  updateAllNotification(status: any) {
+    this.notificationService.updateAllNotification(this.idUser, status, this.token).subscribe(() => {
       this.getAllNotificationByIdUser();
     })
   }

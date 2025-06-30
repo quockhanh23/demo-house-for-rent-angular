@@ -4,7 +4,8 @@
       <img style="width: 200px; height: 100%; padding-right: 10px" src="../../../assets/images/logo2.png">
     </div>
     <div class="col-6">
-     <span tooltip="Quản lý chi tiết" *ngIf="isAdmin" [routerLink]="['/adminPage']" style="font-size: 30px; margin-top: 30px; color: white"
+     <span tooltip="Quản lý chi tiết" *ngIf="isAdmin" [routerLink]="['/adminPage']"
+           style="font-size: 30px; margin-top: 30px; color: white"
            class="material-icons hoverYellowColor cursorTag">settings</span>
     </div>
     <div *ngIf="idUser == null || idUser == ''" class="col-2">
@@ -21,9 +22,17 @@
               <span class="material-icons" data-toggle="dropdown">notifications_active</span>
               <sup><sup><sup><span style="font-size: 10px">{{count}}</span></sup></sup></sup>
               <div class="dropdown-menu">
-                <a style="text-align: center" (click)="updateAllNotification()" class="dropdown-item">
-                  <b>Đánh dấu đã đọc tất cả</b>
-                </a>
+                <div class="row" style="margin-left: 5px">
+                 <div class="col-12" *ngIf="notifications?.length == 0">
+                   <b class="dropdown-item">Không có thông báo</b>
+                 </div>
+                  <div class="col-6" *ngIf="notifications?.length != 0">
+                    <b class="cursorTag hoverYellowColor" (click)="updateAllNotification('Y')">Đọc tất cả</b>
+                  </div>
+                  <div class="col-6" *ngIf="notifications?.length != 0">
+                    <b class="cursorTag hoverYellowColor" (click)="updateAllNotification('D')">Xóa tất cả</b>
+                  </div>
+                </div>
                 <div *ngFor="let noti of notifications">
                   <a (click)="updateNotification(noti?.id)" *ngIf="noti.status == 'N'" style="background-color: #ece0e0"
                      class="dropdown-item" [routerLink]="['/detailHouse', noti?.idHouse]">
