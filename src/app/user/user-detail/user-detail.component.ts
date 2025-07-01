@@ -3,7 +3,7 @@ import {UserService} from "../../service/user.service";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {User} from "../../model/user";
 import {ActivatedRoute} from "@angular/router";
-import {whitespaceValidator} from "../../app.component";
+import {getPreviousUrl, whitespaceValidator} from "../../app.component";
 import {TransactionalService} from "../../service/transactional.service";
 
 @Component({
@@ -26,6 +26,7 @@ export class UserDetailComponent implements OnInit {
   messageError?: string
   message = ""
   total = ""
+  urlNextPage = ""
 
   changePasswordForm: FormGroup = this.formBuilder.group({
     password: new FormControl('', [Validators.required, whitespaceValidator()]),
@@ -44,6 +45,7 @@ export class UserDetailComponent implements OnInit {
               private transactionalService: TransactionalService,
               private formBuilder: FormBuilder) {
     this.idUserLogin = localStorage.getItem("idUser")
+    this.urlNextPage = getPreviousUrl()
   }
 
   ngOnInit(): void {

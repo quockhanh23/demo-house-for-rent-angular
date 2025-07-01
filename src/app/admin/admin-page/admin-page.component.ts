@@ -4,6 +4,7 @@ import {User} from "../../model/user";
 import {Report} from "../../model/report";
 import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {getSnackbar, messageSuccess} from "../../app.component";
+import {environment} from "../../../environments/environment";
 
 @Component({
   selector: 'app-admin-page',
@@ -22,6 +23,7 @@ export class AdminPageComponent implements OnInit {
   isReportList = false
   checkLength = false;
   message = messageSuccess
+
   searchForm: FormGroup = this.formBuilder.group({
     searchText: new FormControl(''),
   });
@@ -30,6 +32,7 @@ export class AdminPageComponent implements OnInit {
               private formBuilder: FormBuilder) {
     this.idUserLogin = localStorage.getItem("idUser")
     this.token = localStorage.getItem("token")
+    environment.previousUrl = window.location.pathname;
   }
 
   ngOnInit(): void {
