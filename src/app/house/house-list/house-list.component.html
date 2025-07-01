@@ -29,13 +29,16 @@
           </div>
           <div class="col-6">
             <h6 style="margin-top: 10px; margin-bottom: 15px">{{house?.title}}</h6>
-
-            <p><sub><span style="font-size: 18px" class="material-icons">paid</span></sub>&nbsp;{{house?.price}}
+            <p style="color: #2dbd2d">
+              <sub>
+              <span style="font-size: 18px"
+                    class="material-icons">paid</span>
+              </sub>&nbsp;{{house?.price}}
               VNĐ/Tháng</p>
             <p><sub><span style="font-size: 18px"
                           class="material-icons">location_on</span></sub>&nbsp;{{house?.address}}</p>
             <p>&nbsp;{{house?.district}}</p>
-            <p>&nbsp;{{house?.province}}</p>
+            <p>&nbsp;<b>{{house?.province}}</b></p>
           </div>
         </div>
         <div class="row">
@@ -73,7 +76,7 @@
         <div class="row" *ngFor="let house of houses">
           <div style="margin-left: 10px; margin-right: 10px">
             <p class="hoverYellowColor cursorTag" [routerLink]="['/detailHouse',house?.id ]">{{house?.name}}</p>
-            <p>{{house?.price}} VNĐ/Tháng</p>
+            <p style="color: #2dbd2d">{{house?.price}} VNĐ/Tháng</p>
             <img class="cursorTag" [routerLink]="['/detailHouse',house?.id ]" src="{{house?.image}}"
                  style="width: 100%; border-radius: 5px">
           </div>

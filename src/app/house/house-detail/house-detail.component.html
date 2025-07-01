@@ -66,10 +66,10 @@
           <h5>Đặc điểm bất động sản</h5>
           <div class="row">
             <div class="col-1">
-              <p><span tooltip="Giá tiền" class="material-icons">paid</span></p>
+              <p><span tooltip="Giá tiền" class="material-icons cursorTag">paid</span></p>
             </div>
             <div class="col-2">
-              <p>{{houseDetail?.price}}</p>
+              <p style="color: #2dbd2d">{{houseDetail?.price}}</p>
             </div>
             <div class="col-3">
               <p>VNĐ/1 tháng</p>
@@ -77,7 +77,7 @@
           </div>
           <div class="row">
             <div class="col-1">
-              <p><span tooltip="Diện tích" class="material-icons">fit_screen</span></p>
+              <p><span tooltip="Diện tích" class="material-icons cursorTag">fit_screen</span></p>
             </div>
             <div class="col-2">
               <p>{{houseDetail?.acreage}}</p>
@@ -88,7 +88,7 @@
           </div>
           <div class="row">
             <div class="col-1">
-              <p><span tooltip="Số phòng ngủ" class="material-icons">bedroom_parent</span></p>
+              <p><span tooltip="Số phòng ngủ" class="material-icons cursorTag">bedroom_parent</span></p>
             </div>
             <div class="col-2">
               <p>{{houseDetail?.numberOfBedrooms}}</p>
@@ -99,7 +99,7 @@
           </div>
           <div class="row">
             <div class="col-1">
-              <p><span tooltip="Số phòng tắm" class="material-icons">bathtub</span></p>
+              <p><span tooltip="Số phòng tắm" class="material-icons cursorTag">bathtub</span></p>
             </div>
             <div class="col-2">
               <p>{{houseDetail?.numberOfBathrooms}}</p>
@@ -157,8 +157,9 @@
           <div class="row" style="margin-top: 20px">
             <div class="col-10" align="left">
               <div style="margin-left: 15px">
-                <span style="margin-top: 5px; font-size: 17px">
-                 Trang: {{currentPageAddOneComment}}/ Tổngsố: {{pageComment?.page?.totalElements}}</span>
+                <p style="margin-top: 5px; font-size: 17px">
+                  Trang: {{currentPageAddOneComment}}/{{pageComment?.content?.length}} | Tổng
+                  số: {{pageComment?.page?.totalElements}}</p>
               </div>
             </div>
             <div class="col-2" align="left">
@@ -188,7 +189,9 @@
                src="../../../assets/images/logo.png" alt="Lỗi ảnh">
         </div>
         <div class="col-9" style="margin-top: 10px">
-          <p class="hoverYellowColor, cursorTag" [routerLink]="['/detailUser', user?.id]">{{user?.fullName}}</p>
+          <p class="hoverYellowColor, cursorTag" [routerLink]="['/detailUser', user?.id]">
+            <span tooltip="Xem thông tin chủ nhà">{{user?.fullName}}</span>
+          </p>
         </div>
       </div>
       <div class="row" style="background-color: white; margin-right: 5px">
@@ -256,9 +259,8 @@
         </div>
         <div class="row" style="margin-top: 10px; margin-left: 10px">
           <div class="col-10" align="left">
-            <p style="margin-top: 5px; font-size: 17px;">Trang: {{currentPageAddOne}}/{{pageTransactional?.page?.totalPages}}
-              Số lượng: {{transactional?.length}}</p>
-            <p>Tổng số phần tử: {{pageTransactional?.page?.totalElements}}</p>
+            <p style="margin-top: 5px; font-size: 17px">Trang: {{currentPageAddOne}}
+              /{{pageTransactional?.content?.length}} | Tổng số: {{pageTransactional?.page?.totalElements}}</p>
           </div>
           <div class="col-2" align="left">
             <div>

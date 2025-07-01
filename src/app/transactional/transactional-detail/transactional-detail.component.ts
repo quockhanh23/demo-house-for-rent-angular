@@ -89,7 +89,8 @@ export class TransactionalDetailComponent implements OnInit {
   }
 
   checkIn() {
-    this.transactionalService.checkIn(this.idTransactional, this.idUserLogin, this.token).subscribe(() => {
+    this.transactionalService.checkIn(this.idTransactional, this.idUserLogin, this.token).subscribe(rs => {
+      this.transactional = rs
     })
   }
 

@@ -58,14 +58,17 @@ export class UserDetailComponent implements OnInit {
   }
 
   totalMonthly() {
+    this.messageError = undefined
     let month = (document.getElementById("month") as HTMLSelectElement).value;
     this.transactionalService.totalMonthly(this.idUser, month, this.token).subscribe(rs => {
       this.total = rs
     }, error => {
+      this.messageError = error.error.message
     })
   }
 
   getDetailUser(idUser: any) {
+    this.messageError = undefined
     this.token = localStorage.getItem("token")
     console.log("token: " + this.token)
     this.userService.getDetailUser(idUser, this.token).subscribe(rs => {
@@ -76,6 +79,7 @@ export class UserDetailComponent implements OnInit {
   }
 
   changePassword() {
+    this.messageErrorChangePassword = undefined
     let request = {
       username: this.changePasswordForm.value.username,
       newPassword: this.changePasswordForm.value.newPassword,
@@ -89,6 +93,7 @@ export class UserDetailComponent implements OnInit {
   }
 
   updateUser() {
+    this.messageErrorUpdateUser = undefined
     let request = {
       email: this.userUpdateForm.value.email,
       phone: this.userUpdateForm.value.phone,

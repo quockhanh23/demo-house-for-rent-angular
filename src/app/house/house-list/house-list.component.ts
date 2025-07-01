@@ -52,6 +52,7 @@ export class HouseListComponent implements OnInit {
     this.houseService.getAllHousePageByDistrict(page, size, district).subscribe(rs => {
       this.page = rs;
     }, error => {
+      console.log("Lỗi searchByDistrict: " + JSON.stringify(error))
     })
   }
 
@@ -66,8 +67,11 @@ export class HouseListComponent implements OnInit {
   getTopMostExpensive() {
     this.houseService.topMostExpensive().subscribe(rs => {
       this.houses = rs;
+      for (let i = 0; i < this.houses.length; i++) {
+        this.houses[i].price = Number(this.houses[i].price).toLocaleString('en-US');
+      }
     }, error => {
-      console.log("Lỗi getAllDistrictAndCount: " + JSON.stringify(error))
+      console.log("Lỗi getTopMostExpensive: " + JSON.stringify(error))
     })
   }
 
