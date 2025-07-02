@@ -39,15 +39,18 @@
         </div>
       </div>
       <p style="color: #3f6ba4">{{house?.district}}, {{house?.province}}</p>
-      <p>Giá thuê 1 ngày: {{house?.price}} VNĐ</p>
+      <p>Giá thuê 1 ngày: <span style="color: #2dbd2d">{{house?.price}} VNĐ</span></p>
       <hr>
       <p>Khách hàng: <b>{{transactional?.fullNameUserGuest}}</b></p>
-      <p *ngIf="transactional?.status == 'COMPLETED'">Tổng số tiền thuê: {{transactional?.totalAmountActual}} VNĐ</p>
-      <p *ngIf="transactional?.status != 'COMPLETED'">Tổng số tiền thuê: {{transactional?.totalAmountExpected}} VNĐ</p>
+      <p *ngIf="transactional?.status == 'COMPLETED'">Tổng số tiền thuê:
+        <span style="color: #2dbd2d">{{transactional?.totalAmountActual}} VNĐ</span></p>
+      <p *ngIf="transactional?.status != 'COMPLETED'">Tổng số tiền thuê:
+        <span style="color: #2dbd2d">{{transactional?.totalAmountExpected}} VNĐ</span></p>
       <span>Thời gian thuê: </span>
       <span>{{transactional?.startTime | date: 'dd/MM/yyyy'}}</span>
       <span> - </span>
       <span>{{transactional?.endTime | date: 'dd/MM/yyyy'}}</span>
+      <span> ({{transactional?.totalDay}} ngày)</span>
 
       <p *ngIf="'CANCELED' == transactional?.status" style="margin-top: 10px;">Trạng thái: <b
         style="color: red">Đã hủy</b></p>
@@ -61,7 +64,7 @@
         <b>Đã xác nhận</b></p>
     </div>
     <div class="col-6">
-      <p>Chủ nhà: {{user?.fullName}}</p>
+      <p>Chủ nhà: <b>{{user?.fullName}}</b></p>
       <p>Số điện thoại: {{user?.phone}}</p>
       <p>Địa chỉ email: {{user?.email}}</p>
     </div>

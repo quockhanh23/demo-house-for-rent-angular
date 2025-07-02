@@ -46,6 +46,10 @@ export class TransactionalDetailComponent implements OnInit {
   getDetailTransactional() {
     this.transactionalService.getDetailTransactional(this.idTransactional, this.token).subscribe(rs => {
       this.transactional = rs;
+      if (this.transactional != null) {
+        this.transactional.totalAmountActual = Number(this.transactional?.totalAmountActual).toLocaleString('en-US');
+        this.transactional.totalAmountExpected = Number(this.transactional?.totalAmountExpected).toLocaleString('en-US');
+      }
       this.getDetailHouse(this.transactional?.idHouse);
       this.getDetailUser(this.transactional?.idUserHost);
       this.checkCancelRental();
@@ -67,6 +71,7 @@ export class TransactionalDetailComponent implements OnInit {
   getDetailHouse(idHouse: any) {
     this.houseService.getDetailHouse(idHouse).subscribe(rs => {
       this.house = rs;
+      this.house.price = Number(this.house.price).toLocaleString('en-US');
     })
   }
 
@@ -77,7 +82,7 @@ export class TransactionalDetailComponent implements OnInit {
   }
 
   cancelRental() {
-    this.transactionalService.cancelRental(this.idTransactional, this.idUserLogin, this.token).subscribe(rs => {
+    this.transactionalService.cancelRental(this.idTransactional, this.idUserLogin, this.token).subscribe(() => {
       this.notificationService
         .createNotification(this.house?.id, this.idUserLogin, ActionNotification.cancelRental, this.token)
         .subscribe()

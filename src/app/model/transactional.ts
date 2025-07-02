@@ -9,4 +9,5 @@ export interface Transactional {
   fullNameUserGuest?: string
   totalAmountExpected?: string
   totalAmountActual?: string
+  totalDay?: string
 }
