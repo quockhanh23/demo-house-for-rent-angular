@@ -37,6 +37,11 @@ export class HouseOfUserComponent implements OnInit {
     this.houseService.getAllHouseOfUser(page, size, this.idUser).subscribe(rs => {
       this.page = rs;
       this.houses = this.page?.content
+      if (this.houses != null) {
+        for (let i = 0; i < this.houses?.length; i++) {
+          this.houses[i].price = Number(this.houses[i].price).toLocaleString('en-US');
+        }
+      }
       this.size = this.houses?.length
     }, error => {
       console.log("error: " + error.error.message)
